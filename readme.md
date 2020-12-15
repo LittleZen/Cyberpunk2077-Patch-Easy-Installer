@@ -8,6 +8,7 @@ For any problem, or for more information, check the main repository (by yamashi)
 
 
 [DOWNLOAD](https://bit.ly/384rLQZ) | [MAIN REPOSITORY](https://bit.ly/384rMEx) | [ISSUES](https://bit.ly/34cbtUX)
+
 -----------
 
 ## Index
@@ -26,6 +27,7 @@ Remeber that this patcher doesn't allow you to install the newerst version, so r
 2) Open it and follow the Wizard
 3) Open "CP2077 - EasyInstall.exe" and select the main folder of "Cyberpunk 2077" (not the x64 folder! The main directory!)
 
+-----------
 
 ## About
 Type | Description
