@@ -34,6 +34,10 @@ namespace CP2077___EasyInstall
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.btnAbout = new MetroFramework.Controls.MetroLink();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbAntialiasing = new MetroFramework.Controls.MetroCheckBox();
+            this.cbSkipStartMenu = new MetroFramework.Controls.MetroCheckBox();
+            this.cbRemovePedestrians = new MetroFramework.Controls.MetroCheckBox();
+            this.cbAsyncCompute = new MetroFramework.Controls.MetroCheckBox();
             this.btnSettings = new MetroFramework.Controls.MetroButton();
             this.btnSave = new MetroFramework.Controls.MetroButton();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
@@ -43,10 +47,7 @@ namespace CP2077___EasyInstall
             this.cbSpectre = new MetroFramework.Controls.MetroCheckBox();
             this.cbSMT = new MetroFramework.Controls.MetroCheckBox();
             this.cbAVX = new MetroFramework.Controls.MetroCheckBox();
-            this.cbRemovePedestrians = new MetroFramework.Controls.MetroCheckBox();
-            this.cbAsyncCompute = new MetroFramework.Controls.MetroCheckBox();
-            this.cbSkipStartMenu = new MetroFramework.Controls.MetroCheckBox();
-            this.cbAntialiasing = new MetroFramework.Controls.MetroCheckBox();
+            this.btnUpdate = new MetroFramework.Controls.MetroButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,7 +66,7 @@ namespace CP2077___EasyInstall
             // 
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel1.Location = new System.Drawing.Point(15, 394);
+            this.metroLabel1.Location = new System.Drawing.Point(15, 438);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(156, 15);
             this.metroLabel1.TabIndex = 1;
@@ -73,7 +74,7 @@ namespace CP2077___EasyInstall
             // 
             // btnAbout
             // 
-            this.btnAbout.Location = new System.Drawing.Point(340, 395);
+            this.btnAbout.Location = new System.Drawing.Point(340, 439);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(72, 15);
             this.btnAbout.TabIndex = 2;
@@ -83,6 +84,7 @@ namespace CP2077___EasyInstall
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnUpdate);
             this.groupBox1.Controls.Add(this.cbAntialiasing);
             this.groupBox1.Controls.Add(this.cbSkipStartMenu);
             this.groupBox1.Controls.Add(this.cbRemovePedestrians);
@@ -98,14 +100,60 @@ namespace CP2077___EasyInstall
             this.groupBox1.Controls.Add(this.cbAVX);
             this.groupBox1.Location = new System.Drawing.Point(24, 141);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(388, 248);
+            this.groupBox1.Size = new System.Drawing.Size(388, 292);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Settings:";
             // 
+            // cbAntialiasing
+            // 
+            this.cbAntialiasing.AutoSize = true;
+            this.cbAntialiasing.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
+            this.cbAntialiasing.Location = new System.Drawing.Point(225, 146);
+            this.cbAntialiasing.Name = "cbAntialiasing";
+            this.cbAntialiasing.Size = new System.Drawing.Size(143, 19);
+            this.cbAntialiasing.TabIndex = 18;
+            this.cbAntialiasing.Text = "Disable Antialiasing";
+            this.cbAntialiasing.UseSelectable = true;
+            // 
+            // cbSkipStartMenu
+            // 
+            this.cbSkipStartMenu.AutoSize = true;
+            this.cbSkipStartMenu.Checked = true;
+            this.cbSkipStartMenu.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbSkipStartMenu.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
+            this.cbSkipStartMenu.Location = new System.Drawing.Point(6, 146);
+            this.cbSkipStartMenu.Name = "cbSkipStartMenu";
+            this.cbSkipStartMenu.Size = new System.Drawing.Size(123, 19);
+            this.cbSkipStartMenu.TabIndex = 17;
+            this.cbSkipStartMenu.Text = "Skip Start Menu";
+            this.cbSkipStartMenu.UseSelectable = true;
+            // 
+            // cbRemovePedestrians
+            // 
+            this.cbRemovePedestrians.AutoSize = true;
+            this.cbRemovePedestrians.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
+            this.cbRemovePedestrians.Location = new System.Drawing.Point(225, 121);
+            this.cbRemovePedestrians.Name = "cbRemovePedestrians";
+            this.cbRemovePedestrians.Size = new System.Drawing.Size(147, 19);
+            this.cbRemovePedestrians.TabIndex = 16;
+            this.cbRemovePedestrians.Text = "Remove Pedestrians";
+            this.cbRemovePedestrians.UseSelectable = true;
+            // 
+            // cbAsyncCompute
+            // 
+            this.cbAsyncCompute.AutoSize = true;
+            this.cbAsyncCompute.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
+            this.cbAsyncCompute.Location = new System.Drawing.Point(6, 121);
+            this.cbAsyncCompute.Name = "cbAsyncCompute";
+            this.cbAsyncCompute.Size = new System.Drawing.Size(122, 19);
+            this.cbAsyncCompute.TabIndex = 15;
+            this.cbAsyncCompute.Text = "Async Compute";
+            this.cbAsyncCompute.UseSelectable = true;
+            // 
             // btnSettings
             // 
-            this.btnSettings.Location = new System.Drawing.Point(105, 213);
+            this.btnSettings.Location = new System.Drawing.Point(105, 249);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(179, 23);
             this.btnSettings.TabIndex = 14;
@@ -115,7 +163,7 @@ namespace CP2077___EasyInstall
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(105, 184);
+            this.btnSave.Location = new System.Drawing.Point(105, 220);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(179, 23);
             this.btnSave.TabIndex = 13;
@@ -210,57 +258,21 @@ namespace CP2077___EasyInstall
             this.cbAVX.Text = "AVX";
             this.cbAVX.UseSelectable = true;
             // 
-            // cbRemovePedestrians
+            // btnUpdate
             // 
-            this.cbRemovePedestrians.AutoSize = true;
-            this.cbRemovePedestrians.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-            this.cbRemovePedestrians.Location = new System.Drawing.Point(225, 121);
-            this.cbRemovePedestrians.Name = "cbRemovePedestrians";
-            this.cbRemovePedestrians.Size = new System.Drawing.Size(147, 19);
-            this.cbRemovePedestrians.TabIndex = 16;
-            this.cbRemovePedestrians.Text = "Remove Pedestrians";
-            this.cbRemovePedestrians.UseSelectable = true;
-            // 
-            // cbAsyncCompute
-            // 
-            this.cbAsyncCompute.AutoSize = true;
-            this.cbAsyncCompute.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-            this.cbAsyncCompute.Location = new System.Drawing.Point(6, 121);
-            this.cbAsyncCompute.Name = "cbAsyncCompute";
-            this.cbAsyncCompute.Size = new System.Drawing.Size(122, 19);
-            this.cbAsyncCompute.TabIndex = 15;
-            this.cbAsyncCompute.Text = "Async Compute";
-            this.cbAsyncCompute.UseSelectable = true;
-            // 
-            // cbSkipStartMenu
-            // 
-            this.cbSkipStartMenu.AutoSize = true;
-            this.cbSkipStartMenu.Checked = true;
-            this.cbSkipStartMenu.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbSkipStartMenu.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-            this.cbSkipStartMenu.Location = new System.Drawing.Point(6, 146);
-            this.cbSkipStartMenu.Name = "cbSkipStartMenu";
-            this.cbSkipStartMenu.Size = new System.Drawing.Size(123, 19);
-            this.cbSkipStartMenu.TabIndex = 17;
-            this.cbSkipStartMenu.Text = "Skip Start Menu";
-            this.cbSkipStartMenu.UseSelectable = true;
-            // 
-            // cbAntialiasing
-            // 
-            this.cbAntialiasing.AutoSize = true;
-            this.cbAntialiasing.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-            this.cbAntialiasing.Location = new System.Drawing.Point(225, 146);
-            this.cbAntialiasing.Name = "cbAntialiasing";
-            this.cbAntialiasing.Size = new System.Drawing.Size(143, 19);
-            this.cbAntialiasing.TabIndex = 18;
-            this.cbAntialiasing.Text = "Disable Antialiasing";
-            this.cbAntialiasing.UseSelectable = true;
+            this.btnUpdate.Location = new System.Drawing.Point(105, 191);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(179, 23);
+            this.btnUpdate.TabIndex = 19;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseSelectable = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(435, 417);
+            this.ClientSize = new System.Drawing.Size(435, 461);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.metroLabel1);
@@ -297,6 +309,7 @@ namespace CP2077___EasyInstall
         private MetroFramework.Controls.MetroCheckBox cbRemovePedestrians;
         private MetroFramework.Controls.MetroCheckBox cbAsyncCompute;
         private MetroFramework.Controls.MetroCheckBox cbAntialiasing;
+        private MetroFramework.Controls.MetroButton btnUpdate;
     }
 }
 
