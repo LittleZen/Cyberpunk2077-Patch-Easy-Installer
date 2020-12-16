@@ -150,6 +150,7 @@ namespace CP2077___EasyInstall
             bool asyncCompute = cbAsyncCompute.Checked;
             bool removePedestrians = cbRemovePedestrians.Checked;
             bool skipStartMenu = cbSkipStartMenu.Checked;
+            bool antialiasing = cbAntialiasing.Checked;
 
             var data = new Data()
             {
@@ -163,7 +164,8 @@ namespace CP2077___EasyInstall
                 VirtualInput = vInputSet,
                 AsyncCompute = asyncCompute,
                 RemovePedestrians = removePedestrians,
-                SkipStartMenu = skipStartMenu
+                SkipStartMenu = skipStartMenu,
+                Antialiasing = antialiasing
             };
 
             using (StreamWriter file = File.CreateText(settingsPath))

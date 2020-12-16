@@ -1,6 +1,7 @@
 {
     "avx": true,
     "cpu_memory_pool_fraction": 0.5,
+    "disable_antialiasing": false,
     "disable_async_compute": false,
     "gpu_memory_pool_fraction": 1.0,
     "memory_pool": true,
@@ -8,6 +9,6 @@
     "skip_start_menu": true,
     "smt": true,
     "spectre": true,
-    "unlock_menu": true,
+    "unlock_menu": false,
     "virtual_input": true
 }

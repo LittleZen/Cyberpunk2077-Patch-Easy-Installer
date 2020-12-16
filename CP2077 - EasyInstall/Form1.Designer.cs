@@ -46,6 +46,7 @@ namespace CP2077___EasyInstall
             this.cbRemovePedestrians = new MetroFramework.Controls.MetroCheckBox();
             this.cbAsyncCompute = new MetroFramework.Controls.MetroCheckBox();
             this.cbSkipStartMenu = new MetroFramework.Controls.MetroCheckBox();
+            this.cbAntialiasing = new MetroFramework.Controls.MetroCheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,9 +67,9 @@ namespace CP2077___EasyInstall
             this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Small;
             this.metroLabel1.Location = new System.Drawing.Point(15, 394);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(152, 15);
+            this.metroLabel1.Size = new System.Drawing.Size(156, 15);
             this.metroLabel1.TabIndex = 1;
-            this.metroLabel1.Text = "Patch Version: 0.9.0 (yamashi)";
+            this.metroLabel1.Text = "Patch Version: 0.10.0 (yamashi)";
             // 
             // btnAbout
             // 
@@ -82,6 +83,7 @@ namespace CP2077___EasyInstall
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbAntialiasing);
             this.groupBox1.Controls.Add(this.cbSkipStartMenu);
             this.groupBox1.Controls.Add(this.cbRemovePedestrians);
             this.groupBox1.Controls.Add(this.cbAsyncCompute);
@@ -243,6 +245,17 @@ namespace CP2077___EasyInstall
             this.cbSkipStartMenu.Text = "Skip Start Menu";
             this.cbSkipStartMenu.UseSelectable = true;
             // 
+            // cbAntialiasing
+            // 
+            this.cbAntialiasing.AutoSize = true;
+            this.cbAntialiasing.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
+            this.cbAntialiasing.Location = new System.Drawing.Point(225, 146);
+            this.cbAntialiasing.Name = "cbAntialiasing";
+            this.cbAntialiasing.Size = new System.Drawing.Size(143, 19);
+            this.cbAntialiasing.TabIndex = 18;
+            this.cbAntialiasing.Text = "Disable Antialiasing";
+            this.cbAntialiasing.UseSelectable = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -283,6 +296,7 @@ namespace CP2077___EasyInstall
         private MetroFramework.Controls.MetroCheckBox cbSkipStartMenu;
         private MetroFramework.Controls.MetroCheckBox cbRemovePedestrians;
         private MetroFramework.Controls.MetroCheckBox cbAsyncCompute;
+        private MetroFramework.Controls.MetroCheckBox cbAntialiasing;
     }
 }
 

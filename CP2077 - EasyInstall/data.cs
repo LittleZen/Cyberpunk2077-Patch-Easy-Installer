@@ -13,5 +13,6 @@
         public bool AsyncCompute { get; set; }
         public bool SkipStartMenu { get; set; }
         public bool RemovePedestrians { get; set; }
+        public bool Antialiasing { get; set; }
     }
 }
