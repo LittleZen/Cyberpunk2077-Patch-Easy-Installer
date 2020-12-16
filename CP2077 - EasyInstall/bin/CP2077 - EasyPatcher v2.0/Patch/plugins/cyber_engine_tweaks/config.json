@@ -1,0 +1,10 @@
+{
+    "avx": true,
+    "cpu_memory_pool_fraction": 0.5,
+    "gpu_memory_pool_fraction": 1.0,
+    "memory_pool": true,
+    "smt": true,
+    "spectre": true,
+    "unlock_menu": false,
+    "virtual_input": true
+}

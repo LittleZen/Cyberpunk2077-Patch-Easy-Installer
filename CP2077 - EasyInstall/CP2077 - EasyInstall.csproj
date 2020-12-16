@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{78C08192-D7C9-4762-8D05-0FE2EDDB7EA7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>CP2077___EasyInstall</RootNamespace>
-    <AssemblyName>CP2077 - EasyInstall</AssemblyName>
+    <RootNamespace>CP2077___EasyPatcher</RootNamespace>
+    <AssemblyName>CP2077 - EasyPatcher</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -99,6 +99,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.manifest" />
     <None Include="packages.config" />
