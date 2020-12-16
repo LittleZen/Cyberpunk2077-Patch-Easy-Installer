@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using SharpGameReg;
 
 namespace CP2077___EasyInstall
 {
@@ -32,6 +33,9 @@ namespace CP2077___EasyInstall
                 already_installed = true;
                 btn_main.Text = "Patch Already Installed!";
                 btn_main.Enabled = false;
+                metroButton1.Enabled = false;
+                metroButton3.Enabled = false;
+                Console.WriteLine(local_path);
                 Console.WriteLine("Patch already installed!");
             }
             catch(Exception)
@@ -85,45 +89,7 @@ namespace CP2077___EasyInstall
 
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-                    //fbd.SelectedPath = <path selected>
-                    string main_path = fbd.SelectedPath;  //refers to main CP2077 directory
-                    fbd.SelectedPath += "\\bin\\x64";
-                    general_path = fbd.SelectedPath; //refers to x64 directory
-
-                    //System.Windows.Forms.MessageBox.Show("Path Selected: " + fbd.SelectedPath, "Message"); <DEBUG>
-                    try
-                    {
-                        // Move files from patch to Cyberpunk2077 path
-                        string sourceDirectory = @"Patch";
-                        string targetDirectory = fbd.SelectedPath;
-                        Copy(sourceDirectory, targetDirectory);
-
-                        string docPath = Directory.GetCurrentDirectory();
-                        StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Path.txt"));
-                        outputFile.Write(fbd.SelectedPath);
-
-                        /* WRITE PATH FILE. IT IS USED FOR CHECK IF THE PATCH IS ALREADY INSTALLED (ON NEXT RESTART) */
-                        try 
-                        {
-                            var local_path = Directory.GetCurrentDirectory() + "\\game_path";
-                            Console.WriteLine("path.txt path = ", local_path); //debug
-                            File.WriteAllText(local_path, general_path);
-                            Console.WriteLine("Path correctly created!\n"); //debug
-                        }
-                        catch(Exception)
-                        {
-                            MessageBox.Show("Patch successfully installed, but i wasn't able to create path.txt file for correctly detect the position!");
-                        }
-
-                        MetroFramework.MetroMessageBox.Show(this, "Patch successfully installed!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Question);
-                        btn_main.Text = "Successfully Installed!";
-                        btn_main.Enabled = false;
-                        }
-                        catch (Exception ex)
-                        {
-                            MetroFramework.MetroMessageBox.Show(this, "Error during installation\nError code: 1", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            btn_main.Text = "Critical Error!";
-                        }
+                    patchGame(fbd.SelectedPath);  //refers to main CP2077 directory
                 }
                 else
                 {
@@ -180,6 +146,79 @@ namespace CP2077___EasyInstall
             catch (Exception)
             {
                 MetroFramework.MetroMessageBox.Show(this, "You must select a valid path before open the settings!\nError code: 3", "Exception!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void metroButton3_Click(object sender, EventArgs e)
+        {
+            string path = GoGGamePath.findGameByAppID("1423049311");
+            if (path == null)
+            {
+                MessageBox.Show("Error: Couldn't Find CyberPunk for GoG!");
+                return;
+            }
+            DialogResult dialogResult = MessageBox.Show(path, "Is this Correct?", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                patchGame(path);
+            }
+        }
+
+        private void metroButton1_Click(object sender, EventArgs e)
+        {
+            string path = SteamGamePath.findGameByAppID("1091500");
+            if (path == null)
+            { 
+                MessageBox.Show("Error: Couldn't Find CyberPunk for steam!");
+                return;
+            }
+            DialogResult dialogResult = MessageBox.Show(path, "Is this Correct?", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                patchGame(path);
+            }
+        }
+        private void patchGame(string mainPath)
+        {
+            //fbd.SelectedPath = <path selected>
+            string selectedPath = mainPath + "\\bin\\x64";
+            general_path = selectedPath; //refers to x64 directory
+
+            //System.Windows.Forms.MessageBox.Show("Path Selected: " + fbd.SelectedPath, "Message"); <DEBUG>
+            try
+            {
+                // Move files from patch to Cyberpunk2077 path
+                string sourceDirectory = @"Patch";
+                string targetDirectory = selectedPath;
+                Copy(sourceDirectory, targetDirectory);
+
+                string docPath = Directory.GetCurrentDirectory();
+                StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Path.txt"));
+                outputFile.Write(selectedPath);
+
+                /* WRITE PATH FILE. IT IS USED FOR CHECK IF THE PATCH IS ALREADY INSTALLED (ON NEXT RESTART) */
+                try
+                {
+                    var local_path = Directory.GetCurrentDirectory() + "\\game_path";
+                    Console.WriteLine("path.txt path = ", local_path); //debug
+                    File.WriteAllText(local_path, general_path);
+                    Console.WriteLine("Path correctly created!\n"); //debug
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Patch successfully installed, but i wasn't able to create path.txt file for correctly detect the position!");
+                }
+
+                MetroFramework.MetroMessageBox.Show(this, "Patch successfully installed!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                btn_main.Text = "Successfully Installed!";
+                btn_main.Enabled = false;
+                metroButton1.Enabled = false;
+                metroButton3.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MetroFramework.MetroMessageBox.Show(this, "Error during installation\nError code: 1", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btn_main.Text = "Critical Error!";
             }
         }
     }
