@@ -35,7 +35,7 @@ Type | Description
 `Language` | *C# (patch in c++)*
 `Installer Developer` | *LittleZen*
 `Patch Developer` | *[yamashi + others](https://github.com/yamashi/PerformanceOverhaulCyberpunk)*
-`Installer Version` | *1.0*
+`Installer Version` | *2.0*
 `Patch Version` | *0.7.0*
 
 ## ChangeLog
@@ -58,6 +58,8 @@ Type | Description
 - [x] Now requires Administrator Privilege
 - [x] Icons updated
 - [x] Code Cleared 
+
+-----------
 
 ### LICENSE AND USE
 
