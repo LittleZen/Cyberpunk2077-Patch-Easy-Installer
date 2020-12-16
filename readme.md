@@ -61,7 +61,7 @@ Type | Description
 
 -----------
 
-### LICENSE AND USE
+## LICENSE AND USE
 
 - [x] Install the patch, download the source or the installer will result as "license and use" accepted
 - [x] I do not take any responsibility for any problems resulting from this software.
