@@ -42,8 +42,20 @@ Type | Description
 
 ### Version 1.0 [15/12/2020]
 
-- [x] Easy Patcher v1.0
-- [x] yamashi patch v0.7.0
+- [x] Released Easy Patcher v1.0
+- [x] Released yamashi patch v0.7.0
+
+### Version 2.0 [15/12/2020]
+- [x] Released Easy Patcher v2.0
+- [x] Released yamashi patch v0.7.2
+- [x] New HUD (Now you can directly manage the settings through the tool)
+- [x] Tool will now automatically detect (after the first time) the path of CP2077, and don't ask you (all time) to re-insert the path
+- [x] Code Cleared 
+- [x] You can now directly open the json file (for manually manage the settings or for check it)
+- [x] About now correctly redirect all to this thread
+- [x] Some Minor visual effects added
+- [x] Now requires Administrator Privilege
+- [x] Icons updated
 
 ### LICENSE AND USE
 
