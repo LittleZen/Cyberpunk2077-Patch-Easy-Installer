@@ -10,5 +10,8 @@
         public bool VirtualInput { get; set; }
         public double CPUMemoryPoolFraction { get; set; }
         public double GPUMemoryPoolFraction { get; set; }
+        public bool AsyncCompute { get; set; }
+        public bool SkipStartMenu { get; set; }
+        public bool RemovePedestrians { get; set; }
     }
 }

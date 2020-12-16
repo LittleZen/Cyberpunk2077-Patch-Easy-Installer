@@ -147,6 +147,9 @@ namespace CP2077___EasyInstall
             bool spectreSet = cbSpectre.Checked;
             bool debugSet = cbDebug.Checked;
             bool vInputSet = cbVInput.Checked;
+            bool asyncCompute = cbAsyncCompute.Checked;
+            bool removePedestrians = cbRemovePedestrians.Checked;
+            bool skipStartMenu = cbSkipStartMenu.Checked;
 
             var data = new Data()
             {
@@ -157,7 +160,10 @@ namespace CP2077___EasyInstall
                 SMT = smtSet,
                 Spectre = spectreSet,
                 UnlockMenu = debugSet,
-                VirtualInput = vInputSet
+                VirtualInput = vInputSet,
+                AsyncCompute = asyncCompute,
+                RemovePedestrians = removePedestrians,
+                SkipStartMenu = skipStartMenu
             };
 
             using (StreamWriter file = File.CreateText(settingsPath))
