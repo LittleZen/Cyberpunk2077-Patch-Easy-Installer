@@ -16,17 +16,12 @@ For any problem, or for more information, check the main repository (by yamashi)
 - [About](#about)
 - [ChangeLog](#changelog)
 
------------
-
-h	~~Remeber that this patcher doesn't allow you to install the newerst version, so remeber to check this page for future update!
-
-Added "Check for Updates" button! 
 
 -----------
 ## Guide
 
 1) Download the exe file
-2) Open it and follow the Wizard
+2) Open it, and extract the files where you want.
 3) Open "CP2077 - EasyInstall.exe" and select the main folder of "Cyberpunk 2077" (not the x64 folder! The main directory!)
 
 -----------
