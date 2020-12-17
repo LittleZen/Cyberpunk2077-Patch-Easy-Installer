@@ -43,8 +43,6 @@ namespace CP2077___EasyInstall
             this.cb_spectre = new MetroFramework.Controls.MetroCheckBox();
             this.cb_smt = new MetroFramework.Controls.MetroCheckBox();
             this.cb_avx = new MetroFramework.Controls.MetroCheckBox();
-            this.metroButton1 = new MetroFramework.Controls.MetroButton();
-            this.metroButton3 = new MetroFramework.Controls.MetroButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,7 +61,7 @@ namespace CP2077___EasyInstall
             // 
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel1.Location = new System.Drawing.Point(6, 423);
+            this.metroLabel1.Location = new System.Drawing.Point(6, 343);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(152, 15);
             this.metroLabel1.TabIndex = 1;
@@ -71,7 +69,7 @@ namespace CP2077___EasyInstall
             // 
             // metroLink1
             // 
-            this.metroLink1.Location = new System.Drawing.Point(291, 424);
+            this.metroLink1.Location = new System.Drawing.Point(291, 344);
             this.metroLink1.Name = "metroLink1";
             this.metroLink1.Size = new System.Drawing.Size(72, 15);
             this.metroLink1.TabIndex = 2;
@@ -90,7 +88,7 @@ namespace CP2077___EasyInstall
             this.groupBox1.Controls.Add(this.cb_spectre);
             this.groupBox1.Controls.Add(this.cb_smt);
             this.groupBox1.Controls.Add(this.cb_avx);
-            this.groupBox1.Location = new System.Drawing.Point(24, 221);
+            this.groupBox1.Location = new System.Drawing.Point(24, 141);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(338, 199);
             this.groupBox1.TabIndex = 3;
@@ -204,42 +202,17 @@ namespace CP2077___EasyInstall
             this.cb_avx.Text = "AVX";
             this.cb_avx.UseSelectable = true;
             // 
-            // metroButton1
-            // 
-            this.metroButton1.Location = new System.Drawing.Point(22, 145);
-            this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(160, 70);
-            this.metroButton1.TabIndex = 4;
-            this.metroButton1.Text = "Find Steam Path";
-            this.metroButton1.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroButton1.UseSelectable = true;
-            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
-            // 
-            // metroButton3
-            // 
-            this.metroButton3.Location = new System.Drawing.Point(203, 145);
-            this.metroButton3.Name = "metroButton3";
-            this.metroButton3.Size = new System.Drawing.Size(160, 70);
-            this.metroButton3.TabIndex = 5;
-            this.metroButton3.Text = "Find GOG Path";
-            this.metroButton3.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroButton3.UseSelectable = true;
-            this.metroButton3.Click += new System.EventHandler(this.metroButton3_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(386, 442);
-            this.Controls.Add(this.metroButton3);
-            this.Controls.Add(this.metroButton1);
+            this.ClientSize = new System.Drawing.Size(386, 361);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.metroLink1);
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.btn_main);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Yellow;
             this.Text = "CP 2077 - EasyPatcher 2.0";
             this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center;
@@ -266,8 +239,6 @@ namespace CP2077___EasyInstall
         private MetroFramework.Controls.MetroCheckBox cb_spectre;
         private MetroFramework.Controls.MetroCheckBox cb_smt;
         private MetroFramework.Controls.MetroCheckBox cb_avx;
-        private MetroFramework.Controls.MetroButton metroButton1;
-        private MetroFramework.Controls.MetroButton metroButton3;
     }
 }
 
