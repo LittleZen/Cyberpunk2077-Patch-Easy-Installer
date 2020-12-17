@@ -32,12 +32,12 @@ namespace CP2077___EasyInstall
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnMain = new MetroFramework.Controls.MetroButton();
             this.btnAbout = new MetroFramework.Controls.MetroLink();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbxSettings = new System.Windows.Forms.GroupBox();
             this.cbAntialiasing = new MetroFramework.Controls.MetroCheckBox();
             this.cbSkipStartMenu = new MetroFramework.Controls.MetroCheckBox();
             this.cbRemovePedestrians = new MetroFramework.Controls.MetroCheckBox();
             this.cbAsyncCompute = new MetroFramework.Controls.MetroCheckBox();
-            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.lblSettingsText = new MetroFramework.Controls.MetroLabel();
             this.cbVInput = new MetroFramework.Controls.MetroCheckBox();
             this.cbDebug = new MetroFramework.Controls.MetroCheckBox();
             this.cbMemoryPool = new MetroFramework.Controls.MetroCheckBox();
@@ -62,14 +62,16 @@ namespace CP2077___EasyInstall
             this.tt_pedestrians = new MetroFramework.Components.MetroToolTip();
             this.tt_aliasing = new MetroFramework.Components.MetroToolTip();
             this.btnLogs = new MetroFramework.Controls.MetroButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.tbGpuMem = new System.Windows.Forms.TextBox();
-            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
-            this.tbCpuMem = new System.Windows.Forms.TextBox();
+            this.gbxMemPool = new System.Windows.Forms.GroupBox();
+            this.lblGpuMem = new MetroFramework.Controls.MetroLabel();
+            this.lblCpuMem = new MetroFramework.Controls.MetroLabel();
             this.btnUninstall = new MetroFramework.Controls.MetroButton();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.numCpuMem = new System.Windows.Forms.NumericUpDown();
+            this.numGpuMem = new System.Windows.Forms.NumericUpDown();
+            this.gbxSettings.SuspendLayout();
+            this.gbxMemPool.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numCpuMem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGpuMem)).BeginInit();
             this.SuspendLayout();
             // 
             // btnMain
@@ -94,25 +96,25 @@ namespace CP2077___EasyInstall
             this.btnAbout.UseSelectable = true;
             this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 
-            // groupBox1
+            // gbxSettings
             // 
-            this.groupBox1.Controls.Add(this.cbAntialiasing);
-            this.groupBox1.Controls.Add(this.cbSkipStartMenu);
-            this.groupBox1.Controls.Add(this.cbRemovePedestrians);
-            this.groupBox1.Controls.Add(this.cbAsyncCompute);
-            this.groupBox1.Controls.Add(this.metroLabel2);
-            this.groupBox1.Controls.Add(this.cbVInput);
-            this.groupBox1.Controls.Add(this.cbDebug);
-            this.groupBox1.Controls.Add(this.cbMemoryPool);
-            this.groupBox1.Controls.Add(this.cbSpectre);
-            this.groupBox1.Controls.Add(this.cbSMT);
-            this.groupBox1.Controls.Add(this.cbAVX);
-            this.groupBox1.Location = new System.Drawing.Point(24, 141);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(388, 174);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Settings:";
+            this.gbxSettings.Controls.Add(this.cbAntialiasing);
+            this.gbxSettings.Controls.Add(this.cbSkipStartMenu);
+            this.gbxSettings.Controls.Add(this.cbRemovePedestrians);
+            this.gbxSettings.Controls.Add(this.cbAsyncCompute);
+            this.gbxSettings.Controls.Add(this.lblSettingsText);
+            this.gbxSettings.Controls.Add(this.cbVInput);
+            this.gbxSettings.Controls.Add(this.cbDebug);
+            this.gbxSettings.Controls.Add(this.cbMemoryPool);
+            this.gbxSettings.Controls.Add(this.cbSpectre);
+            this.gbxSettings.Controls.Add(this.cbSMT);
+            this.gbxSettings.Controls.Add(this.cbAVX);
+            this.gbxSettings.Location = new System.Drawing.Point(24, 141);
+            this.gbxSettings.Name = "gbxSettings";
+            this.gbxSettings.Size = new System.Drawing.Size(388, 174);
+            this.gbxSettings.TabIndex = 3;
+            this.gbxSettings.TabStop = false;
+            this.gbxSettings.Text = "Settings:";
             // 
             // cbAntialiasing
             // 
@@ -165,14 +167,14 @@ namespace CP2077___EasyInstall
         "for example)");
             this.cbAsyncCompute.UseSelectable = true;
             // 
-            // metroLabel2
+            // lblSettingsText
             // 
-            this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(105, 16);
-            this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(175, 19);
-            this.metroLabel2.TabIndex = 12;
-            this.metroLabel2.Text = "Check the box for activate it:";
+            this.lblSettingsText.AutoSize = true;
+            this.lblSettingsText.Location = new System.Drawing.Point(105, 16);
+            this.lblSettingsText.Name = "lblSettingsText";
+            this.lblSettingsText.Size = new System.Drawing.Size(175, 19);
+            this.lblSettingsText.TabIndex = 12;
+            this.lblSettingsText.Text = "Check the box for activate it:";
             // 
             // cbVInput
             // 
@@ -385,54 +387,36 @@ namespace CP2077___EasyInstall
             this.btnLogs.UseSelectable = true;
             this.btnLogs.Click += new System.EventHandler(this.btnLogs_Click);
             // 
-            // groupBox2
+            // gbxMemPool
             // 
-            this.groupBox2.Controls.Add(this.tbGpuMem);
-            this.groupBox2.Controls.Add(this.metroLabel4);
-            this.groupBox2.Controls.Add(this.metroLabel3);
-            this.groupBox2.Controls.Add(this.tbCpuMem);
-            this.groupBox2.Location = new System.Drawing.Point(24, 322);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(388, 47);
-            this.groupBox2.TabIndex = 21;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Memory Pool:";
+            this.gbxMemPool.Controls.Add(this.numGpuMem);
+            this.gbxMemPool.Controls.Add(this.numCpuMem);
+            this.gbxMemPool.Controls.Add(this.lblGpuMem);
+            this.gbxMemPool.Controls.Add(this.lblCpuMem);
+            this.gbxMemPool.Location = new System.Drawing.Point(24, 322);
+            this.gbxMemPool.Name = "gbxMemPool";
+            this.gbxMemPool.Size = new System.Drawing.Size(388, 47);
+            this.gbxMemPool.TabIndex = 21;
+            this.gbxMemPool.TabStop = false;
+            this.gbxMemPool.Text = "Memory Pool:";
             // 
-            // tbGpuMem
+            // lblGpuMem
             // 
-            this.tbGpuMem.Location = new System.Drawing.Point(346, 19);
-            this.tbGpuMem.Name = "tbGpuMem";
-            this.tbGpuMem.Size = new System.Drawing.Size(21, 20);
-            this.tbGpuMem.TabIndex = 3;
-            this.tbGpuMem.Tag = "";
-            this.tbGpuMem.Text = "1.0";
+            this.lblGpuMem.AutoSize = true;
+            this.lblGpuMem.Location = new System.Drawing.Point(220, 20);
+            this.lblGpuMem.Name = "lblGpuMem";
+            this.lblGpuMem.Size = new System.Drawing.Size(123, 19);
+            this.lblGpuMem.TabIndex = 2;
+            this.lblGpuMem.Text = "GPU Memory Pool:";
             // 
-            // metroLabel4
+            // lblCpuMem
             // 
-            this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(225, 20);
-            this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(123, 19);
-            this.metroLabel4.TabIndex = 2;
-            this.metroLabel4.Text = "GPU Memory Pool:";
-            // 
-            // metroLabel3
-            // 
-            this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(6, 20);
-            this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(123, 19);
-            this.metroLabel3.TabIndex = 1;
-            this.metroLabel3.Text = "CPU Memory Pool:";
-            // 
-            // tbCpuMem
-            // 
-            this.tbCpuMem.Location = new System.Drawing.Point(129, 19);
-            this.tbCpuMem.Name = "tbCpuMem";
-            this.tbCpuMem.Size = new System.Drawing.Size(21, 20);
-            this.tbCpuMem.TabIndex = 0;
-            this.tbCpuMem.Tag = "";
-            this.tbCpuMem.Text = "0.5";
+            this.lblCpuMem.AutoSize = true;
+            this.lblCpuMem.Location = new System.Drawing.Point(6, 20);
+            this.lblCpuMem.Name = "lblCpuMem";
+            this.lblCpuMem.Size = new System.Drawing.Size(123, 19);
+            this.lblCpuMem.TabIndex = 1;
+            this.lblCpuMem.Text = "CPU Memory Pool:";
             // 
             // btnUninstall
             // 
@@ -444,16 +428,62 @@ namespace CP2077___EasyInstall
             this.btnUninstall.UseSelectable = true;
             this.btnUninstall.Click += new System.EventHandler(this.btnUninstall_Click);
             // 
+            // numCpuMem
+            // 
+            this.numCpuMem.DecimalPlaces = 2;
+            this.numCpuMem.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            131072});
+            this.numCpuMem.Location = new System.Drawing.Point(129, 19);
+            this.numCpuMem.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numCpuMem.Name = "numCpuMem";
+            this.numCpuMem.Size = new System.Drawing.Size(45, 20);
+            this.numCpuMem.TabIndex = 4;
+            this.numCpuMem.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            // 
+            // numGpuMem
+            // 
+            this.numGpuMem.DecimalPlaces = 2;
+            this.numGpuMem.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            131072});
+            this.numGpuMem.Location = new System.Drawing.Point(341, 19);
+            this.numGpuMem.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numGpuMem.Name = "numGpuMem";
+            this.numGpuMem.Size = new System.Drawing.Size(45, 20);
+            this.numGpuMem.TabIndex = 5;
+            this.numGpuMem.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            65536});
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(435, 543);
             this.Controls.Add(this.btnUninstall);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.gbxMemPool);
             this.Controls.Add(this.btnLogs);
             this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbxSettings);
             this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnMain);
@@ -464,10 +494,12 @@ namespace CP2077___EasyInstall
             this.Text = "CP 2077 - EasyPatcher | v2.2";
             this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center;
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.gbxSettings.ResumeLayout(false);
+            this.gbxSettings.PerformLayout();
+            this.gbxMemPool.ResumeLayout(false);
+            this.gbxMemPool.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numCpuMem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGpuMem)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -476,10 +508,10 @@ namespace CP2077___EasyInstall
 
         private MetroFramework.Controls.MetroButton btnMain;
         private MetroFramework.Controls.MetroLink btnAbout;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbxSettings;
         private MetroFramework.Controls.MetroButton btnSettings;
         private MetroFramework.Controls.MetroButton btnSave;
-        private MetroFramework.Controls.MetroLabel metroLabel2;
+        private MetroFramework.Controls.MetroLabel lblSettingsText;
         private MetroFramework.Controls.MetroCheckBox cbVInput;
         private MetroFramework.Controls.MetroCheckBox cbDebug;
         private MetroFramework.Controls.MetroCheckBox cbMemoryPool;
@@ -506,12 +538,12 @@ namespace CP2077___EasyInstall
         private MetroFramework.Components.MetroToolTip tt_pedestrians;
         private MetroFramework.Components.MetroToolTip tt_aliasing;
         private MetroFramework.Controls.MetroButton btnLogs;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private MetroFramework.Controls.MetroLabel metroLabel3;
-        private System.Windows.Forms.TextBox tbCpuMem;
-        private System.Windows.Forms.TextBox tbGpuMem;
-        private MetroFramework.Controls.MetroLabel metroLabel4;
+        private System.Windows.Forms.GroupBox gbxMemPool;
+        private MetroFramework.Controls.MetroLabel lblCpuMem;
+        private MetroFramework.Controls.MetroLabel lblGpuMem;
         private MetroFramework.Controls.MetroButton btnUninstall;
+        private System.Windows.Forms.NumericUpDown numGpuMem;
+        private System.Windows.Forms.NumericUpDown numCpuMem;
     }
 }
 

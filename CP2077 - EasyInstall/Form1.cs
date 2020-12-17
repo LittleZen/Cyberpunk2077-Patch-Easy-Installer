@@ -212,8 +212,8 @@ namespace CP2077___EasyInstall
             bool removePedestrians = cbRemovePedestrians.Checked;
             bool skipStartMenu = cbSkipStartMenu.Checked;
             bool antialiasing = cbAntialiasing.Checked;
-            string CpuMem = tbCpuMem.Text;
-            string GpuMem = tbGpuMem.Text;
+            double CpuMem = (double)numCpuMem.Value;
+            double GpuMem = (double)numGpuMem.Value;
 
             var data = new Data()
             {
