@@ -205,18 +205,18 @@ namespace CP2077___EasyInstall
 
             var data = new Data()
             {
-                avx = avxSet,
-                smt = smtSet,
-                spectre = spectreSet,
-                virtual_input = vInputSet,
-                memory_pool = memorySet,
-                unlock_menu = debugSet,
-                cpu_memory_pool_fraction = 0.5,
-                gpu_memory_pool_fraction = 1.0,
-                remove_pedestrians = removePedestrians,
-                skip_start_menu = skipStartMenu,
-                disable_async_compute = asyncCompute,
-                disable_antialiasing = antialiasing
+                AVX = avxSet,
+                SMT = smtSet,
+                Spectre = spectreSet,
+                VirtualInput = vInputSet,
+                MemoryPool = memorySet,
+                UnlockMenu = debugSet,
+                CPUMemoryPoolFraction = 0.5,
+                GPUMemoryPoolFraction = 1.0,
+                RemovePedestrians = removePedestrians,
+                SkipStartMenu = skipStartMenu,
+                DisableAsyncCompute = asyncCompute,
+                DisableAntialiasing = antialiasing
             };
 
             using (StreamWriter file = File.CreateText(settingsPath))
