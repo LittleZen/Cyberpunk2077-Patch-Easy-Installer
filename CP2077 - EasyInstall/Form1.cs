@@ -5,6 +5,7 @@ using System.IO.Compression;
 using System.Net;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using SharpGameReg;
 
 namespace CP2077___EasyInstall
 {
@@ -31,6 +32,8 @@ namespace CP2077___EasyInstall
                 generalPath = myPath;
                 btnMain.Text = "Patch Already Installed!";
                 btnMain.Enabled = false;
+                metroButton1.Enabled = false;
+                metroButton3.Enabled = false;
 #if DEBUG
                 MessageBox.Show("Patch already installed!");
 #endif
@@ -165,6 +168,8 @@ namespace CP2077___EasyInstall
                 MetroFramework.MetroMessageBox.Show(this, "Patch successfully installed!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 btnMain.Text = "Successfully Installed!";
                 btnMain.Enabled = false;
+                metroButton1.Enabled = false;
+                metroButton3.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -278,6 +283,50 @@ namespace CP2077___EasyInstall
             string path = File.ReadAllText($"{Directory.GetCurrentDirectory()}\\game_path");
             PatchGame(path);
             btnMain.Text = "Successfully Installed";
+        }
+
+        private void metroButton1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string path = SteamGamePath.FindGameByAppID("1091500");
+                if (path == null)
+                {
+                    MessageBox.Show("Error: Couldn't Find CyberPunk for steam!");
+                    return;
+                }
+                DialogResult dialogResult = MessageBox.Show(path, "Is this Correct?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    PatchGame(path);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex);
+            }
+        }
+
+        private void metroButton3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string path = GoGGamePath.FindGameByAppID("1423049311");
+                if (path == null)
+                {
+                    MessageBox.Show("Error: Couldn't Find CyberPunk for GoG!");
+                    return;
+                }
+                DialogResult dialogResult = MessageBox.Show(path, "Is this Correct?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    PatchGame(path);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex);
+            }
         }
     }
 }
