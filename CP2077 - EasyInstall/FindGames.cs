@@ -48,7 +48,7 @@ namespace SharpGameReg
              * If we find MCC first we return that instead of csgo.
              * All appID in steam file start with _ and ends with .acf.
              */
-            appID = "_" + appID + ".acf"; 
+            appID = "_" + appID + ".acf";
             foreach (var path in SteamLibraryPaths())
             {
                 string steamappPath = path + "\\steamapps\\"; // ACF files are in steamapp folder

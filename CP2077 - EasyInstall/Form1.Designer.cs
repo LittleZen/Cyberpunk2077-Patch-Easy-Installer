@@ -31,7 +31,6 @@ namespace CP2077___EasyInstall
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnMain = new MetroFramework.Controls.MetroButton();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.btnAbout = new MetroFramework.Controls.MetroLink();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cbAntialiasing = new MetroFramework.Controls.MetroCheckBox();
@@ -62,16 +61,24 @@ namespace CP2077___EasyInstall
             this.tt_vinput = new MetroFramework.Components.MetroToolTip();
             this.tt_pedestrians = new MetroFramework.Components.MetroToolTip();
             this.tt_aliasing = new MetroFramework.Components.MetroToolTip();
+            this.btnLogs = new MetroFramework.Controls.MetroButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tbGpuMem = new System.Windows.Forms.TextBox();
+            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
+            this.tbCpuMem = new System.Windows.Forms.TextBox();
+            this.btnUninstall = new MetroFramework.Controls.MetroButton();
             this.metroButton3 = new MetroFramework.Controls.MetroButton();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnMain
             // 
             this.btnMain.Location = new System.Drawing.Point(22, 64);
             this.btnMain.Name = "btnMain";
-            this.btnMain.Size = new System.Drawing.Size(390, 70);
+            this.btnMain.Size = new System.Drawing.Size(390, 30);
             this.btnMain.TabIndex = 0;
             this.btnMain.Text = "Select Path To Cyberpunk 2077 Main Directory";
             this.btnMain.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -79,19 +86,9 @@ namespace CP2077___EasyInstall
             this.btnMain.UseSelectable = true;
             this.btnMain.Click += new System.EventHandler(this.btnMain_Click);
             // 
-            // metroLabel1
-            // 
-            this.metroLabel1.AutoSize = true;
-            this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel1.Location = new System.Drawing.Point(6, 455);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(156, 15);
-            this.metroLabel1.TabIndex = 1;
-            this.metroLabel1.Text = "Patch Version: 0.10.0 (yamashi)";
-            // 
             // btnAbout
             // 
-            this.btnAbout.Location = new System.Drawing.Point(347, 455);
+            this.btnAbout.Location = new System.Drawing.Point(180, 519);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(72, 15);
             this.btnAbout.TabIndex = 2;
@@ -114,7 +111,7 @@ namespace CP2077___EasyInstall
             this.groupBox1.Controls.Add(this.cbAVX);
             this.groupBox1.Location = new System.Drawing.Point(24, 210);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(388, 173);
+            this.groupBox1.Size = new System.Drawing.Size(388, 174);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Settings:";
@@ -123,7 +120,7 @@ namespace CP2077___EasyInstall
             // 
             this.cbAntialiasing.AutoSize = true;
             this.cbAntialiasing.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-            this.cbAntialiasing.Location = new System.Drawing.Point(225, 146);
+            this.cbAntialiasing.Location = new System.Drawing.Point(225, 96);
             this.cbAntialiasing.Name = "cbAntialiasing";
             this.cbAntialiasing.Size = new System.Drawing.Size(143, 19);
             this.cbAntialiasing.TabIndex = 13;
@@ -149,7 +146,7 @@ namespace CP2077___EasyInstall
             // 
             this.cbRemovePedestrians.AutoSize = true;
             this.cbRemovePedestrians.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-            this.cbRemovePedestrians.Location = new System.Drawing.Point(225, 121);
+            this.cbRemovePedestrians.Location = new System.Drawing.Point(225, 146);
             this.cbRemovePedestrians.Name = "cbRemovePedestrians";
             this.cbRemovePedestrians.Size = new System.Drawing.Size(147, 19);
             this.cbRemovePedestrians.TabIndex = 11;
@@ -161,7 +158,7 @@ namespace CP2077___EasyInstall
             // 
             this.cbAsyncCompute.AutoSize = true;
             this.cbAsyncCompute.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-            this.cbAsyncCompute.Location = new System.Drawing.Point(6, 121);
+            this.cbAsyncCompute.Location = new System.Drawing.Point(225, 71);
             this.cbAsyncCompute.Name = "cbAsyncCompute";
             this.cbAsyncCompute.Size = new System.Drawing.Size(122, 19);
             this.cbAsyncCompute.TabIndex = 10;
@@ -185,7 +182,7 @@ namespace CP2077___EasyInstall
             this.cbVInput.Checked = true;
             this.cbVInput.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbVInput.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-            this.cbVInput.Location = new System.Drawing.Point(225, 96);
+            this.cbVInput.Location = new System.Drawing.Point(6, 121);
             this.cbVInput.Name = "cbVInput";
             this.cbVInput.Size = new System.Drawing.Size(102, 19);
             this.cbVInput.TabIndex = 9;
@@ -197,7 +194,7 @@ namespace CP2077___EasyInstall
             // 
             this.cbDebug.AutoSize = true;
             this.cbDebug.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-            this.cbDebug.Location = new System.Drawing.Point(225, 71);
+            this.cbDebug.Location = new System.Drawing.Point(225, 121);
             this.cbDebug.Name = "cbDebug";
             this.cbDebug.Size = new System.Drawing.Size(86, 19);
             this.cbDebug.TabIndex = 7;
@@ -265,10 +262,10 @@ namespace CP2077___EasyInstall
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(237, 426);
+            this.btnUpdate.Location = new System.Drawing.Point(22, 486);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(175, 23);
-            this.btnUpdate.TabIndex = 16;
+            this.btnUpdate.TabIndex = 19;
             this.btnUpdate.Text = "Check Update";
             this.tt_checkUpdate.SetToolTip(this.btnUpdate, "Download and install the last patch version available");
             this.btnUpdate.UseSelectable = true;
@@ -276,10 +273,10 @@ namespace CP2077___EasyInstall
             // 
             // btnSettings
             // 
-            this.btnSettings.Location = new System.Drawing.Point(22, 426);
+            this.btnSettings.Location = new System.Drawing.Point(22, 449);
             this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(179, 23);
-            this.btnSettings.TabIndex = 15;
+            this.btnSettings.Size = new System.Drawing.Size(390, 31);
+            this.btnSettings.TabIndex = 14;
             this.btnSettings.Text = "Open Json settings";
             this.tt_json.SetToolTip(this.btnSettings, "Open JSON settings, for manual editing");
             this.btnSettings.UseSelectable = true;
@@ -287,11 +284,11 @@ namespace CP2077___EasyInstall
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(22, 389);
+            this.btnSave.Location = new System.Drawing.Point(22, 375);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(390, 31);
-            this.btnSave.TabIndex = 14;
-            this.btnSave.Text = "Save";
+            this.btnSave.TabIndex = 13;
+            this.btnSave.Text = "&Save Settings";
             this.tt_save.SetToolTip(this.btnSave, "Save your currently settings");
             this.btnSave.UseSelectable = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -380,12 +377,81 @@ namespace CP2077___EasyInstall
             this.tt_aliasing.StyleManager = null;
             this.tt_aliasing.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
+            // btnLogs
+            // 
+            this.btnLogs.Location = new System.Drawing.Point(22, 412);
+            this.btnLogs.Name = "btnLogs";
+            this.btnLogs.Size = new System.Drawing.Size(390, 31);
+            this.btnLogs.TabIndex = 20;
+            this.btnLogs.Text = "&Open Patch Logs";
+            this.btnLogs.UseSelectable = true;
+            this.btnLogs.Click += new System.EventHandler(this.btnLogs_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.tbGpuMem);
+            this.groupBox2.Controls.Add(this.metroLabel4);
+            this.groupBox2.Controls.Add(this.metroLabel3);
+            this.groupBox2.Controls.Add(this.tbCpuMem);
+            this.groupBox2.Location = new System.Drawing.Point(24, 322);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(388, 47);
+            this.groupBox2.TabIndex = 21;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Memory Pool:";
+            // 
+            // tbGpuMem
+            // 
+            this.tbGpuMem.Location = new System.Drawing.Point(346, 19);
+            this.tbGpuMem.Name = "tbGpuMem";
+            this.tbGpuMem.Size = new System.Drawing.Size(21, 20);
+            this.tbGpuMem.TabIndex = 3;
+            this.tbGpuMem.Tag = "";
+            this.tbGpuMem.Text = "1.0";
+            // 
+            // metroLabel4
+            // 
+            this.metroLabel4.AutoSize = true;
+            this.metroLabel4.Location = new System.Drawing.Point(225, 20);
+            this.metroLabel4.Name = "metroLabel4";
+            this.metroLabel4.Size = new System.Drawing.Size(123, 19);
+            this.metroLabel4.TabIndex = 2;
+            this.metroLabel4.Text = "GPU Memory Pool:";
+            // 
+            // metroLabel3
+            // 
+            this.metroLabel3.AutoSize = true;
+            this.metroLabel3.Location = new System.Drawing.Point(6, 20);
+            this.metroLabel3.Name = "metroLabel3";
+            this.metroLabel3.Size = new System.Drawing.Size(123, 19);
+            this.metroLabel3.TabIndex = 1;
+            this.metroLabel3.Text = "CPU Memory Pool:";
+            // 
+            // tbCpuMem
+            // 
+            this.tbCpuMem.Location = new System.Drawing.Point(129, 19);
+            this.tbCpuMem.Name = "tbCpuMem";
+            this.tbCpuMem.Size = new System.Drawing.Size(21, 20);
+            this.tbCpuMem.TabIndex = 0;
+            this.tbCpuMem.Tag = "";
+            this.tbCpuMem.Text = "0.5";
+            // 
+            // btnUninstall
+            // 
+            this.btnUninstall.Location = new System.Drawing.Point(237, 486);
+            this.btnUninstall.Name = "btnUninstall";
+            this.btnUninstall.Size = new System.Drawing.Size(175, 23);
+            this.btnUninstall.TabIndex = 22;
+            this.btnUninstall.Text = "&Uninstall";
+            this.btnUninstall.UseSelectable = true;
+            this.btnUninstall.Click += new System.EventHandler(this.btnUninstall_Click);
+            // 
             // metroButton3
             // 
-            this.metroButton3.Location = new System.Drawing.Point(232, 140);
+            this.metroButton3.Location = new System.Drawing.Point(232, 105);
             this.metroButton3.Name = "metroButton3";
-            this.metroButton3.Size = new System.Drawing.Size(180, 70);
-            this.metroButton3.TabIndex = 2;
+            this.metroButton3.Size = new System.Drawing.Size(180, 30);
+            this.metroButton3.TabIndex = 24;
             this.metroButton3.Text = "Find GOG Path";
             this.metroButton3.Theme = MetroFramework.MetroThemeStyle.Light;
             this.metroButton3.UseSelectable = true;
@@ -393,10 +459,10 @@ namespace CP2077___EasyInstall
             // 
             // metroButton1
             // 
-            this.metroButton1.Location = new System.Drawing.Point(22, 140);
+            this.metroButton1.Location = new System.Drawing.Point(22, 105);
             this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(180, 70);
-            this.metroButton1.TabIndex = 1;
+            this.metroButton1.Size = new System.Drawing.Size(180, 30);
+            this.metroButton1.TabIndex = 23;
             this.metroButton1.Text = "Find Steam Path";
             this.metroButton1.Theme = MetroFramework.MetroThemeStyle.Light;
             this.metroButton1.UseSelectable = true;
@@ -406,13 +472,15 @@ namespace CP2077___EasyInstall
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(435, 475);
+            this.ClientSize = new System.Drawing.Size(435, 543);
             this.Controls.Add(this.metroButton3);
             this.Controls.Add(this.metroButton1);
+            this.Controls.Add(this.btnUninstall);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.btnLogs);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnAbout);
-            this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnMain);
             this.Controls.Add(this.btnSettings);
@@ -425,14 +493,15 @@ namespace CP2077___EasyInstall
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
+
         }
 
         #endregion
 
         private MetroFramework.Controls.MetroButton btnMain;
-        private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroLink btnAbout;
         private System.Windows.Forms.GroupBox groupBox1;
         private MetroFramework.Controls.MetroButton btnSettings;
@@ -463,6 +532,13 @@ namespace CP2077___EasyInstall
         private MetroFramework.Components.MetroToolTip tt_vinput;
         private MetroFramework.Components.MetroToolTip tt_pedestrians;
         private MetroFramework.Components.MetroToolTip tt_aliasing;
+        private MetroFramework.Controls.MetroButton btnLogs;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private MetroFramework.Controls.MetroLabel metroLabel3;
+        private System.Windows.Forms.TextBox tbCpuMem;
+        private System.Windows.Forms.TextBox tbGpuMem;
+        private MetroFramework.Controls.MetroLabel metroLabel4;
+        private MetroFramework.Controls.MetroButton btnUninstall;
         private MetroFramework.Controls.MetroButton metroButton3;
         private MetroFramework.Controls.MetroButton metroButton1;
     }
