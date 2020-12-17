@@ -88,8 +88,7 @@ namespace CP2077___EasyInstall
             // Copy each subdirectory using recursion.
             foreach (DirectoryInfo diSourceSubDir in source.GetDirectories())
             {
-                DirectoryInfo nextTargetSubDir =
-                    target.CreateSubdirectory(diSourceSubDir.Name);
+                DirectoryInfo nextTargetSubDir = target.CreateSubdirectory(diSourceSubDir.Name);
                 CopyAll(diSourceSubDir, nextTargetSubDir);
             }
         }
@@ -164,14 +163,14 @@ namespace CP2077___EasyInstall
                 {
                     MessageBox.Show("Patch successfully installed, but I wasn't able to create <game_path> file for correctly detect the position!");
                 }
-                try // remove the Release.zip after extraction
+                try // Remove the Release.zip after extraction
                 {
                     string remove_ReleaseZip = $"{Directory.GetCurrentDirectory()}\\Release.zip";
                     File.Delete(remove_ReleaseZip);
                 }
-                catch (Exception)
+                catch (IOException ex)
                 {
-
+                    MetroFramework.MetroMessageBox.Show(this, $"Error during installation\nError code: 1\n{ex.InnerException}", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 MetroFramework.MetroMessageBox.Show(this, "Patch successfully installed!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 btnMain.Text = "Successfully Installed!";
@@ -313,19 +312,11 @@ namespace CP2077___EasyInstall
             }
         }
 
-        private void btnLogs_Click(object sender, EventArgs e, string general_path)
-        {
-            try
-            {
-                string settings_path = general_path + "\\plugins\\cyber_engine_tweaks\\" + "cyber_engine_tweaks.log"; //path
-                Process.Start(settings_path);
-            }
-            catch (Exception)
-            {
-                MetroFramework.MetroMessageBox.Show(this, "File not found, you need to run the game at least one time, before generate log file!\nError code: 4", "Exception!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
+        /// <summary>
+        /// Button Open Patch Logs has been clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLogs_Click(object sender, EventArgs e)
         {
             string settingsPath = $"{generalPath}\\plugins\\cyber_engine_tweaks\\cyber_engine_tweaks.log";
@@ -339,27 +330,32 @@ namespace CP2077___EasyInstall
             }
         }
 
+        /// <summary>
+        /// Button Uninstall has been clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUninstall_Click(object sender, EventArgs e)
         {
             try
             {
-                //version.dll file path
+                // version.dll file path
                 string versionDLL = $"{generalPath}\\version.dll";
-                //plugins folder path 
+                // plugins folder path 
                 string mypath = $"{generalPath}\\plugins";
-                //game_path file path
+                // game_path file path
                 string game_path = $"{Directory.GetCurrentDirectory()}\\game_path";
 
-                //Delete plugins directory recursively
+                // Delete plugins directory recursively
                 Directory.Delete(mypath, true);
 
-                //Delete version.dll file
+                // Delete version.dll file
                 File.Delete(versionDLL);
 
-                //Delete game_path file
+                // Delete game_path file
                 File.Delete(game_path);
 
-                //Unlock main_button for reinstall the patch 
+                // Unlock main_button for reinstall the patch 
                 btnMain.Text = "Select Path To Cyberpunk 2077 Main Directory";
                 btnMain.Enabled = true;
 

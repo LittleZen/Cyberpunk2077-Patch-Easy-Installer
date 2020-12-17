@@ -78,7 +78,7 @@ namespace CP2077___EasyInstall
             this.btnMain.Name = "btnMain";
             this.btnMain.Size = new System.Drawing.Size(390, 70);
             this.btnMain.TabIndex = 0;
-            this.btnMain.Text = "Select Path To Cyberpunk 2077 Main Directory";
+            this.btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
             this.btnMain.Theme = MetroFramework.MetroThemeStyle.Light;
             this.tt_selectPath.SetToolTip(this.btnMain, "Select Path to your main CP 2077 Directory");
             this.btnMain.UseSelectable = true;
@@ -275,7 +275,7 @@ namespace CP2077___EasyInstall
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(390, 31);
             this.btnSettings.TabIndex = 14;
-            this.btnSettings.Text = "Open Json settings";
+            this.btnSettings.Text = "Open JSON Settings";
             this.tt_json.SetToolTip(this.btnSettings, "Open JSON settings, for manual editing");
             this.btnSettings.UseSelectable = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
