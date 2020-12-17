@@ -61,15 +61,15 @@ Type | Description
 
 ### Version 2.2 [17/122020]
 - [x] Bug fix and stability improve
-- [x] `Unistall` System Added (now you can easy install/unistall the patches)
+- [x] `Uninstall` System Added (now you can easy install/unistall the patches)
 - [x] `Check Update` System added (will automatically install the lastest patch available) 
 - [x] ToolTips added. Just move the cursor over the settings, for check what they do (example: pass the cursor, over the "AVX" settings
 - [x] Update system now correctly remove the zip files downloaded, after the update
 - [x] Released the option `Remove Pedestrians` (yamashi)
 - [x] Released the option `Disable Antialiasing` (yamashi)
 - [x] Added the `Memory Pool` section for correctly manage the memory pool (CPU/GPU) (yamashi)
-- [x] Released the `Async Compute` features 
-- [x] Released the `Skip Start menù` features
+- [x] Released the `Async Compute` features (yamashi)
+- [x] Released the `Skip Start menù` features (yamashi)
 - [x] Code clean (Thanks to all contributor!)
 
 -----------
