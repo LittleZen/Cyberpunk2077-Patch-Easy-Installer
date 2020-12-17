@@ -8,8 +8,8 @@
         public bool virtual_input { get; set; }
         public bool memory_pool { get; set; }
         public bool unlock_menu { get; set; }
-        public double cpu_memory_pool_fraction { get; set; }
-        public double gpu_memory_pool_fraction { get; set; }
+        public string cpu_memory_pool_fraction { get; set; }
+        public string gpu_memory_pool_fraction { get; set; }
         public bool remove_pedestrians { get; set; }
         public bool skip_start_menu { get; set; }
         public bool disable_async_compute { get; set; }

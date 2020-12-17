@@ -101,12 +101,14 @@ namespace CP2077___EasyInstall
         /// <param name="e"></param>
         public void btnMain_Click(object sender, EventArgs e)
         {
+            btnMain.Text = "Working...";
             using (var fbd = new FolderBrowserDialog())
             {
                 DialogResult result = fbd.ShowDialog();
 
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
+                    
                     string gamePath = $"{fbd.SelectedPath}\\bin\\x64";
                     if (generalPath == string.Empty)
                     {
@@ -140,7 +142,7 @@ namespace CP2077___EasyInstall
                 Copy("Patch", targetDirectory);
 
                 string docPath = Directory.GetCurrentDirectory();
-                using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Path.txt")))
+                using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "game_path")))
                 {
                     outputFile.Write(gamePath);
                 }
@@ -150,18 +152,27 @@ namespace CP2077___EasyInstall
                 {
                     var localPath = $"{Directory.GetCurrentDirectory()}\\game_path";
 #if DEBUG
-                    MessageBox.Show($"path.txt path = {localPath}");
+                    MessageBox.Show($"game_path" path = {localPath}");
 #endif
                     File.WriteAllText(localPath, gamePath);
 #if DEBUG
                     MessageBox.Show("Path correctly created!\n");
+
 #endif
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Patch successfully installed, but I wasn't able to create path.txt file for correctly detect the position!");
+                    MessageBox.Show("Patch successfully installed, but I wasn't able to create <game_path> file for correctly detect the position!");
                 }
+                try // remove the Release.zip after extraction
+                {
+                    string remove_ReleaseZip = $"{Directory.GetCurrentDirectory()}\\Release.zip";
+                    File.Delete(remove_ReleaseZip);
+                }
+                catch(Exception)
+                {
 
+                }
                 MetroFramework.MetroMessageBox.Show(this, "Patch successfully installed!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 btnMain.Text = "Successfully Installed!";
                 btnMain.Enabled = false;
@@ -202,6 +213,9 @@ namespace CP2077___EasyInstall
             bool removePedestrians = cbRemovePedestrians.Checked;
             bool skipStartMenu = cbSkipStartMenu.Checked;
             bool antialiasing = cbAntialiasing.Checked;
+            string CpuMem = tbCpuMem.Text;
+            string GpuMem = tbGpuMem.Text;
+
 
             var data = new Data()
             {
@@ -211,8 +225,8 @@ namespace CP2077___EasyInstall
                 virtual_input = vInputSet,
                 memory_pool = memorySet,
                 unlock_menu = debugSet,
-                cpu_memory_pool_fraction = 0.5,
-                gpu_memory_pool_fraction = 1.0,
+                cpu_memory_pool_fraction = CpuMem,
+                gpu_memory_pool_fraction = GpuMem,
                 remove_pedestrians = removePedestrians,
                 skip_start_menu = skipStartMenu,
                 disable_async_compute = asyncCompute,
@@ -275,9 +289,74 @@ namespace CP2077___EasyInstall
         /// <param name="e"></param>
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            string path = File.ReadAllText($"{Directory.GetCurrentDirectory()}\\game_path");
-            PatchGame(path);
-            btnMain.Text = "Successfully Installed";
+            try
+            {
+                string path = File.ReadAllText($"{Directory.GetCurrentDirectory()}\\game_path");
+                PatchGame(path);
+                btnMain.Text = "Successfully Installed";
+            }
+            catch(Exception)
+            {
+                MetroFramework.MetroMessageBox.Show(this, "Select Cyberpunk 2077 Main Folder, before check for updates!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnLogs_Click(object sender, EventArgs e, string general_path)
+        {
+            try
+            {
+                string settings_path = general_path + "\\plugins\\cyber_engine_tweaks\\" + "cyber_engine_tweaks.log"; //path
+                Process.Start(settings_path);
+            }
+            catch (Exception)
+            {
+                MetroFramework.MetroMessageBox.Show(this, "File not found, you need to run the game at least one time, before generate log file!\nError code: 4", "Exception!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnLogs_Click(object sender, EventArgs e)
+        {
+            string settingsPath = $"{generalPath}\\plugins\\cyber_engine_tweaks\\cyber_engine_tweaks.log";
+            try
+            {
+                Process.Start(settingsPath);
+            }
+            catch (Exception)
+            {
+                MetroFramework.MetroMessageBox.Show(this, "File not found, you need to run the game at least one time, before generate log file!\nError code: 4", "Exception!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnUninstall_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //version.dll file path
+                string versionDLL = $"{generalPath}\\version.dll";
+                //plugins folder path 
+                string mypath = $"{generalPath}\\plugins";
+                //game_path file path
+                string game_path = $"{Directory.GetCurrentDirectory()}\\game_path";
+
+                //Delete plugins directory recursively
+                Directory.Delete(mypath, true);
+
+                //Delete version.dll file
+                File.Delete(versionDLL);
+
+                //Delete game_path file
+                File.Delete(game_path);
+
+                //Unlock main_button for reinstall the patch 
+                btnMain.Text = "Select Path To Cyberpunk 2077 Main Directory";
+                btnMain.Enabled = true;
+
+                MetroFramework.MetroMessageBox.Show(this, "Successfully uninstalled", "Done!", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+            catch (Exception)
+            {
+                MetroFramework.MetroMessageBox.Show(this, "Uninstall was not able to delete the mod. Just delete <cyberpunk install path>/bin/x64/version.dll and <cyberpunk install path>/bin/x64/plugins/", "Exception!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
