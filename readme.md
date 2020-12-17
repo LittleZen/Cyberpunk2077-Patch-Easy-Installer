@@ -4,7 +4,7 @@ This software simple allow you to easy install all the patch from "PerformanceOv
 For any problem, or for more information, check the main repository (by yamashi). 😊
 
 -----------
-![Demo](https://i.imgur.com/kj3MJaZ.png)
+![Demo](https://i.imgur.com/okMWPzf.png)
 
 
 [DOWNLOAD](https://bit.ly/384rLQZ) | [MAIN REPOSITORY](https://bit.ly/384rMEx) | [ISSUES](https://bit.ly/34cbtUX)
@@ -16,15 +16,12 @@ For any problem, or for more information, check the main repository (by yamashi)
 - [About](#about)
 - [ChangeLog](#changelog)
 
------------
-
-Remeber that this patcher doesn't allow you to install the newerst version, so remeber to check this page for future update!
 
 -----------
 ## Guide
 
 1) Download the exe file
-2) Open it and follow the Wizard
+2) Open it, and extract the files where you want.
 3) Open "CP2077 - EasyInstall.exe" and select the main folder of "Cyberpunk 2077" (not the x64 folder! The main directory!)
 
 -----------
@@ -35,8 +32,9 @@ Type | Description
 `Language` | *C# (patch in c++)*
 `Installer Developer` | *LittleZen*
 `Patch Developer` | *[yamashi + others](https://github.com/yamashi/PerformanceOverhaulCyberpunk)*
-`Installer Version` | *2.0*
-`Patch Version` | *0.7.0*
+`Installer Base Version` | *1.0*
+`Installer Lastest Version` | *2.2*
+`Patch Version` | *You can check for updates directly on the tool*
 
 ## ChangeLog
 
