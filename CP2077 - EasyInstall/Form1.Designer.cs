@@ -70,6 +70,8 @@ namespace CP2077___EasyInstall
             this.btnUninstall = new MetroFramework.Controls.MetroButton();
             this.btnFindGoG = new MetroFramework.Controls.MetroButton();
             this.btnFindSteam = new MetroFramework.Controls.MetroButton();
+            this.tt_steam = new MetroFramework.Components.MetroToolTip();
+            this.tt_gog = new MetroFramework.Components.MetroToolTip();
             this.gbxSettings.SuspendLayout();
             this.gbxMemPool.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numGpuMem)).BeginInit();
@@ -84,7 +86,8 @@ namespace CP2077___EasyInstall
             this.btnMain.TabIndex = 0;
             this.btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
             this.btnMain.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.tt_selectPath.SetToolTip(this.btnMain, "Select Path to your main CP 2077 Directory");
+            this.tt_selectPath.SetToolTip(this.btnMain, "Choose this option if GOG/Steam Automatic Path Finder doesn\'t work (or if you hav" +
+        "e EpicGames Client)");
             this.btnMain.UseSelectable = true;
             this.btnMain.Click += new System.EventHandler(this.btnMain_Click);
             // 
@@ -268,7 +271,7 @@ namespace CP2077___EasyInstall
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(175, 23);
             this.btnUpdate.TabIndex = 23;
-            this.btnUpdate.Text = "Check Update";
+            this.btnUpdate.Text = "Check For Updates";
             this.tt_checkUpdate.SetToolTip(this.btnUpdate, "Download and install the last patch version available");
             this.btnUpdate.UseSelectable = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -484,6 +487,7 @@ namespace CP2077___EasyInstall
             this.btnFindGoG.TabIndex = 2;
             this.btnFindGoG.Text = "Find GOG Path";
             this.btnFindGoG.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tt_gog.SetToolTip(this.btnFindGoG, "Automatically Detect GOG Path");
             this.btnFindGoG.UseSelectable = true;
             this.btnFindGoG.Click += new System.EventHandler(this.btnFindGoG_Click);
             // 
@@ -495,8 +499,21 @@ namespace CP2077___EasyInstall
             this.btnFindSteam.TabIndex = 1;
             this.btnFindSteam.Text = "Find Steam Path";
             this.btnFindSteam.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tt_steam.SetToolTip(this.btnFindSteam, "Automatically Detect Steam Path");
             this.btnFindSteam.UseSelectable = true;
             this.btnFindSteam.Click += new System.EventHandler(this.btnFindSteam_Click);
+            // 
+            // tt_steam
+            // 
+            this.tt_steam.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tt_steam.StyleManager = null;
+            this.tt_steam.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
+            // tt_gog
+            // 
+            this.tt_gog.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tt_gog.StyleManager = null;
+            this.tt_gog.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
             // Form1
             // 
@@ -518,7 +535,7 @@ namespace CP2077___EasyInstall
             this.Name = "Form1";
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Yellow;
-            this.Text = "CP 2077 - EasyPatcher | v2.3";
+            this.Text = "CP 2077 - EasyPatcher | v2.4";
             this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gbxSettings.ResumeLayout(false);
@@ -573,6 +590,8 @@ namespace CP2077___EasyInstall
         private System.Windows.Forms.NumericUpDown numCpuMem;
         private MetroFramework.Controls.MetroButton btnFindGoG;
         private MetroFramework.Controls.MetroButton btnFindSteam;
+        private MetroFramework.Components.MetroToolTip tt_gog;
+        private MetroFramework.Components.MetroToolTip tt_steam;
     }
 }
 
