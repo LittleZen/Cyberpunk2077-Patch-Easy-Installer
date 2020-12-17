@@ -68,6 +68,8 @@ namespace CP2077___EasyInstall
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.tbCpuMem = new System.Windows.Forms.TextBox();
             this.btnUninstall = new MetroFramework.Controls.MetroButton();
+            this.metroButton3 = new MetroFramework.Controls.MetroButton();
+            this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -76,7 +78,7 @@ namespace CP2077___EasyInstall
             // 
             this.btnMain.Location = new System.Drawing.Point(22, 64);
             this.btnMain.Name = "btnMain";
-            this.btnMain.Size = new System.Drawing.Size(390, 70);
+            this.btnMain.Size = new System.Drawing.Size(390, 30);
             this.btnMain.TabIndex = 0;
             this.btnMain.Text = "Select Path To Cyberpunk 2077 Main Directory";
             this.btnMain.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -444,11 +446,35 @@ namespace CP2077___EasyInstall
             this.btnUninstall.UseSelectable = true;
             this.btnUninstall.Click += new System.EventHandler(this.btnUninstall_Click);
             // 
+            // metroButton3
+            // 
+            this.metroButton3.Location = new System.Drawing.Point(232, 105);
+            this.metroButton3.Name = "metroButton3";
+            this.metroButton3.Size = new System.Drawing.Size(180, 30);
+            this.metroButton3.TabIndex = 24;
+            this.metroButton3.Text = "Find GOG Path";
+            this.metroButton3.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.metroButton3.UseSelectable = true;
+            this.metroButton3.Click += new System.EventHandler(this.metroButton3_Click);
+            // 
+            // metroButton1
+            // 
+            this.metroButton1.Location = new System.Drawing.Point(22, 105);
+            this.metroButton1.Name = "metroButton1";
+            this.metroButton1.Size = new System.Drawing.Size(180, 30);
+            this.metroButton1.TabIndex = 23;
+            this.metroButton1.Text = "Find Steam Path";
+            this.metroButton1.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.metroButton1.UseSelectable = true;
+            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(435, 543);
+            this.Controls.Add(this.metroButton3);
+            this.Controls.Add(this.metroButton1);
             this.Controls.Add(this.btnUninstall);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnLogs);
@@ -512,6 +538,8 @@ namespace CP2077___EasyInstall
         private System.Windows.Forms.TextBox tbGpuMem;
         private MetroFramework.Controls.MetroLabel metroLabel4;
         private MetroFramework.Controls.MetroButton btnUninstall;
+        private MetroFramework.Controls.MetroButton metroButton3;
+        private MetroFramework.Controls.MetroButton metroButton1;
     }
 }
 
