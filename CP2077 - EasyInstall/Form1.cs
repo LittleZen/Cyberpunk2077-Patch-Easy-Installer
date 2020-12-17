@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO.Compression;
+using System.Net;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using SharpGameReg;
@@ -16,41 +11,56 @@ namespace CP2077___EasyInstall
 {
     public partial class Form1 : MetroFramework.Forms.MetroForm
     {
-        string general_path = ""; //main x64 path
-        bool already_installed = false; //check if the patch is already installed, for directly manage the menu
+        string generalPath = string.Empty; // Main x64 path.
+
+        /// <summary>
+        /// Entry point for the application
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
 
             try
             {
-                /* Check if the patch is already installed. If game_path file != NULL == already installed */
-                var local_path = Directory.GetCurrentDirectory() + "\\game_path";
+                // Check if the patch is already installed. If game_path file != NULL == already installed.
+                var localPath = $"{Directory.GetCurrentDirectory()}\\game_path";
 
-                string mypath = File.ReadAllText(local_path);
-                Console.WriteLine(mypath);
-                general_path = mypath;
-                already_installed = true;
-                btn_main.Text = "Patch Already Installed!";
-                btn_main.Enabled = false;
+                string myPath = File.ReadAllText(localPath);
+#if DEBUG
+                MessageBox.Show(myPath);
+#endif
+                generalPath = myPath;
+                btnMain.Text = "Patch Already Installed!";
+                btnMain.Enabled = false;
                 metroButton1.Enabled = false;
                 metroButton3.Enabled = false;
-                Console.WriteLine(local_path);
-                Console.WriteLine("Patch already installed!");
+#if DEBUG
+                MessageBox.Show("Patch already installed!");
+#endif
             }
-            catch(Exception)
+            catch (Exception)
             {
-                Console.WriteLine("Patch not already installed!");
+#if DEBUG
+                MessageBox.Show("Patch not already installed!");
+#endif
             }
-
         }
 
+        /// <summary>
+        /// Initial Load
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
-            // if path.txt exist and != null --> already patched!
+
         }
 
-        // Initialize the copy function
+        /// <summary>
+        /// Initialize the copy function.
+        /// </summary>
+        /// <param name="sourceDirectory">Source of the files to be copied.</param>
+        /// <param name="targetDirectory">Destination of the files to be copied to.</param>
         public static void Copy(string sourceDirectory, string targetDirectory)
         {
             DirectoryInfo diSource = new DirectoryInfo(sourceDirectory);
@@ -59,7 +69,12 @@ namespace CP2077___EasyInstall
             CopyAll(diSource, diTarget);
         }
 
-        // Start patching (Copy Function)
+        /// <summary>
+        /// Copy the files from the Patch folder and move them to the
+        /// game installation folder.
+        /// </summary>
+        /// <param name="source">Source of the files to be copied.</param>
+        /// <param name="target">Destination of the files to be copied to.</param>
         public static void CopyAll(DirectoryInfo source, DirectoryInfo target)
         {
             Directory.CreateDirectory(target.FullName);
@@ -67,7 +82,9 @@ namespace CP2077___EasyInstall
             // Copy each file into the new directory.
             foreach (FileInfo fi in source.GetFiles())
             {
-                Console.WriteLine(@"Copying {0}\{1}", target.FullName, fi.Name);
+#if DEBUG
+                MessageBox.Show($"Copying {target.FullName}\\{fi.Name}");
+#endif
                 fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
             }
 
@@ -77,11 +94,15 @@ namespace CP2077___EasyInstall
                 DirectoryInfo nextTargetSubDir =
                     target.CreateSubdirectory(diSourceSubDir.Name);
                 CopyAll(diSourceSubDir, nextTargetSubDir);
-
             }
         }
 
-        public void btn_main_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Button Main is clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void btnMain_Click(object sender, EventArgs e)
         {
             using (var fbd = new FolderBrowserDialog())
             {
@@ -89,59 +110,140 @@ namespace CP2077___EasyInstall
 
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-                    patchGame(fbd.SelectedPath);  //refers to main CP2077 directory
+                    string gamePath = $"{fbd.SelectedPath}\\bin\\x64";
+                    if (generalPath == string.Empty)
+                    {
+                        generalPath = gamePath;
+                    }
+                    PatchGame(gamePath);
                 }
                 else
                 {
                     MetroFramework.MetroMessageBox.Show(this, "Error during installation\nError code: 2", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    btn_main.Text = "Critical Error!";
+                    btnMain.Text = "Critical Error!";
                 }
-            }       
+            }
         }
 
-        private void metroLink1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Copy the patch files to the game directory.
+        /// </summary>
+        /// <param name="gamePath">Location of the game files.</param>
+        private void PatchGame(string gamePath)
         {
-           Process.Start("https://bit.ly/385MEvl");
-        }
-
-        private void btn_save_Click(object sender, EventArgs e)
-        {
-            string settings_path = general_path + "\\plugins\\cyber_engine_tweaks\\" + "config.json"; //path
-
-            bool avx_set = cb_avx.Checked;
-            bool smt_set = cb_smt.Checked;
-            bool memory_set = cb_memory.Checked;
-            bool spectre_set = cb_spectre.Checked;
-            bool debug_set = cb_debug.Checked;
-            bool vinput_set = cb_vinput.Checked;
-
-            var data = new data()
+#if DEBUG
+            MessageBox.Show($"Path Selected: {gamePath}", "Message");
+#endif
+            try
             {
-                avx = avx_set,
+                DownloadLatestVersion();
+                // Move files from patch to Cyberpunk 2077 path.
+                btnMain.Text = "Installing";
+                string targetDirectory = gamePath;
+                Copy("Patch", targetDirectory);
+
+                string docPath = Directory.GetCurrentDirectory();
+                using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Path.txt")))
+                {
+                    outputFile.Write(gamePath);
+                }
+
+                // Write Path file. It is used for checking if the patch has already been installed (on next restart)
+                try
+                {
+                    var localPath = $"{Directory.GetCurrentDirectory()}\\game_path";
+#if DEBUG
+                    MessageBox.Show($"path.txt path = {localPath}");
+#endif
+                    File.WriteAllText(localPath, gamePath);
+#if DEBUG
+                    MessageBox.Show("Path correctly created!\n");
+#endif
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Patch successfully installed, but I wasn't able to create path.txt file for correctly detect the position!");
+                }
+
+                MetroFramework.MetroMessageBox.Show(this, "Patch successfully installed!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                btnMain.Text = "Successfully Installed!";
+                btnMain.Enabled = false;
+                metroButton1.Enabled = false;
+                metroButton3.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MetroFramework.MetroMessageBox.Show(this, $"Error during installation\nError code: 1\n{ex.InnerException}", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnMain.Text = "Critical Error!";
+            }
+        }
+
+        /// <summary>
+        /// Button About has been clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAbout_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://bit.ly/385MEvl");
+        }
+
+        /// <summary>
+        /// Button Save has been clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            string settingsPath = $"{generalPath}\\plugins\\cyber_engine_tweaks\\config.json";
+
+            bool avxSet = cbAVX.Checked;
+            bool smtSet = cbSMT.Checked;
+            bool memorySet = cbMemoryPool.Checked;
+            bool spectreSet = cbSpectre.Checked;
+            bool debugSet = cbDebug.Checked;
+            bool vInputSet = cbVInput.Checked;
+            bool asyncCompute = cbAsyncCompute.Checked;
+            bool removePedestrians = cbRemovePedestrians.Checked;
+            bool skipStartMenu = cbSkipStartMenu.Checked;
+            bool antialiasing = cbAntialiasing.Checked;
+
+            var data = new Data()
+            {
+                avx = avxSet,
+                smt = smtSet,
+                spectre = spectreSet,
+                virtual_input = vInputSet,
+                memory_pool = memorySet,
+                unlock_menu = debugSet,
                 cpu_memory_pool_fraction = 0.5,
                 gpu_memory_pool_fraction = 1.0,
-                memory_pool = memory_set,
-                smt = smt_set,
-                spectre = spectre_set,
-                unlock_menu = debug_set,
-                virtual_input = vinput_set
+                remove_pedestrians = removePedestrians,
+                skip_start_menu = skipStartMenu,
+                disable_async_compute = asyncCompute,
+                disable_antialiasing = antialiasing
             };
-           
-            using (StreamWriter file = File.CreateText(settings_path))
+
+            using (StreamWriter file = File.CreateText(settingsPath))
             {
                 JsonSerializer serializer = new JsonSerializer();
-                //serialize object directly into file stream
+                // Serialize object directly into file stream.
                 serializer.Serialize(file, data);
             }
             MetroFramework.MetroMessageBox.Show(this, "Saved!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Question);
         }
 
-        private void metroButton2_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Button Settings has been clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSettings_Click(object sender, EventArgs e)
         {
             try
             {
-                string settings_path = general_path + "\\plugins\\cyber_engine_tweaks\\" + "config.json"; //path
-                Process.Start(settings_path);
+                string settingsPath = $"{generalPath}\\plugins\\cyber_engine_tweaks\\config.json";
+                Process.Start(settingsPath);
             }
             catch (Exception)
             {
@@ -149,33 +251,45 @@ namespace CP2077___EasyInstall
             }
         }
 
-        private void metroButton3_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Pull the latest version of the yamashi fixes.
+        /// </summary>
+        private void DownloadLatestVersion()
         {
-            try
+            string DownloadPath = $"{Directory.GetCurrentDirectory()}\\Patch";
+            FileStream zipFile = File.Create($"{Directory.GetCurrentDirectory()}\\Release.zip");
+            zipFile.Close();
+            btnMain.Text = "Downloading";
+
+            using (var httpclient = new WebClient())
             {
-                string path = GoGGamePath.findGameByAppID("1423049311");
-                if (path == null)
-                {
-                    MessageBox.Show("Error: Couldn't Find CyberPunk for GoG!");
-                    return;
-                }
-                DialogResult dialogResult = MessageBox.Show(path, "Is this Correct?", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    patchGame(path);
-                }
+                httpclient.DownloadFile("https://github.com/yamashi/PerformanceOverhaulCyberpunk/releases/latest/download/Release.zip", $"{Directory.GetCurrentDirectory()}\\Release.zip");
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error" + ex);
-            }
+
+            if (Directory.Exists(DownloadPath))
+                Directory.Delete(DownloadPath, true);
+
+            btnMain.Text = "Extracting";
+            ZipFile.ExtractToDirectory($"{Directory.GetCurrentDirectory()}\\Release.zip", DownloadPath);
+        }
+
+        /// <summary>
+        /// Button Update has been clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            string path = File.ReadAllText($"{Directory.GetCurrentDirectory()}\\game_path");
+            PatchGame(path);
+            btnMain.Text = "Successfully Installed";
         }
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
             try
             {
-                string path = SteamGamePath.findGameByAppID("1091500");
+                string path = SteamGamePath.FindGameByAppID("1091500");
                 if (path == null)
                 {
                     MessageBox.Show("Error: Couldn't Find CyberPunk for steam!");
@@ -184,7 +298,7 @@ namespace CP2077___EasyInstall
                 DialogResult dialogResult = MessageBox.Show(path, "Is this Correct?", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    patchGame(path);
+                    PatchGame(path);
                 }
             }
             catch (Exception ex)
@@ -192,47 +306,26 @@ namespace CP2077___EasyInstall
                 MessageBox.Show("Error" + ex);
             }
         }
-        private void patchGame(string mainPath)
-        {
-            //fbd.SelectedPath = <path selected>
-            string selectedPath = mainPath + "\\bin\\x64";
-            general_path = selectedPath; //refers to x64 directory
 
-            //System.Windows.Forms.MessageBox.Show("Path Selected: " + fbd.SelectedPath, "Message"); <DEBUG>
+        private void metroButton3_Click(object sender, EventArgs e)
+        {
             try
             {
-                // Move files from patch to Cyberpunk2077 path
-                string sourceDirectory = @"Patch";
-                string targetDirectory = selectedPath;
-                Copy(sourceDirectory, targetDirectory);
-
-                string docPath = Directory.GetCurrentDirectory();
-                StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Path.txt"));
-                outputFile.Write(selectedPath);
-
-                /* WRITE PATH FILE. IT IS USED FOR CHECK IF THE PATCH IS ALREADY INSTALLED (ON NEXT RESTART) */
-                try
+                string path = GoGGamePath.FindGameByAppID("1423049311");
+                if (path == null)
                 {
-                    var local_path = Directory.GetCurrentDirectory() + "\\game_path";
-                    Console.WriteLine("path.txt path = ", local_path); //debug
-                    File.WriteAllText(local_path, general_path);
-                    Console.WriteLine("Path correctly created!\n"); //debug
+                    MessageBox.Show("Error: Couldn't Find CyberPunk for GoG!");
+                    return;
                 }
-                catch (Exception)
+                DialogResult dialogResult = MessageBox.Show(path, "Is this Correct?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    MessageBox.Show("Patch successfully installed, but i wasn't able to create path.txt file for correctly detect the position!");
+                    PatchGame(path);
                 }
-
-                MetroFramework.MetroMessageBox.Show(this, "Patch successfully installed!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Question);
-                btn_main.Text = "Successfully Installed!";
-                btn_main.Enabled = false;
-                metroButton1.Enabled = false;
-                metroButton3.Enabled = false;
             }
             catch (Exception ex)
             {
-                MetroFramework.MetroMessageBox.Show(this, "Error during installation\nError code: 1", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                btn_main.Text = "Critical Error!";
+                MessageBox.Show("Error" + ex);
             }
         }
     }
