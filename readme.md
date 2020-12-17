@@ -59,7 +59,7 @@ Type | Description
 
 -----------
 
-### Version 2.2 [17/122020]
+### Version 2.2 [17/12/2020]
 - [x] Bug fix and stability improve
 - [x] `Uninstall` System Added (now you can easy install/unistall the patches)
 - [x] `Check Update` System added (will automatically install the lastest patch available) 
