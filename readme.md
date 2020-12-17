@@ -4,7 +4,7 @@ This software simple allow you to easy install all the patch from "PerformanceOv
 For any problem, or for more information, check the main repository (by yamashi). 😊
 
 -----------
-![Demo](https://i.imgur.com/kj3MJaZ.png)
+![Demo](https://i.imgur.com/okMWPzf.png)
 
 
 [DOWNLOAD](https://bit.ly/384rLQZ) | [MAIN REPOSITORY](https://bit.ly/384rMEx) | [ISSUES](https://bit.ly/34cbtUX)
@@ -35,8 +35,9 @@ Type | Description
 `Language` | *C# (patch in c++)*
 `Installer Developer` | *LittleZen*
 `Patch Developer` | *[yamashi + others](https://github.com/yamashi/PerformanceOverhaulCyberpunk)*
-`Installer Version` | *2.0*
-`Patch Version` | *0.7.0*
+`Installer Base Version` | *1.0*
+`Installer Lastest Version` | *2.2*
+`Patch Version` | *You can check for updates directly on the tool*
 
 ## ChangeLog
 
