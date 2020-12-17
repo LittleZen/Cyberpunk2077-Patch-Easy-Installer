@@ -18,7 +18,9 @@ For any problem, or for more information, check the main repository (by yamashi)
 
 -----------
 
-Remeber that this patcher doesn't allow you to install the newerst version, so remeber to check this page for future update!
+h	~~Remeber that this patcher doesn't allow you to install the newerst version, so remeber to check this page for future update!
+
+Added "Check for Updates" button! 
 
 -----------
 ## Guide
