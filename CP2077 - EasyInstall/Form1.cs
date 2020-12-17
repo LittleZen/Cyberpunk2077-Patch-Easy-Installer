@@ -5,6 +5,7 @@ using System.IO.Compression;
 using System.Net;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using SharpGameReg;
 
 namespace CP2077___EasyInstall
 {
@@ -31,6 +32,8 @@ namespace CP2077___EasyInstall
                 generalPath = myPath;
                 btnMain.Text = "Patch Already Installed!";
                 btnMain.Enabled = false;
+                btnFindSteam.Enabled = false;
+                btnFindGoG.Enabled = false;
 #if DEBUG
                 MessageBox.Show("Patch already installed!");
 #endif
@@ -115,6 +118,11 @@ namespace CP2077___EasyInstall
                     }
                     PatchGame(gamePath);
                 }
+                else if (result == DialogResult.Cancel)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, null, "Install Canceled.", MessageBoxButtons.OK);
+                    btnMain.Text = "Select Path To Cyberpunk 2077 Main Directory";
+                }
                 else
                 {
                     MetroFramework.MetroMessageBox.Show(this, "Error during installation\nError code: 2", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -175,6 +183,8 @@ namespace CP2077___EasyInstall
                 MetroFramework.MetroMessageBox.Show(this, "Patch successfully installed!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 btnMain.Text = "Successfully Installed!";
                 btnMain.Enabled = false;
+                btnFindSteam.Enabled = false;
+                btnFindGoG.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -358,12 +368,82 @@ namespace CP2077___EasyInstall
                 // Unlock main_button for reinstall the patch 
                 btnMain.Text = "Select Path To Cyberpunk 2077 Main Directory";
                 btnMain.Enabled = true;
+                btnFindSteam.Enabled = true;
+                btnFindGoG.Enabled = true;
 
                 MetroFramework.MetroMessageBox.Show(this, "Successfully uninstalled", "Done!", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
             catch (Exception)
             {
                 MetroFramework.MetroMessageBox.Show(this, "Uninstall was not able to delete the mod. Just delete <cyberpunk install path>/bin/x64/version.dll and <cyberpunk install path>/bin/x64/plugins/", "Exception!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void btnFindSteam_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnMain.Text = "Working ...";
+                string path = SteamGamePath.FindGameByAppID("1091500");
+                if (path == null)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "Error: Couldn't Find CyberPunk for Steam!", "File not found Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show("Error: Couldn't Find CyberPunk for steam!");
+                    btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
+                    return;
+                }
+                DialogResult result = MessageBox.Show(path, "Is this Correct?", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                    PatchGame(path);
+                else if (result == DialogResult.No)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, null, "Install Canceled.", MessageBoxButtons.OK);
+                    btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
+                }
+                else
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "Error during installation\nError code: 2", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    btnMain.Text = "Critical Error!";
+                }
+            }
+            catch (Exception ex)
+            {
+                MetroFramework.MetroMessageBox.Show(this, "Error: " + ex, "Unknown Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Error" + ex);
+            }
+        }
+
+        private void btnFindGoG_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnMain.Text = "Working ...";
+                string path = GoGGamePath.FindGameByAppID("1423049311");
+                if (path == null)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "Error: Couldn't Find CyberPunk for GoG!", "File not found Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show("Error: Couldn't Find CyberPunk for GoG!");
+                    btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
+                    return;
+                }
+                //DialogResult dialogResult = MessageBox.Show(path, "Is this Correct?", MessageBoxButtons.YesNo);
+                DialogResult result = MetroFramework.MetroMessageBox.Show(this, path, "Is this Correct?", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                    PatchGame(path);
+                else if (result == DialogResult.No)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, null, "Install Canceled.", MessageBoxButtons.OK);
+                    btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
+                }
+                else
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "Error during installation\nError code: 2", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MetroFramework.MetroMessageBox.Show(this, "Error: " + ex, "Unknown Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Error" + ex);
             }
         }
     }
