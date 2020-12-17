@@ -33,7 +33,7 @@ Type | Description
 `Installer Developer` | *LittleZen*
 `Patch Developer` | *[yamashi + others](https://github.com/yamashi/PerformanceOverhaulCyberpunk)*
 `Installer Base Version` | *1.0*
-`Installer Lastest Version` | *2.3*
+`Installer Lastest Version` | *Check ChangeLog or LastRelease*
 `Patch Version` | *You can check for updates directly on the tool*
 
 ## Changelog
