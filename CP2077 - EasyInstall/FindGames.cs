@@ -1,18 +1,22 @@
-﻿using System;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace SharpGameReg
+namespace CP2077___EasyInstall
 {
     class SteamGamePath
     {
+        /// <summary>
+        /// Get the install path for the Steam installation of Cyberpunk 2077.
+        /// </summary>
+        /// <returns>Windows Registry for Steam installtion location.</returns>
         static string GetSteamPath()
         {
-            return (string)Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Valve\\Steam", "InstallPath", null);
+            return Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Valve\\Steam", "InstallPath", null).ToString();
         }
+
         static List<string> SteamLibraryPaths()
         {
             string libraryfoldersPath = GetSteamPath();
@@ -40,6 +44,7 @@ namespace SharpGameReg
             }
             return toReturn;
         }
+
         static string FindGameACFByAppID(string appID)
         {
             /* If we do not add this other games with the same number in 
@@ -59,6 +64,7 @@ namespace SharpGameReg
             }
             return null; // Game not installed or something is wrong.
         }
+
         // I split these up so it looks neater.
         public static string FindGameByAppID(string appID)
         {
@@ -80,17 +86,26 @@ namespace SharpGameReg
             }
             return null;
         }
+
         static string[] SplitByQuotes(string unsplitArray)
         {
             var re = new Regex("\"[^\"]*\"");
             return re.Matches(unsplitArray).Cast<Match>().Select(m => m.Value).ToArray(); // Split into an array using quotes to split
         }
     }
+
+    /// <summary>
+    /// Good Old Games installation location.
+    /// </summary>
     class GoGGamePath
     {
+        /// <summary>
+        /// Get the install path for the GoG installation of Cyberpunk 2077.
+        /// </summary>
+        /// <returns>Windows Registry for GoG installtion location.</returns>
         public static string FindGameByAppID(string appID)
         {
-            return (string)Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\GOG.com\\Games\\" + appID + "\\", "Path", null);
+            return Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\GOG.com\\Games\\" + appID + "\\", "Path", null).ToString();
         }
     }
 }

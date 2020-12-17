@@ -5,7 +5,6 @@ using System.IO.Compression;
 using System.Net;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using SharpGameReg;
 
 namespace CP2077___EasyInstall
 {
@@ -428,7 +427,7 @@ namespace CP2077___EasyInstall
                 //DialogResult dialogResult = MessageBox.Show(path, "Is this Correct?", MessageBoxButtons.YesNo);
                 DialogResult result = MetroFramework.MetroMessageBox.Show(this, path, "Is this Correct?", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
-                    PatchGame(path);
+                    PatchGame($"{path}\\bin\\x64");
                 else if (result == DialogResult.No)
                 {
                     MetroFramework.MetroMessageBox.Show(this, null, "Install Canceled.", MessageBoxButtons.OK);
