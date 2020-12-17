@@ -4,7 +4,7 @@ This software simple allow you to easy install all the patch from "PerformanceOv
 For any problem, or for more information, check the main repository (by yamashi). 😊
 
 -----------
-![Demo](https://i.imgur.com/okMWPzf.png)
+![Demo](https://i.imgur.com/dlMNrCY.png)
 
 
 [DOWNLOAD](https://bit.ly/384rLQZ) | [MAIN REPOSITORY](https://bit.ly/384rMEx) | [ISSUES](https://bit.ly/34cbtUX)
@@ -56,6 +56,21 @@ Type | Description
 - [x] Now requires Administrator Privilege
 - [x] Icons updated
 - [x] Code Cleared 
+
+-----------
+
+### Version 2.2 [17/122020]
+- [x] Bug fix and stability improve
+- [x] `Uninstall` System Added (now you can easy install/unistall the patches)
+- [x] `Check Update` System added (will automatically install the lastest patch available) 
+- [x] ToolTips added. Just move the cursor over the settings, for check what they do (example: pass the cursor, over the "AVX" settings
+- [x] Update system now correctly remove the zip files downloaded, after the update
+- [x] Released the option `Remove Pedestrians` (yamashi)
+- [x] Released the option `Disable Antialiasing` (yamashi)
+- [x] Added the `Memory Pool` section for correctly manage the memory pool (CPU/GPU) (yamashi)
+- [x] Released the `Async Compute` features (yamashi)
+- [x] Released the `Skip Start menù` features (yamashi)
+- [x] Code clean (Thanks to all contributor!)
 
 -----------
 
