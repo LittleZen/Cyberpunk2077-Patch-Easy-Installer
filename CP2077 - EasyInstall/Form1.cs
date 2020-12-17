@@ -117,6 +117,10 @@ namespace CP2077___EasyInstall
                     }
                     PatchGame(gamePath);
                 }
+                else if(result == DialogResult.Cancel)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, null, "Install Canceled.", MessageBoxButtons.OK);
+                }
                 else
                 {
                     MetroFramework.MetroMessageBox.Show(this, "Error during installation\nError code: 2", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -292,18 +296,25 @@ namespace CP2077___EasyInstall
                 string path = SteamGamePath.FindGameByAppID("1091500");
                 if (path == null)
                 {
-                    MessageBox.Show("Error: Couldn't Find CyberPunk for steam!");
+                    MetroFramework.MetroMessageBox.Show(this, "Error: Couldn't Find CyberPunk for Steam!", "File not found Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show("Error: Couldn't Find CyberPunk for steam!");
                     return;
                 }
-                DialogResult dialogResult = MessageBox.Show(path, "Is this Correct?", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
+                DialogResult result = MessageBox.Show(path, "Is this Correct?", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
                     PatchGame(path);
+                else if (result == DialogResult.No)
+                    MetroFramework.MetroMessageBox.Show(this, null, "Install Canceled.", MessageBoxButtons.OK);
+                else
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "Error during installation\nError code: 2", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    btnMain.Text = "Critical Error!";
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error" + ex);
+                MetroFramework.MetroMessageBox.Show(this, "Error: " + ex, "Unknown Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Error" + ex);
             }
         }
 
@@ -314,18 +325,26 @@ namespace CP2077___EasyInstall
                 string path = GoGGamePath.FindGameByAppID("1423049311");
                 if (path == null)
                 {
-                    MessageBox.Show("Error: Couldn't Find CyberPunk for GoG!");
+                    MetroFramework.MetroMessageBox.Show(this, "Error: Couldn't Find CyberPunk for GoG!", "File not found Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show("Error: Couldn't Find CyberPunk for GoG!");
                     return;
                 }
-                DialogResult dialogResult = MessageBox.Show(path, "Is this Correct?", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
+                //DialogResult dialogResult = MessageBox.Show(path, "Is this Correct?", MessageBoxButtons.YesNo);
+                DialogResult result = MetroFramework.MetroMessageBox.Show(this, path, "Is this Correct?", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
                     PatchGame(path);
+                else if (result == DialogResult.No)
+                    MetroFramework.MetroMessageBox.Show(this, null, "Install Canceled.", MessageBoxButtons.OK);
+                else
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "Error during installation\nError code: 2", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error" + ex);
+                MetroFramework.MetroMessageBox.Show(this, "Error: " + ex, "Unknown Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Error" + ex);
             }
         }
     }
