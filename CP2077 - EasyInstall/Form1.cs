@@ -251,21 +251,34 @@ namespace CP2077___EasyInstall
         /// </summary>
         private void DownloadLatestVersion()
         {
-            string DownloadPath = $"{Directory.GetCurrentDirectory()}\\Patch";
-            FileStream zipFile = File.Create($"{Directory.GetCurrentDirectory()}\\Release.zip");
-            zipFile.Close();
-            btnMain.Text = "Downloading";
-
-            using (var httpclient = new WebClient())
+            try
             {
-                httpclient.DownloadFile("https://github.com/yamashi/PerformanceOverhaulCyberpunk/releases/latest/download/Release.zip", $"{Directory.GetCurrentDirectory()}\\Release.zip");
+                string DownloadPath = $"{Directory.GetCurrentDirectory()}\\Patch";
+                FileStream zipFile = File.Create($"{Directory.GetCurrentDirectory()}\\Release.zip");
+                zipFile.Close();
+                btnMain.Text = "Downloading";
+
+                using (var httpclient = new WebClient())
+                {
+                    httpclient.DownloadFile("https://github.com/yamashi/PerformanceOverhaulCyberpunk/releases/latest/download/Release.zip", $"{Directory.GetCurrentDirectory()}\\Release.zip");
+                }
+
+                if (Directory.Exists(DownloadPath))
+                    Directory.Delete(DownloadPath, true);
+
+                btnMain.Text = "Extracting";
+                ZipFile.ExtractToDirectory($"{Directory.GetCurrentDirectory()}\\Release.zip", DownloadPath);
             }
-
-            if (Directory.Exists(DownloadPath))
-                Directory.Delete(DownloadPath, true);
-
-            btnMain.Text = "Extracting";
-            ZipFile.ExtractToDirectory($"{Directory.GetCurrentDirectory()}\\Release.zip", DownloadPath);
+            catch (IOException ex)
+            {
+                MetroFramework.MetroMessageBox.Show(this, $"Error during installation\nError code: 1\n{ex.InnerException}", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnMain.Text = "Critical Error!";
+            }
+            catch (WebException ex)
+            {
+                MetroFramework.MetroMessageBox.Show(this, $"Error during installation\nError code: 1\n{ex.InnerException}", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnMain.Text = "Critical Error!";
+            }
         }
 
         /// <summary>

@@ -1,7 +1,7 @@
 # Cyberpunk 2077 | Easy Patcher
 
-This software simple allow you to easy install all the patch from "PerformanceOverhaulCyberpunk" patch by yamashi.
-For any problem, or for more information, check the main repository (by yamashi). 😊
+This software allows you to easily install all the patches from "PerformanceOverhaulCyberpunk", created by yamashi.
+For any problems, or for more information, check the main repository (by yamashi). 😊
 
 -----------
 ![Demo](https://i.imgur.com/okMWPzf.png)
@@ -14,14 +14,14 @@ For any problem, or for more information, check the main repository (by yamashi)
 ## Index
 - [Guide](#guide)
 - [About](#about)
-- [ChangeLog](#changelog)
+- [Changelog](#changelog)
 
 
 -----------
 ## Guide
 
-1) Download the exe file
-2) Open it, and extract the files where you want.
+1) Download the .exe file
+2) Open it and extract the files where you want.
 3) Open "CP2077 - EasyInstall.exe" and select the main folder of "Cyberpunk 2077" (not the x64 folder! The main directory!)
 
 -----------
@@ -36,7 +36,7 @@ Type | Description
 `Installer Lastest Version` | *2.2*
 `Patch Version` | *You can check for updates directly on the tool*
 
-## ChangeLog
+## Changelog
 
 ### Version 1.0 [15/12/2020]
 
@@ -49,7 +49,7 @@ Type | Description
 - [x] Released Easy Patcher v2.0
 - [x] Released yamashi patch v0.7.2
 - [x] New HUD (Now you can directly manage the settings through the tool)
-- [x] Tool will now automatically detect (after the first time) the path of CP2077, and don't ask you (all time) to re-insert the path
+- [x] Tool will now automatically detect (after the first time) the path of CP2077, and won't ask to re-insert the path
 - [x] You can now directly open the json file (for manually manage the settings or for check it)
 - [x] "About" now correctly redirect all to this thread
 - [x] Some minor visual effects added
