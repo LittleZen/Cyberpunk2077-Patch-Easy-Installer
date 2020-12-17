@@ -91,7 +91,7 @@ namespace CP2077___EasyInstall
             this.btnAbout.Location = new System.Drawing.Point(180, 519);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(72, 15);
-            this.btnAbout.TabIndex = 2;
+            this.btnAbout.TabIndex = 5;
             this.btnAbout.Text = "About";
             this.btnAbout.UseSelectable = true;
             this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
@@ -109,7 +109,7 @@ namespace CP2077___EasyInstall
             this.groupBox1.Controls.Add(this.cbSpectre);
             this.groupBox1.Controls.Add(this.cbSMT);
             this.groupBox1.Controls.Add(this.cbAVX);
-            this.groupBox1.Location = new System.Drawing.Point(24, 210);
+            this.groupBox1.Location = new System.Drawing.Point(22, 142);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(388, 174);
             this.groupBox1.TabIndex = 3;
@@ -123,7 +123,7 @@ namespace CP2077___EasyInstall
             this.cbAntialiasing.Location = new System.Drawing.Point(225, 96);
             this.cbAntialiasing.Name = "cbAntialiasing";
             this.cbAntialiasing.Size = new System.Drawing.Size(143, 19);
-            this.cbAntialiasing.TabIndex = 13;
+            this.cbAntialiasing.TabIndex = 10;
             this.cbAntialiasing.Text = "Disable Antialiasing";
             this.tt_aliasing.SetToolTip(this.cbAntialiasing, "Disables antialiasing, not recommended but you do what you want!");
             this.cbAntialiasing.UseSelectable = true;
@@ -137,7 +137,7 @@ namespace CP2077___EasyInstall
             this.cbSkipStartMenu.Location = new System.Drawing.Point(6, 146);
             this.cbSkipStartMenu.Name = "cbSkipStartMenu";
             this.cbSkipStartMenu.Size = new System.Drawing.Size(123, 19);
-            this.cbSkipStartMenu.TabIndex = 12;
+            this.cbSkipStartMenu.TabIndex = 13;
             this.cbSkipStartMenu.Text = "Skip Start Menu";
             this.tt_skip.SetToolTip(this.cbSkipStartMenu, "Skips the menu asking you to press space bar to continue (Breaching...)");
             this.cbSkipStartMenu.UseSelectable = true;
@@ -149,7 +149,7 @@ namespace CP2077___EasyInstall
             this.cbRemovePedestrians.Location = new System.Drawing.Point(225, 146);
             this.cbRemovePedestrians.Name = "cbRemovePedestrians";
             this.cbRemovePedestrians.Size = new System.Drawing.Size(147, 19);
-            this.cbRemovePedestrians.TabIndex = 11;
+            this.cbRemovePedestrians.TabIndex = 14;
             this.cbRemovePedestrians.Text = "Remove Pedestrians";
             this.tt_pedestrians.SetToolTip(this.cbRemovePedestrians, "Removes most of the pedestrians and traffic");
             this.cbRemovePedestrians.UseSelectable = true;
@@ -161,7 +161,7 @@ namespace CP2077___EasyInstall
             this.cbAsyncCompute.Location = new System.Drawing.Point(225, 71);
             this.cbAsyncCompute.Name = "cbAsyncCompute";
             this.cbAsyncCompute.Size = new System.Drawing.Size(122, 19);
-            this.cbAsyncCompute.TabIndex = 10;
+            this.cbAsyncCompute.TabIndex = 8;
             this.cbAsyncCompute.Text = "Async Compute";
             this.tt_async.SetToolTip(this.cbAsyncCompute, "Disables async compute, this can give a boost on older GPUs ( nvidia 10xx series " +
         "for example)");
@@ -173,7 +173,7 @@ namespace CP2077___EasyInstall
             this.metroLabel2.Location = new System.Drawing.Point(105, 16);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(175, 19);
-            this.metroLabel2.TabIndex = 12;
+            this.metroLabel2.TabIndex = 4;
             this.metroLabel2.Text = "Check the box for activate it:";
             // 
             // cbVInput
@@ -185,7 +185,7 @@ namespace CP2077___EasyInstall
             this.cbVInput.Location = new System.Drawing.Point(6, 121);
             this.cbVInput.Name = "cbVInput";
             this.cbVInput.Size = new System.Drawing.Size(102, 19);
-            this.cbVInput.TabIndex = 9;
+            this.cbVInput.TabIndex = 11;
             this.cbVInput.Text = "Virtual Input";
             this.tt_vinput.SetToolTip(this.cbVInput, "Enables the use of more gamepads (such as the Steam gamepad)");
             this.cbVInput.UseSelectable = true;
@@ -197,7 +197,7 @@ namespace CP2077___EasyInstall
             this.cbDebug.Location = new System.Drawing.Point(225, 121);
             this.cbDebug.Name = "cbDebug";
             this.cbDebug.Size = new System.Drawing.Size(86, 19);
-            this.cbDebug.TabIndex = 7;
+            this.cbDebug.TabIndex = 12;
             this.cbDebug.Text = "Debugger";
             this.tt_debugger.SetToolTip(this.cbDebug, "Enables the debug menus in game so you can cheat, investigate...");
             this.cbDebug.UseSelectable = true;
@@ -211,7 +211,7 @@ namespace CP2077___EasyInstall
             this.cbMemoryPool.Location = new System.Drawing.Point(225, 46);
             this.cbMemoryPool.Name = "cbMemoryPool";
             this.cbMemoryPool.Size = new System.Drawing.Size(107, 19);
-            this.cbMemoryPool.TabIndex = 5;
+            this.cbMemoryPool.TabIndex = 6;
             this.cbMemoryPool.Text = "Memory Pool";
             this.tt_memory.SetToolTip(this.cbMemoryPool, "Improves memory usage, can improve performance on some configurations.");
             this.cbMemoryPool.UseSelectable = true;
@@ -225,7 +225,7 @@ namespace CP2077___EasyInstall
             this.cbSpectre.Location = new System.Drawing.Point(6, 96);
             this.cbSpectre.Name = "cbSpectre";
             this.cbSpectre.Size = new System.Drawing.Size(70, 19);
-            this.cbSpectre.TabIndex = 8;
+            this.cbSpectre.TabIndex = 9;
             this.cbSpectre.Text = "Spectre";
             this.tt_spectre.SetToolTip(this.cbSpectre, "Removes spectre mitigation to improve performance on all configurations.");
             this.cbSpectre.UseSelectable = true;
@@ -239,7 +239,7 @@ namespace CP2077___EasyInstall
             this.cbSMT.Location = new System.Drawing.Point(6, 71);
             this.cbSMT.Name = "cbSMT";
             this.cbSMT.Size = new System.Drawing.Size(52, 19);
-            this.cbSMT.TabIndex = 6;
+            this.cbSMT.TabIndex = 7;
             this.cbSMT.Text = "SMT";
             this.tt_smt.SetToolTip(this.cbSMT, "Improves performance on AMD CPUs by enabling all cores.");
             this.cbSMT.UseSelectable = true;
@@ -254,7 +254,7 @@ namespace CP2077___EasyInstall
             this.cbAVX.Location = new System.Drawing.Point(6, 46);
             this.cbAVX.Name = "cbAVX";
             this.cbAVX.Size = new System.Drawing.Size(50, 19);
-            this.cbAVX.TabIndex = 4;
+            this.cbAVX.TabIndex = 5;
             this.cbAVX.Tag = "";
             this.cbAVX.Text = "AVX";
             this.tt_avx.SetToolTip(this.cbAVX, " Fixes a crash when playing the game with a CPU that does not support AVX");
@@ -265,7 +265,7 @@ namespace CP2077___EasyInstall
             this.btnUpdate.Location = new System.Drawing.Point(22, 486);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(175, 23);
-            this.btnUpdate.TabIndex = 19;
+            this.btnUpdate.TabIndex = 23;
             this.btnUpdate.Text = "Check Update";
             this.tt_checkUpdate.SetToolTip(this.btnUpdate, "Download and install the last patch version available");
             this.btnUpdate.UseSelectable = true;
@@ -276,7 +276,7 @@ namespace CP2077___EasyInstall
             this.btnSettings.Location = new System.Drawing.Point(22, 449);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(390, 31);
-            this.btnSettings.TabIndex = 14;
+            this.btnSettings.TabIndex = 22;
             this.btnSettings.Text = "Open Json settings";
             this.tt_json.SetToolTip(this.btnSettings, "Open JSON settings, for manual editing");
             this.btnSettings.UseSelectable = true;
@@ -287,7 +287,7 @@ namespace CP2077___EasyInstall
             this.btnSave.Location = new System.Drawing.Point(22, 375);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(390, 31);
-            this.btnSave.TabIndex = 13;
+            this.btnSave.TabIndex = 20;
             this.btnSave.Text = "&Save Settings";
             this.tt_save.SetToolTip(this.btnSave, "Save your currently settings");
             this.btnSave.UseSelectable = true;
@@ -382,7 +382,7 @@ namespace CP2077___EasyInstall
             this.btnLogs.Location = new System.Drawing.Point(22, 412);
             this.btnLogs.Name = "btnLogs";
             this.btnLogs.Size = new System.Drawing.Size(390, 31);
-            this.btnLogs.TabIndex = 20;
+            this.btnLogs.TabIndex = 21;
             this.btnLogs.Text = "&Open Patch Logs";
             this.btnLogs.UseSelectable = true;
             this.btnLogs.Click += new System.EventHandler(this.btnLogs_Click);
@@ -396,7 +396,7 @@ namespace CP2077___EasyInstall
             this.groupBox2.Location = new System.Drawing.Point(24, 322);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(388, 47);
-            this.groupBox2.TabIndex = 21;
+            this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Memory Pool:";
             // 
@@ -405,7 +405,7 @@ namespace CP2077___EasyInstall
             this.tbGpuMem.Location = new System.Drawing.Point(346, 19);
             this.tbGpuMem.Name = "tbGpuMem";
             this.tbGpuMem.Size = new System.Drawing.Size(21, 20);
-            this.tbGpuMem.TabIndex = 3;
+            this.tbGpuMem.TabIndex = 19;
             this.tbGpuMem.Tag = "";
             this.tbGpuMem.Text = "1.0";
             // 
@@ -415,7 +415,7 @@ namespace CP2077___EasyInstall
             this.metroLabel4.Location = new System.Drawing.Point(225, 20);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(123, 19);
-            this.metroLabel4.TabIndex = 2;
+            this.metroLabel4.TabIndex = 18;
             this.metroLabel4.Text = "GPU Memory Pool:";
             // 
             // metroLabel3
@@ -424,7 +424,7 @@ namespace CP2077___EasyInstall
             this.metroLabel3.Location = new System.Drawing.Point(6, 20);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(123, 19);
-            this.metroLabel3.TabIndex = 1;
+            this.metroLabel3.TabIndex = 16;
             this.metroLabel3.Text = "CPU Memory Pool:";
             // 
             // tbCpuMem
@@ -432,7 +432,7 @@ namespace CP2077___EasyInstall
             this.tbCpuMem.Location = new System.Drawing.Point(129, 19);
             this.tbCpuMem.Name = "tbCpuMem";
             this.tbCpuMem.Size = new System.Drawing.Size(21, 20);
-            this.tbCpuMem.TabIndex = 0;
+            this.tbCpuMem.TabIndex = 7;
             this.tbCpuMem.Tag = "";
             this.tbCpuMem.Text = "0.5";
             // 
@@ -441,7 +441,7 @@ namespace CP2077___EasyInstall
             this.btnUninstall.Location = new System.Drawing.Point(237, 486);
             this.btnUninstall.Name = "btnUninstall";
             this.btnUninstall.Size = new System.Drawing.Size(175, 23);
-            this.btnUninstall.TabIndex = 22;
+            this.btnUninstall.TabIndex = 24;
             this.btnUninstall.Text = "&Uninstall";
             this.btnUninstall.UseSelectable = true;
             this.btnUninstall.Click += new System.EventHandler(this.btnUninstall_Click);
@@ -451,7 +451,7 @@ namespace CP2077___EasyInstall
             this.metroButton3.Location = new System.Drawing.Point(232, 105);
             this.metroButton3.Name = "metroButton3";
             this.metroButton3.Size = new System.Drawing.Size(180, 30);
-            this.metroButton3.TabIndex = 24;
+            this.metroButton3.TabIndex = 2;
             this.metroButton3.Text = "Find GOG Path";
             this.metroButton3.Theme = MetroFramework.MetroThemeStyle.Light;
             this.metroButton3.UseSelectable = true;
@@ -462,7 +462,7 @@ namespace CP2077___EasyInstall
             this.metroButton1.Location = new System.Drawing.Point(22, 105);
             this.metroButton1.Name = "metroButton1";
             this.metroButton1.Size = new System.Drawing.Size(180, 30);
-            this.metroButton1.TabIndex = 23;
+            this.metroButton1.TabIndex = 1;
             this.metroButton1.Text = "Find Steam Path";
             this.metroButton1.Theme = MetroFramework.MetroThemeStyle.Light;
             this.metroButton1.UseSelectable = true;
