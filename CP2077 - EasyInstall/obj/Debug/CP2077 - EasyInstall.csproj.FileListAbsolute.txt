@@ -1,30 +1,15 @@
-D:\Informatica\Cyberpunk 2077 EasyInstall\CP2077 - EasyInstall\CP2077 - EasyInstall\bin\Debug\CP2077 - EasyInstall.exe.config
-D:\Informatica\Cyberpunk 2077 EasyInstall\CP2077 - EasyInstall\CP2077 - EasyInstall\bin\Debug\CP2077 - EasyInstall.exe
-D:\Informatica\Cyberpunk 2077 EasyInstall\CP2077 - EasyInstall\CP2077 - EasyInstall\bin\Debug\CP2077 - EasyInstall.pdb
-D:\Informatica\Cyberpunk 2077 EasyInstall\CP2077 - EasyInstall\CP2077 - EasyInstall\bin\Debug\MetroFramework.Design.dll
-D:\Informatica\Cyberpunk 2077 EasyInstall\CP2077 - EasyInstall\CP2077 - EasyInstall\bin\Debug\MetroFramework.dll
-D:\Informatica\Cyberpunk 2077 EasyInstall\CP2077 - EasyInstall\CP2077 - EasyInstall\bin\Debug\MetroFramework.Fonts.dll
-D:\Informatica\Cyberpunk 2077 EasyInstall\CP2077 - EasyInstall\CP2077 - EasyInstall\obj\Debug\CP2077 - EasyInstall.csprojAssemblyReference.cache
-D:\Informatica\Cyberpunk 2077 EasyInstall\CP2077 - EasyInstall\CP2077 - EasyInstall\obj\Debug\CP2077___EasyInstall.Properties.Resources.resources
-D:\Informatica\Cyberpunk 2077 EasyInstall\CP2077 - EasyInstall\CP2077 - EasyInstall\obj\Debug\CP2077 - EasyInstall.csproj.GenerateResource.cache
-D:\Informatica\Cyberpunk 2077 EasyInstall\CP2077 - EasyInstall\CP2077 - EasyInstall\obj\Debug\CP2077 - EasyInstall.csproj.CoreCompileInputs.cache
-D:\Informatica\Cyberpunk 2077 EasyInstall\CP2077 - EasyInstall\CP2077 - EasyInstall\obj\Debug\CP2077 - EasyInstall.csproj.CopyComplete
-D:\Informatica\Cyberpunk 2077 EasyInstall\CP2077 - EasyInstall\CP2077 - EasyInstall\obj\Debug\CP2077 - EasyInstall.exe
-D:\Informatica\Cyberpunk 2077 EasyInstall\CP2077 - EasyInstall\CP2077 - EasyInstall\obj\Debug\CP2077 - EasyInstall.pdb
-D:\Informatica\Cyberpunk 2077 EasyInstall\CP2077 - EasyInstall\CP2077 - EasyInstall\obj\Debug\CP2077___EasyInstall.Form1.resources
-D:\Informatica\Cyberpunk 2077 EI (repository)\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\bin\Debug\MetroFramework.Design.dll
-D:\Informatica\Cyberpunk 2077 EI (repository)\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\bin\Debug\MetroFramework.dll
-D:\Informatica\Cyberpunk 2077 EI (repository)\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\bin\Debug\MetroFramework.Fonts.dll
-D:\Informatica\Cyberpunk 2077 EI (repository)\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\obj\Debug\CP2077___EasyInstall.Form1.resources
-D:\Informatica\Cyberpunk 2077 EI (repository)\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\obj\Debug\CP2077 - EasyInstall.csproj.GenerateResource.cache
-D:\Informatica\Cyberpunk 2077 EI (repository)\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\obj\Debug\CP2077 - EasyInstall.csproj.CoreCompileInputs.cache
-D:\Informatica\Cyberpunk 2077 EI (repository)\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\obj\Debug\CP2077 - EasyInstall.csproj.CopyComplete
-D:\Informatica\Cyberpunk 2077 EI (repository)\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\bin\Debug\Newtonsoft.Json.dll
-D:\Informatica\Cyberpunk 2077 EI (repository)\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\bin\Debug\Newtonsoft.Json.xml
-D:\Informatica\Cyberpunk 2077 EI (repository)\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\bin\Debug\CP2077 - EasyPatcher.exe.config
-D:\Informatica\Cyberpunk 2077 EI (repository)\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\bin\Debug\CP2077 - EasyPatcher.exe
-D:\Informatica\Cyberpunk 2077 EI (repository)\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\bin\Debug\CP2077 - EasyPatcher.pdb
-D:\Informatica\Cyberpunk 2077 EI (repository)\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\obj\Debug\CP2077 - EasyInstall.csprojAssemblyReference.cache
-D:\Informatica\Cyberpunk 2077 EI (repository)\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\obj\Debug\CP2077___EasyPatcher.Properties.Resources.resources
-D:\Informatica\Cyberpunk 2077 EI (repository)\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\obj\Debug\CP2077 - EasyPatcher.exe
-D:\Informatica\Cyberpunk 2077 EI (repository)\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\obj\Debug\CP2077 - EasyPatcher.pdb
+F:\Work\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\bin\Debug\CP2077 - EasyPatcher.exe.config
+F:\Work\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\bin\Debug\CP2077 - EasyPatcher.exe
+F:\Work\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\bin\Debug\CP2077 - EasyPatcher.pdb
+F:\Work\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\bin\Debug\MetroFramework.Design.dll
+F:\Work\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\bin\Debug\MetroFramework.dll
+F:\Work\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\bin\Debug\MetroFramework.Fonts.dll
+F:\Work\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\bin\Debug\Newtonsoft.Json.dll
+F:\Work\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\bin\Debug\Newtonsoft.Json.xml
+F:\Work\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\obj\Debug\CP2077___EasyInstall.Form1.resources
+F:\Work\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\obj\Debug\CP2077___EasyPatcher.Properties.Resources.resources
+F:\Work\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\obj\Debug\CP2077 - EasyInstall.csproj.GenerateResource.cache
+F:\Work\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\obj\Debug\CP2077 - EasyInstall.csproj.CoreCompileInputs.cache
+F:\Work\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\obj\Debug\CP2077 - EasyInstall.csproj.CopyComplete
+F:\Work\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\obj\Debug\CP2077 - EasyPatcher.exe
+F:\Work\Cyberpunk2077-Patch-Easy-Installer\CP2077 - EasyInstall\obj\Debug\CP2077 - EasyPatcher.pdb
