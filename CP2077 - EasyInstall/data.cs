@@ -1,18 +1,43 @@
-﻿namespace CP2077___EasyInstall
+﻿using Newtonsoft.Json;
+
+namespace CP2077___EasyInstall
 {
     public class Data
     {
-        public bool avx { get; set; }
-        public bool smt { get; set; }
-        public bool spectre { get; set; }
-        public bool virtual_input { get; set; }
-        public bool memory_pool { get; set; }
-        public bool unlock_menu { get; set; }
-        public string cpu_memory_pool_fraction { get; set; }
-        public string gpu_memory_pool_fraction { get; set; }
-        public bool remove_pedestrians { get; set; }
-        public bool skip_start_menu { get; set; }
-        public bool disable_async_compute { get; set; }
-        public bool disable_antialiasing { get; set; }
+        [JsonProperty("avx")]
+        public bool AVX { get; set; }
+
+        [JsonProperty("smt")]
+        public bool SMT { get; set; }
+
+        [JsonProperty("spectre")]
+        public bool Spectre { get; set; }
+
+        [JsonProperty("virtual_input")]
+        public bool VirtualInput { get; set; }
+
+        [JsonProperty("memory_pool")]
+        public bool MemoryPool { get; set; }
+
+        [JsonProperty("unlock_menu")]
+        public bool UnlockMenu { get; set; }
+
+        [JsonProperty("cpu_memory_pool_fraction")]
+        public double CPUMemoryPoolFraction { get; set; }
+
+        [JsonProperty("gpu_memory_pool_fraction")]
+        public double GPUMemoryPoolFraction { get; set; }
+
+        [JsonProperty("remove_pedestrians")]
+        public bool RemovePedestrians { get; set; }
+
+        [JsonProperty("skip_start_menu")]
+        public bool SkipStartMenu { get; set; }
+
+        [JsonProperty("disable_async_compute")]
+        public bool DisableAsyncCompute { get; set; }
+
+        [JsonProperty("disable_antialiasing")]
+        public bool DisableAntialiasing { get; set; }
     }
 }
