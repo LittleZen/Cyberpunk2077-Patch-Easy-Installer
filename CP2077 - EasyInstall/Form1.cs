@@ -382,18 +382,23 @@ namespace CP2077___EasyInstall
         {
             try
             {
+                btnMain.Text = "Working ...";
                 string path = SteamGamePath.FindGameByAppID("1091500");
                 if (path == null)
                 {
                     MetroFramework.MetroMessageBox.Show(this, "Error: Couldn't Find CyberPunk for Steam!", "File not found Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     //MessageBox.Show("Error: Couldn't Find CyberPunk for steam!");
+                    btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
                     return;
                 }
                 DialogResult result = MessageBox.Show(path, "Is this Correct?", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                     PatchGame(path);
                 else if (result == DialogResult.No)
+                {
                     MetroFramework.MetroMessageBox.Show(this, null, "Install Canceled.", MessageBoxButtons.OK);
+                    btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
+                }
                 else
                 {
                     MetroFramework.MetroMessageBox.Show(this, "Error during installation\nError code: 2", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -411,11 +416,13 @@ namespace CP2077___EasyInstall
         {
             try
             {
+                btnMain.Text = "Working ...";
                 string path = GoGGamePath.FindGameByAppID("1423049311");
                 if (path == null)
                 {
                     MetroFramework.MetroMessageBox.Show(this, "Error: Couldn't Find CyberPunk for GoG!", "File not found Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     //MessageBox.Show("Error: Couldn't Find CyberPunk for GoG!");
+                    btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
                     return;
                 }
                 //DialogResult dialogResult = MessageBox.Show(path, "Is this Correct?", MessageBoxButtons.YesNo);
@@ -423,7 +430,10 @@ namespace CP2077___EasyInstall
                 if (result == DialogResult.Yes)
                     PatchGame(path);
                 else if (result == DialogResult.No)
+                {
                     MetroFramework.MetroMessageBox.Show(this, null, "Install Canceled.", MessageBoxButtons.OK);
+                    btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
+                }
                 else
                 {
                     MetroFramework.MetroMessageBox.Show(this, "Error during installation\nError code: 2", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
