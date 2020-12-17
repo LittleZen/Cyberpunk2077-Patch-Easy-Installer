@@ -80,7 +80,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="data.cs" />
-    <Compile Include="FindGames.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
