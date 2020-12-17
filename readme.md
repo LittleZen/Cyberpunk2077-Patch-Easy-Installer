@@ -1,6 +1,6 @@
 # Cyberpunk 2077 | Easy Patcher
 
-This software simple allow you to easy install all the patch from "PerformanceOverhaulCyberpunk" patch by yamashi.
+This software simple allow you to easy install all the patch from [PerformanceOverhaulCyberpunk](https://bit.ly/384rMEx) patch by yamashi.
 For any problem, or for more information, check the main repository (by yamashi). 😊
 
 -----------
