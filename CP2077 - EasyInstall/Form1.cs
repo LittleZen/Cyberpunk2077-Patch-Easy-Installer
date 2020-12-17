@@ -23,7 +23,7 @@ namespace CP2077___EasyInstall
             try
             {
                 // Check if the patch is already installed. If game_path file != NULL == already installed.
-                var localPath = $"{Directory.GetCurrentDirectory()}\\game_path";
+                var localPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\CP2077 Easy Installer\\game_path";
 
                 string myPath = File.ReadAllText(localPath);
 #if DEBUG
@@ -146,9 +146,16 @@ namespace CP2077___EasyInstall
                 // Move files from patch to Cyberpunk 2077 path.
                 btnMain.Text = "Installing";
                 string targetDirectory = gamePath;
-                Copy("Patch", targetDirectory);
-
-                string docPath = Directory.GetCurrentDirectory();
+#if DEBUG
+                MessageBox.Show("Copying");
+#endif
+                string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\CP2077 Easy Installer\\";
+                Copy(docPath + "\\Patch", targetDirectory);
+#if DEBUG
+                MessageBox.Show(docPath);
+#endif
+                if (!Directory.Exists(docPath))
+                    Directory.CreateDirectory(docPath);
                 using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "game_path")))
                 {
                     outputFile.Write(gamePath);
@@ -157,7 +164,7 @@ namespace CP2077___EasyInstall
                 // Write Path file. It is used for checking if the patch has already been installed (on next restart)
                 try
                 {
-                    var localPath = $"{Directory.GetCurrentDirectory()}\\game_path";
+                    var localPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\CP2077 Easy Installer\\game_path";
 #if DEBUG
                     MessageBox.Show($"game_path path = {localPath}");
 #endif
@@ -173,7 +180,7 @@ namespace CP2077___EasyInstall
                 }
                 try // Remove the Release.zip after extraction
                 {
-                    string remove_ReleaseZip = $"{Directory.GetCurrentDirectory()}\\Release.zip";
+                    string remove_ReleaseZip = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\CP2077 Easy Installer\\\\Release.zip";
                     File.Delete(remove_ReleaseZip);
                 }
                 catch (IOException ex)
@@ -275,21 +282,25 @@ namespace CP2077___EasyInstall
         {
             try
             {
-                string DownloadPath = $"{Directory.GetCurrentDirectory()}\\Patch";
-                FileStream zipFile = File.Create($"{Directory.GetCurrentDirectory()}\\Release.zip");
+                string DownloadPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\CP2077 Easy Installer\\Patch";
+#if DEBUG
+                MessageBox.Show(DownloadPath);
+#endif
+                if (!Directory.Exists(DownloadPath))
+                    Directory.CreateDirectory(DownloadPath);
+                FileStream zipFile = File.Create(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\CP2077 Easy Installer\\Release.zip");
                 zipFile.Close();
                 btnMain.Text = "Downloading";
 
                 using (var httpclient = new WebClient())
                 {
-                    httpclient.DownloadFile("https://github.com/yamashi/PerformanceOverhaulCyberpunk/releases/latest/download/Release.zip", $"{Directory.GetCurrentDirectory()}\\Release.zip");
+                    httpclient.DownloadFile("https://github.com/yamashi/PerformanceOverhaulCyberpunk/releases/latest/download/Release.zip", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\CP2077 Easy Installer\\Release.zip");
                 }
 
                 if (Directory.Exists(DownloadPath))
                     Directory.Delete(DownloadPath, true);
-
                 btnMain.Text = "Extracting";
-                ZipFile.ExtractToDirectory($"{Directory.GetCurrentDirectory()}\\Release.zip", DownloadPath);
+                ZipFile.ExtractToDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\CP2077 Easy Installer\\Release.zip", DownloadPath);
             }
             catch (IOException ex)
             {
@@ -312,7 +323,7 @@ namespace CP2077___EasyInstall
         {
             try
             {
-                string path = File.ReadAllText($"{Directory.GetCurrentDirectory()}\\game_path");
+                string path = File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\CP2077 Easy Installer\\game_path");
                 PatchGame(path);
                 btnMain.Text = "Successfully Installed";
             }
@@ -353,8 +364,8 @@ namespace CP2077___EasyInstall
                 string versionDLL = $"{generalPath}\\version.dll";
                 // plugins folder path 
                 string mypath = $"{generalPath}\\plugins";
-                // game_path file path
-                string game_path = $"{Directory.GetCurrentDirectory()}\\game_path";
+                // doc_path file path
+                string doc_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\CP2077 Easy Installer\\";
 
                 // Delete plugins directory recursively
                 Directory.Delete(mypath, true);
@@ -362,8 +373,8 @@ namespace CP2077___EasyInstall
                 // Delete version.dll file
                 File.Delete(versionDLL);
 
-                // Delete game_path file
-                File.Delete(game_path);
+                // Delete Installer Document file
+                Directory.Delete(doc_path, true);
 
                 // Unlock main_button for reinstall the patch 
                 btnMain.Text = "Select Path To Cyberpunk 2077 Main Directory";
