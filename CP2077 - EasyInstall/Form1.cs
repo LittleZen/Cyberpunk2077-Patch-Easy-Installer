@@ -32,8 +32,8 @@ namespace CP2077___EasyInstall
                 generalPath = myPath;
                 btnMain.Text = "Patch Already Installed!";
                 btnMain.Enabled = false;
-                metroButton1.Enabled = false;
-                metroButton3.Enabled = false;
+                btnFindSteam.Enabled = false;
+                btnFindGoG.Enabled = false;
 #if DEBUG
                 MessageBox.Show("Patch already installed!");
 #endif
@@ -183,8 +183,8 @@ namespace CP2077___EasyInstall
                 MetroFramework.MetroMessageBox.Show(this, "Patch successfully installed!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 btnMain.Text = "Successfully Installed!";
                 btnMain.Enabled = false;
-                metroButton1.Enabled = false;
-                metroButton3.Enabled = false;
+                btnFindSteam.Enabled = false;
+                btnFindGoG.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -368,8 +368,8 @@ namespace CP2077___EasyInstall
                 // Unlock main_button for reinstall the patch 
                 btnMain.Text = "Select Path To Cyberpunk 2077 Main Directory";
                 btnMain.Enabled = true;
-                metroButton1.Enabled = true;
-                metroButton3.Enabled = true;
+                btnFindSteam.Enabled = true;
+                btnFindGoG.Enabled = true;
 
                 MetroFramework.MetroMessageBox.Show(this, "Successfully uninstalled", "Done!", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
@@ -378,7 +378,7 @@ namespace CP2077___EasyInstall
                 MetroFramework.MetroMessageBox.Show(this, "Uninstall was not able to delete the mod. Just delete <cyberpunk install path>/bin/x64/version.dll and <cyberpunk install path>/bin/x64/plugins/", "Exception!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void metroButton1_Click(object sender, EventArgs e)
+        private void btnFindSteam_Click(object sender, EventArgs e)
         {
             try
             {
@@ -407,7 +407,7 @@ namespace CP2077___EasyInstall
             }
         }
 
-        private void metroButton3_Click(object sender, EventArgs e)
+        private void btnFindGoG_Click(object sender, EventArgs e)
         {
             try
             {

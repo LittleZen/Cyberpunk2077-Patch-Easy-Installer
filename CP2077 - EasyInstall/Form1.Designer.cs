@@ -63,19 +63,17 @@ namespace CP2077___EasyInstall
             this.tt_aliasing = new MetroFramework.Components.MetroToolTip();
             this.btnLogs = new MetroFramework.Controls.MetroButton();
             this.gbxMemPool = new System.Windows.Forms.GroupBox();
+            this.numGpuMem = new System.Windows.Forms.NumericUpDown();
+            this.numCpuMem = new System.Windows.Forms.NumericUpDown();
             this.lblGpuMem = new MetroFramework.Controls.MetroLabel();
             this.lblCpuMem = new MetroFramework.Controls.MetroLabel();
             this.btnUninstall = new MetroFramework.Controls.MetroButton();
-            this.numCpuMem = new System.Windows.Forms.NumericUpDown();
-            this.numGpuMem = new System.Windows.Forms.NumericUpDown();
+            this.btnFindGoG = new MetroFramework.Controls.MetroButton();
+            this.btnFindSteam = new MetroFramework.Controls.MetroButton();
             this.gbxSettings.SuspendLayout();
             this.gbxMemPool.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numCpuMem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGpuMem)).BeginInit();
-            this.metroButton3 = new MetroFramework.Controls.MetroButton();
-            this.metroButton1 = new MetroFramework.Controls.MetroButton();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numCpuMem)).BeginInit();
             this.SuspendLayout();
             // 
             // btnMain
@@ -95,7 +93,7 @@ namespace CP2077___EasyInstall
             this.btnAbout.Location = new System.Drawing.Point(180, 519);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(72, 15);
-            this.btnAbout.TabIndex = 5;
+            this.btnAbout.TabIndex = 25;
             this.btnAbout.Text = "About";
             this.btnAbout.UseSelectable = true;
             this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
@@ -280,7 +278,7 @@ namespace CP2077___EasyInstall
             this.btnSettings.Location = new System.Drawing.Point(22, 449);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(390, 31);
-            this.btnSettings.TabIndex = 14;
+            this.btnSettings.TabIndex = 22;
             this.btnSettings.Text = "Open JSON Settings";
             this.tt_json.SetToolTip(this.btnSettings, "Open JSON settings, for manual editing");
             this.btnSettings.UseSelectable = true;
@@ -400,60 +398,9 @@ namespace CP2077___EasyInstall
             this.gbxMemPool.Location = new System.Drawing.Point(24, 322);
             this.gbxMemPool.Name = "gbxMemPool";
             this.gbxMemPool.Size = new System.Drawing.Size(388, 47);
-            this.gbxMemPool.TabIndex = 21;
+            this.gbxMemPool.TabIndex = 15;
             this.gbxMemPool.TabStop = false;
             this.gbxMemPool.Text = "Memory Pool:";
-            // 
-            // lblGpuMem
-            // 
-            this.lblGpuMem.AutoSize = true;
-            this.lblGpuMem.Location = new System.Drawing.Point(220, 20);
-            this.lblGpuMem.Name = "lblGpuMem";
-            this.lblGpuMem.Size = new System.Drawing.Size(123, 19);
-            this.lblGpuMem.TabIndex = 2;
-            this.lblGpuMem.Text = "GPU Memory Pool:";
-            // 
-            // lblCpuMem
-            // 
-            this.lblCpuMem.AutoSize = true;
-            this.lblCpuMem.Location = new System.Drawing.Point(6, 20);
-            this.lblCpuMem.Name = "lblCpuMem";
-            this.lblCpuMem.Size = new System.Drawing.Size(123, 19);
-            this.lblCpuMem.TabIndex = 1;
-            this.lblCpuMem.Text = "CPU Memory Pool:";
-            // 
-            // btnUninstall
-            // 
-            this.btnUninstall.Location = new System.Drawing.Point(237, 486);
-            this.btnUninstall.Name = "btnUninstall";
-            this.btnUninstall.Size = new System.Drawing.Size(175, 23);
-            this.btnUninstall.TabIndex = 24;
-            this.btnUninstall.Text = "&Uninstall";
-            this.btnUninstall.UseSelectable = true;
-            this.btnUninstall.Click += new System.EventHandler(this.btnUninstall_Click);
-            // 
-            // numCpuMem
-            // 
-            this.numCpuMem.DecimalPlaces = 2;
-            this.numCpuMem.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            131072});
-            this.numCpuMem.Location = new System.Drawing.Point(129, 19);
-            this.numCpuMem.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numCpuMem.Name = "numCpuMem";
-            this.numCpuMem.Size = new System.Drawing.Size(45, 20);
-            this.numCpuMem.TabIndex = 4;
-            this.numCpuMem.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
             // 
             // numGpuMem
             // 
@@ -471,42 +418,93 @@ namespace CP2077___EasyInstall
             0});
             this.numGpuMem.Name = "numGpuMem";
             this.numGpuMem.Size = new System.Drawing.Size(45, 20);
-            this.numGpuMem.TabIndex = 5;
+            this.numGpuMem.TabIndex = 19;
             this.numGpuMem.Value = new decimal(new int[] {
             10,
             0,
             0,
             65536});
             // 
-            // metroButton3
+            // numCpuMem
             // 
-            this.metroButton3.Location = new System.Drawing.Point(232, 105);
-            this.metroButton3.Name = "metroButton3";
-            this.metroButton3.Size = new System.Drawing.Size(180, 30);
-            this.metroButton3.TabIndex = 2;
-            this.metroButton3.Text = "Find GOG Path";
-            this.metroButton3.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroButton3.UseSelectable = true;
-            this.metroButton3.Click += new System.EventHandler(this.metroButton3_Click);
+            this.numCpuMem.DecimalPlaces = 2;
+            this.numCpuMem.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            131072});
+            this.numCpuMem.Location = new System.Drawing.Point(129, 19);
+            this.numCpuMem.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numCpuMem.Name = "numCpuMem";
+            this.numCpuMem.Size = new System.Drawing.Size(45, 20);
+            this.numCpuMem.TabIndex = 17;
+            this.numCpuMem.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
             // 
-            // metroButton1
+            // lblGpuMem
             // 
-            this.metroButton1.Location = new System.Drawing.Point(22, 105);
-            this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(180, 30);
-            this.metroButton1.TabIndex = 1;
-            this.metroButton1.Text = "Find Steam Path";
-            this.metroButton1.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroButton1.UseSelectable = true;
-            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
+            this.lblGpuMem.AutoSize = true;
+            this.lblGpuMem.Location = new System.Drawing.Point(220, 20);
+            this.lblGpuMem.Name = "lblGpuMem";
+            this.lblGpuMem.Size = new System.Drawing.Size(123, 19);
+            this.lblGpuMem.TabIndex = 18;
+            this.lblGpuMem.Text = "GPU Memory Pool:";
+            // 
+            // lblCpuMem
+            // 
+            this.lblCpuMem.AutoSize = true;
+            this.lblCpuMem.Location = new System.Drawing.Point(6, 20);
+            this.lblCpuMem.Name = "lblCpuMem";
+            this.lblCpuMem.Size = new System.Drawing.Size(123, 19);
+            this.lblCpuMem.TabIndex = 16;
+            this.lblCpuMem.Text = "CPU Memory Pool:";
+            // 
+            // btnUninstall
+            // 
+            this.btnUninstall.Location = new System.Drawing.Point(237, 486);
+            this.btnUninstall.Name = "btnUninstall";
+            this.btnUninstall.Size = new System.Drawing.Size(175, 23);
+            this.btnUninstall.TabIndex = 24;
+            this.btnUninstall.Text = "&Uninstall";
+            this.btnUninstall.UseSelectable = true;
+            this.btnUninstall.Click += new System.EventHandler(this.btnUninstall_Click);
+            // 
+            // btnFindGoG
+            // 
+            this.btnFindGoG.Location = new System.Drawing.Point(232, 105);
+            this.btnFindGoG.Name = "btnFindGoG";
+            this.btnFindGoG.Size = new System.Drawing.Size(180, 30);
+            this.btnFindGoG.TabIndex = 2;
+            this.btnFindGoG.Text = "Find GOG Path";
+            this.btnFindGoG.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.btnFindGoG.UseSelectable = true;
+            this.btnFindGoG.Click += new System.EventHandler(this.btnFindGoG_Click);
+            // 
+            // btnFindSteam
+            // 
+            this.btnFindSteam.Location = new System.Drawing.Point(22, 105);
+            this.btnFindSteam.Name = "btnFindSteam";
+            this.btnFindSteam.Size = new System.Drawing.Size(180, 30);
+            this.btnFindSteam.TabIndex = 1;
+            this.btnFindSteam.Text = "Find Steam Path";
+            this.btnFindSteam.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.btnFindSteam.UseSelectable = true;
+            this.btnFindSteam.Click += new System.EventHandler(this.btnFindSteam_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(435, 543);
-            this.Controls.Add(this.metroButton3);
-            this.Controls.Add(this.metroButton1);
+            this.Controls.Add(this.btnFindGoG);
+            this.Controls.Add(this.btnFindSteam);
             this.Controls.Add(this.btnUninstall);
             this.Controls.Add(this.gbxMemPool);
             this.Controls.Add(this.btnLogs);
@@ -527,8 +525,8 @@ namespace CP2077___EasyInstall
             this.gbxSettings.PerformLayout();
             this.gbxMemPool.ResumeLayout(false);
             this.gbxMemPool.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numCpuMem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGpuMem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCpuMem)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -573,8 +571,8 @@ namespace CP2077___EasyInstall
         private MetroFramework.Controls.MetroButton btnUninstall;
         private System.Windows.Forms.NumericUpDown numGpuMem;
         private System.Windows.Forms.NumericUpDown numCpuMem;
-        private MetroFramework.Controls.MetroButton metroButton3;
-        private MetroFramework.Controls.MetroButton metroButton1;
+        private MetroFramework.Controls.MetroButton btnFindGoG;
+        private MetroFramework.Controls.MetroButton btnFindSteam;
     }
 }
 
