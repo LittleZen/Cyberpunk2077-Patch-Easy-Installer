@@ -5,7 +5,6 @@ using System.IO.Compression;
 using System.Net;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using SharpGameReg;
 
 namespace CP2077___EasyInstall
 {
@@ -34,16 +33,36 @@ namespace CP2077___EasyInstall
                 btnMain.Enabled = false;
                 btnFindSteam.Enabled = false;
                 btnFindGoG.Enabled = false;
+
+                LoadSettings(generalPath);
 #if DEBUG
                 MessageBox.Show("Patch already installed!");
 #endif
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 #if DEBUG
                 MessageBox.Show("Patch not already installed!");
 #endif
             }
+        }
+
+        private void LoadSettings(string generalPath)
+        {
+            var data = JsonConvert.DeserializeObject<Data>(File.ReadAllText($"{generalPath}\\plugins\\cyber_engine_tweaks\\config.json"));
+
+            cbAVX.Checked = data.AVX;
+            numCpuMem.Value = (decimal)data.CPUMemoryPoolFraction;
+            cbAntialiasing.Checked = data.DisableAntialiasing;
+            cbAsyncCompute.Checked = data.DisableAsyncCompute;
+            numGpuMem.Value = (decimal)data.GPUMemoryPoolFraction;
+            cbMemoryPool.Checked = data.MemoryPool;
+            cbRemovePedestrians.Checked = data.RemovePedestrians;
+            cbSkipStartMenu.Checked = data.SkipStartMenu;
+            cbSMT.Checked = data.SMT;
+            cbSpectre.Checked = data.Spectre;
+            cbDebug.Checked = data.UnlockMenu;
+            cbVInput.Checked = data.VirtualInput;
         }
 
         /// <summary>
@@ -110,7 +129,6 @@ namespace CP2077___EasyInstall
 
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-
                     string gamePath = $"{fbd.SelectedPath}\\bin\\x64";
                     if (generalPath == string.Empty)
                     {
@@ -162,9 +180,9 @@ namespace CP2077___EasyInstall
                     MessageBox.Show($"game_path path = {localPath}");
 #endif
                     File.WriteAllText(localPath, gamePath);
+                    LoadSettings(gamePath);
 #if DEBUG
                     MessageBox.Show("Path correctly created!\n");
-
 #endif
                 }
                 catch (Exception)
@@ -382,18 +400,24 @@ namespace CP2077___EasyInstall
         {
             try
             {
-                btnMain.Text = "Working ...";
+                btnMain.Text = "Working...";
                 string path = SteamGamePath.FindGameByAppID("1091500");
                 if (path == null)
                 {
-                    MetroFramework.MetroMessageBox.Show(this, "Error: Couldn't Find CyberPunk for Steam!", "File not found Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MetroFramework.MetroMessageBox.Show(this, "Error: Couldn't Find Cyberpunk for Steam!", "File not found Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     //MessageBox.Show("Error: Couldn't Find CyberPunk for steam!");
                     btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
                     return;
                 }
                 DialogResult result = MessageBox.Show(path, "Is this Correct?", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
-                    PatchGame(path);
+                {
+                    if (generalPath == string.Empty)
+                    {
+                        generalPath = $"{path}\\bin\\x64";
+                    }
+                    PatchGame($"{path}\\bin\\x64");
+                }
                 else if (result == DialogResult.No)
                 {
                     MetroFramework.MetroMessageBox.Show(this, null, "Install Canceled.", MessageBoxButtons.OK);
@@ -407,7 +431,7 @@ namespace CP2077___EasyInstall
             }
             catch (Exception ex)
             {
-                MetroFramework.MetroMessageBox.Show(this, "Error: " + ex, "Unknown Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroFramework.MetroMessageBox.Show(this, $"Error: {ex}", "Unknown Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 //MessageBox.Show("Error" + ex);
             }
         }
@@ -416,11 +440,11 @@ namespace CP2077___EasyInstall
         {
             try
             {
-                btnMain.Text = "Working ...";
+                btnMain.Text = "Working...";
                 string path = GoGGamePath.FindGameByAppID("1423049311");
                 if (path == null)
                 {
-                    MetroFramework.MetroMessageBox.Show(this, "Error: Couldn't Find CyberPunk for GoG!", "File not found Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MetroFramework.MetroMessageBox.Show(this, "Error: Couldn't Find Cyberpunk for GoG!", "File not found Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     //MessageBox.Show("Error: Couldn't Find CyberPunk for GoG!");
                     btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
                     return;
@@ -428,7 +452,13 @@ namespace CP2077___EasyInstall
                 //DialogResult dialogResult = MessageBox.Show(path, "Is this Correct?", MessageBoxButtons.YesNo);
                 DialogResult result = MetroFramework.MetroMessageBox.Show(this, path, "Is this Correct?", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
-                    PatchGame(path);
+                {
+                    if (generalPath == string.Empty)
+                    {
+                        generalPath = $"{path}\\bin\\x64";
+                    }
+                    PatchGame($"{path}\\bin\\x64");
+                }
                 else if (result == DialogResult.No)
                 {
                     MetroFramework.MetroMessageBox.Show(this, null, "Install Canceled.", MessageBoxButtons.OK);
@@ -442,7 +472,7 @@ namespace CP2077___EasyInstall
             }
             catch (Exception ex)
             {
-                MetroFramework.MetroMessageBox.Show(this, "Error: " + ex, "Unknown Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroFramework.MetroMessageBox.Show(this, $"Error: {ex}", "Unknown Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 //MessageBox.Show("Error" + ex);
             }
         }
