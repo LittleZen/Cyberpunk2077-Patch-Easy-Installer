@@ -84,7 +84,7 @@ namespace CP2077___EasyInstall
             this.btnMain.Name = "btnMain";
             this.btnMain.Size = new System.Drawing.Size(390, 30);
             this.btnMain.TabIndex = 0;
-            this.btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
+            this.btnMain.Text = "Manually Select Path to Cyberpunk 2077 Main Directory";
             this.btnMain.Theme = MetroFramework.MetroThemeStyle.Light;
             this.tt_selectPath.SetToolTip(this.btnMain, "Choose this option if GOG/Steam Automatic Path Finder doesn\'t work (or if you hav" +
         "e EpicGames Client)");
@@ -271,7 +271,7 @@ namespace CP2077___EasyInstall
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(175, 23);
             this.btnUpdate.TabIndex = 23;
-            this.btnUpdate.Text = "Check For Updates";
+            this.btnUpdate.Text = "Check For &Updates";
             this.tt_checkUpdate.SetToolTip(this.btnUpdate, "Download and install the last patch version available");
             this.btnUpdate.UseSelectable = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -282,7 +282,7 @@ namespace CP2077___EasyInstall
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(390, 31);
             this.btnSettings.TabIndex = 22;
-            this.btnSettings.Text = "Open JSON Settings";
+            this.btnSettings.Text = "&Open JSON Settings";
             this.tt_json.SetToolTip(this.btnSettings, "Open JSON settings, for manual editing");
             this.btnSettings.UseSelectable = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
@@ -485,7 +485,7 @@ namespace CP2077___EasyInstall
             this.btnFindGoG.Name = "btnFindGoG";
             this.btnFindGoG.Size = new System.Drawing.Size(180, 30);
             this.btnFindGoG.TabIndex = 2;
-            this.btnFindGoG.Text = "Find GOG Path";
+            this.btnFindGoG.Text = "Automatic Detect GOG Path";
             this.btnFindGoG.Theme = MetroFramework.MetroThemeStyle.Light;
             this.tt_gog.SetToolTip(this.btnFindGoG, "Automatically Detect GOG Path");
             this.btnFindGoG.UseSelectable = true;
@@ -497,7 +497,7 @@ namespace CP2077___EasyInstall
             this.btnFindSteam.Name = "btnFindSteam";
             this.btnFindSteam.Size = new System.Drawing.Size(180, 30);
             this.btnFindSteam.TabIndex = 1;
-            this.btnFindSteam.Text = "Find Steam Path";
+            this.btnFindSteam.Text = "Automatic Detect Steam Path";
             this.btnFindSteam.Theme = MetroFramework.MetroThemeStyle.Light;
             this.tt_steam.SetToolTip(this.btnFindSteam, "Automatically Detect Steam Path");
             this.btnFindSteam.UseSelectable = true;
