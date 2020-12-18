@@ -42,5 +42,8 @@ namespace CP2077___EasyInstall
 
         [JsonProperty("console")]
         public bool Console { get; set; }
+
+        [JsonProperty("dump_game_options")]
+        public bool DumpOption { get; set; }
     }
 }
