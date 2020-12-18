@@ -65,6 +65,7 @@ namespace CP2077___EasyInstall
             cbVInput.Checked = data.VirtualInput;
             cbVInput.Checked = data.VirtualInput;
             cbConsole.Checked = data.Console;
+            cbDumpOption.Checked = data.DumpOption;
         }
 
         /// <summary>
@@ -241,7 +242,8 @@ namespace CP2077___EasyInstall
                 SkipStartMenu = cbSkipStartMenu.Checked,
                 DisableAsyncCompute = cbAsyncCompute.Checked,
                 DisableAntialiasing = cbAntialiasing.Checked,
-                Console = cbConsole.Checked
+                Console = cbConsole.Checked,
+                DumpOption = cbDumpOption.Checked
             };
 
             using (StreamWriter file = File.CreateText(settingsPath))
