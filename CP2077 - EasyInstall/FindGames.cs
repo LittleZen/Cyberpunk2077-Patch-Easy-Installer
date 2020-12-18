@@ -1,4 +1,4 @@
-﻿using Microsoft.Win32;
+using Microsoft.Win32;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace CP2077___EasyInstall
         /// <returns>Windows Registry for Steam installtion location.</returns>
         static string GetSteamPath()
         {
-            return Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Valve\\Steam", "InstallPath", null).ToString();
+            return Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Valve\\Steam", "InstallPath", null)?.ToString();
         }
 
         static List<string> SteamLibraryPaths()
@@ -105,7 +105,7 @@ namespace CP2077___EasyInstall
         /// <returns>Windows Registry for GoG installtion location.</returns>
         public static string FindGameByAppID(string appID)
         {
-            return Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\GOG.com\\Games\\" + appID + "\\", "Path", null).ToString();
+            return Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\GOG.com\\Games\\" + appID + "\\", "Path", null)?.ToString();
         }
     }
 }
