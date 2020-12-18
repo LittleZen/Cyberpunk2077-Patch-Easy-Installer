@@ -110,6 +110,7 @@ Type | Description
 
 - [x] "Dump Game Option" features by yamashi added
 - [x] New ToolTips 
+- [x] Code Cleaned up
 
 -----------
 
