@@ -39,5 +39,8 @@ namespace CP2077___EasyInstall
 
         [JsonProperty("disable_antialiasing")]
         public bool DisableAntialiasing { get; set; }
+
+        [JsonProperty("console")]
+        public bool Console { get; set; }
     }
 }

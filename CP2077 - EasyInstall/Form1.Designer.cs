@@ -33,6 +33,7 @@ namespace CP2077___EasyInstall
             this.btnMain = new MetroFramework.Controls.MetroButton();
             this.btnAbout = new MetroFramework.Controls.MetroLink();
             this.gbxSettings = new System.Windows.Forms.GroupBox();
+            this.cbConsole = new MetroFramework.Controls.MetroCheckBox();
             this.cbAntialiasing = new MetroFramework.Controls.MetroCheckBox();
             this.cbSkipStartMenu = new MetroFramework.Controls.MetroCheckBox();
             this.cbRemovePedestrians = new MetroFramework.Controls.MetroCheckBox();
@@ -72,6 +73,7 @@ namespace CP2077___EasyInstall
             this.btnFindSteam = new MetroFramework.Controls.MetroButton();
             this.tt_steam = new MetroFramework.Components.MetroToolTip();
             this.tt_gog = new MetroFramework.Components.MetroToolTip();
+            this.ttEnableConsole = new MetroFramework.Components.MetroToolTip();
             this.gbxSettings.SuspendLayout();
             this.gbxMemPool.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numGpuMem)).BeginInit();
@@ -93,7 +95,7 @@ namespace CP2077___EasyInstall
             // 
             // btnAbout
             // 
-            this.btnAbout.Location = new System.Drawing.Point(180, 519);
+            this.btnAbout.Location = new System.Drawing.Point(180, 557);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(72, 15);
             this.btnAbout.TabIndex = 25;
@@ -103,6 +105,7 @@ namespace CP2077___EasyInstall
             // 
             // gbxSettings
             // 
+            this.gbxSettings.Controls.Add(this.cbConsole);
             this.gbxSettings.Controls.Add(this.cbAntialiasing);
             this.gbxSettings.Controls.Add(this.cbSkipStartMenu);
             this.gbxSettings.Controls.Add(this.cbRemovePedestrians);
@@ -116,10 +119,24 @@ namespace CP2077___EasyInstall
             this.gbxSettings.Controls.Add(this.cbAVX);
             this.gbxSettings.Location = new System.Drawing.Point(24, 141);
             this.gbxSettings.Name = "gbxSettings";
-            this.gbxSettings.Size = new System.Drawing.Size(388, 174);
+            this.gbxSettings.Size = new System.Drawing.Size(388, 213);
             this.gbxSettings.TabIndex = 3;
             this.gbxSettings.TabStop = false;
             this.gbxSettings.Text = "Settings:";
+            // 
+            // cbConsole
+            // 
+            this.cbConsole.AutoSize = true;
+            this.cbConsole.Checked = true;
+            this.cbConsole.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbConsole.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
+            this.cbConsole.Location = new System.Drawing.Point(6, 171);
+            this.cbConsole.Name = "cbConsole";
+            this.cbConsole.Size = new System.Drawing.Size(118, 19);
+            this.cbConsole.TabIndex = 15;
+            this.cbConsole.Text = "Enable Console";
+            this.ttEnableConsole.SetToolTip(this.cbConsole, "Adds an overlay to draw whatever UI you want on top of the game.\nPress the 'End' key to toggle the console");
+            this.cbConsole.UseSelectable = true;
             // 
             // cbAntialiasing
             // 
@@ -267,7 +284,7 @@ namespace CP2077___EasyInstall
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(22, 486);
+            this.btnUpdate.Location = new System.Drawing.Point(22, 524);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(175, 23);
             this.btnUpdate.TabIndex = 23;
@@ -278,7 +295,7 @@ namespace CP2077___EasyInstall
             // 
             // btnSettings
             // 
-            this.btnSettings.Location = new System.Drawing.Point(22, 449);
+            this.btnSettings.Location = new System.Drawing.Point(22, 487);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(390, 31);
             this.btnSettings.TabIndex = 22;
@@ -289,7 +306,7 @@ namespace CP2077___EasyInstall
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(22, 375);
+            this.btnSave.Location = new System.Drawing.Point(22, 413);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(390, 31);
             this.btnSave.TabIndex = 20;
@@ -384,7 +401,7 @@ namespace CP2077___EasyInstall
             // 
             // btnLogs
             // 
-            this.btnLogs.Location = new System.Drawing.Point(22, 412);
+            this.btnLogs.Location = new System.Drawing.Point(22, 450);
             this.btnLogs.Name = "btnLogs";
             this.btnLogs.Size = new System.Drawing.Size(390, 31);
             this.btnLogs.TabIndex = 21;
@@ -398,7 +415,7 @@ namespace CP2077___EasyInstall
             this.gbxMemPool.Controls.Add(this.numCpuMem);
             this.gbxMemPool.Controls.Add(this.lblGpuMem);
             this.gbxMemPool.Controls.Add(this.lblCpuMem);
-            this.gbxMemPool.Location = new System.Drawing.Point(24, 322);
+            this.gbxMemPool.Location = new System.Drawing.Point(24, 360);
             this.gbxMemPool.Name = "gbxMemPool";
             this.gbxMemPool.Size = new System.Drawing.Size(388, 47);
             this.gbxMemPool.TabIndex = 15;
@@ -471,7 +488,7 @@ namespace CP2077___EasyInstall
             // 
             // btnUninstall
             // 
-            this.btnUninstall.Location = new System.Drawing.Point(237, 486);
+            this.btnUninstall.Location = new System.Drawing.Point(237, 524);
             this.btnUninstall.Name = "btnUninstall";
             this.btnUninstall.Size = new System.Drawing.Size(175, 23);
             this.btnUninstall.TabIndex = 24;
@@ -515,11 +532,17 @@ namespace CP2077___EasyInstall
             this.tt_gog.StyleManager = null;
             this.tt_gog.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
+            // ttEnableConsole
+            // 
+            this.ttEnableConsole.Style = MetroFramework.MetroColorStyle.Blue;
+            this.ttEnableConsole.StyleManager = null;
+            this.ttEnableConsole.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(435, 543);
+            this.ClientSize = new System.Drawing.Size(435, 589);
             this.Controls.Add(this.btnFindGoG);
             this.Controls.Add(this.btnFindSteam);
             this.Controls.Add(this.btnUninstall);
@@ -592,6 +615,8 @@ namespace CP2077___EasyInstall
         private MetroFramework.Controls.MetroButton btnFindSteam;
         private MetroFramework.Components.MetroToolTip tt_gog;
         private MetroFramework.Components.MetroToolTip tt_steam;
+        private MetroFramework.Controls.MetroCheckBox cbConsole;
+        private MetroFramework.Components.MetroToolTip ttEnableConsole;
     }
 }
 

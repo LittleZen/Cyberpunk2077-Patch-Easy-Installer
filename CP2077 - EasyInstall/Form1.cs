@@ -63,6 +63,8 @@ namespace CP2077___EasyInstall
             cbSpectre.Checked = data.Spectre;
             cbDebug.Checked = data.UnlockMenu;
             cbVInput.Checked = data.VirtualInput;
+            cbVInput.Checked = data.VirtualInput;
+            cbConsole.Checked = data.Console;
         }
 
         /// <summary>
@@ -225,33 +227,21 @@ namespace CP2077___EasyInstall
         {
             string settingsPath = $@"{generalPath}\plugins\cyber_engine_tweaks\config.json";
 
-            bool avxSet = cbAVX.Checked;
-            bool smtSet = cbSMT.Checked;
-            bool memorySet = cbMemoryPool.Checked;
-            bool spectreSet = cbSpectre.Checked;
-            bool debugSet = cbDebug.Checked;
-            bool vInputSet = cbVInput.Checked;
-            bool asyncCompute = cbAsyncCompute.Checked;
-            bool removePedestrians = cbRemovePedestrians.Checked;
-            bool skipStartMenu = cbSkipStartMenu.Checked;
-            bool antialiasing = cbAntialiasing.Checked;
-            double CpuMem = (double)numCpuMem.Value;
-            double GpuMem = (double)numGpuMem.Value;
-
             var data = new Data()
             {
-                AVX = avxSet,
-                SMT = smtSet,
-                Spectre = spectreSet,
-                VirtualInput = vInputSet,
-                MemoryPool = memorySet,
-                UnlockMenu = debugSet,
-                CPUMemoryPoolFraction = CpuMem,
-                GPUMemoryPoolFraction = GpuMem,
-                RemovePedestrians = removePedestrians,
-                SkipStartMenu = skipStartMenu,
-                DisableAsyncCompute = asyncCompute,
-                DisableAntialiasing = antialiasing
+                AVX = cbAVX.Checked,
+                SMT = cbSMT.Checked,
+                Spectre = cbMemoryPool.Checked,
+                VirtualInput = cbSpectre.Checked,
+                MemoryPool = cbMemoryPool.Checked,
+                UnlockMenu = cbDebug.Checked,
+                CPUMemoryPoolFraction = (double)numCpuMem.Value,
+                GPUMemoryPoolFraction = (double)numGpuMem.Value,
+                RemovePedestrians = cbRemovePedestrians.Checked,
+                SkipStartMenu = cbSkipStartMenu.Checked,
+                DisableAsyncCompute = cbAsyncCompute.Checked,
+                DisableAntialiasing = cbAntialiasing.Checked,
+                Console = cbConsole.Checked
             };
 
             using (StreamWriter file = File.CreateText(settingsPath))
