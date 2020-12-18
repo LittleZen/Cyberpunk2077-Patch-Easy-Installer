@@ -1,6 +1,6 @@
 # Cyberpunk 2077 | Easy Patcher
 
-This software allows you to easily install all the patches from "PerformanceOverhaulCyberpunk", created by yamashi.
+This software allows you to easily install all the patches from [PerformanceOverhaulCyberpunk](https://bit.ly/384rMEx), created by yamashi.
 For any problems, or for more information, check the main repository (by yamashi). 😊
 
 -----------
@@ -22,7 +22,10 @@ For any problems, or for more information, check the main repository (by yamashi
 
 1) Download the .exe file
 2) Open it and extract the files where you want.
-3) Open "CP2077 - EasyInstall.exe" and select the main folder of "Cyberpunk 2077" (not the x64 folder! The main directory!)
+3) Open "CP2077 - EasyInstall.exe" from the folder extracted
+4) If you use Steam or GOG, just click "Find Steam Path" or "Find GOG Path" (patch will be automatically installed)
+5) If you want manually select it (or if you use EpicGames), just click on "Select Path to Cyberpunk 2077 Main Directory"  and select the main folder of "Cyberpunk 2077" (not the x64 folder! The main directory!)
+6) Enjoy, and check yamashi's main page, he's the true hero! 
 
 -----------
 
