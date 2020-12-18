@@ -106,6 +106,13 @@ Type | Description
 
 -----------
 
+### Version 2.6 [18/12/2020]
+
+- [x] "Dump Game Option" features by yamashi added
+- [x] New ToolTips 
+
+-----------
+
 
 ## LICENSE AND USE
 
