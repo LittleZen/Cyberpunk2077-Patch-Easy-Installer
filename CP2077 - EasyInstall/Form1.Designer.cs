@@ -1,5 +1,4 @@
-﻿
-namespace CP2077___EasyInstall
+﻿namespace CP2077___EasyInstall
 {
     partial class Form1
     {
@@ -621,4 +620,3 @@ namespace CP2077___EasyInstall
         private MetroFramework.Components.MetroToolTip ttEnableConsole;
     }
 }
-
