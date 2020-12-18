@@ -23,10 +23,10 @@ namespace CP2077___EasyInstall
         public bool UnlockMenu { get; set; }
 
         [JsonProperty("cpu_memory_pool_fraction")]
-        public double CPUMemoryPoolFraction { get; set; }
+        public decimal CPUMemoryPoolFraction { get; set; }
 
         [JsonProperty("gpu_memory_pool_fraction")]
-        public double GPUMemoryPoolFraction { get; set; }
+        public decimal GPUMemoryPoolFraction { get; set; }
 
         [JsonProperty("remove_pedestrians")]
         public bool RemovePedestrians { get; set; }
