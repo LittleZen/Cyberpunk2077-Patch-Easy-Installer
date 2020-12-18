@@ -96,6 +96,17 @@ Type | Description
 
 -----------
 
+### Version 2.5 [18/12/2020]
+
+- [x] Added support for the console command (yamashi)
+- [x] Changed button text, now they are more clear
+- [x] Changed Messagebox, now they are more clear
+- [x] MaximizeBox option disabled
+- [x] Code clean up + minor improvements
+
+-----------
+
+
 ## LICENSE AND USE
 
 - [x] Install the patch, download the source or the installer will result as "license and use" accepted

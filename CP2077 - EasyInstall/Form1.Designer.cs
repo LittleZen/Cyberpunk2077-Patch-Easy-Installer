@@ -135,7 +135,8 @@ namespace CP2077___EasyInstall
             this.cbConsole.Size = new System.Drawing.Size(118, 19);
             this.cbConsole.TabIndex = 15;
             this.cbConsole.Text = "Enable Console";
-            this.ttEnableConsole.SetToolTip(this.cbConsole, "Adds an overlay to draw whatever UI you want on top of the game.\nPress the 'End' key to toggle the console");
+            this.ttEnableConsole.SetToolTip(this.cbConsole, "Adds an overlay to draw whatever UI you want on top of the game.\nPress the \'End\' " +
+        "key to toggle the console");
             this.cbConsole.UseSelectable = true;
             // 
             // cbAntialiasing
@@ -555,10 +556,11 @@ namespace CP2077___EasyInstall
             this.Controls.Add(this.btnMain);
             this.Controls.Add(this.btnSettings);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Yellow;
-            this.Text = "CP 2077 - EasyPatcher | v2.4";
+            this.Text = "CP 2077 - EasyPatcher | v2.5";
             this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gbxSettings.ResumeLayout(false);
