@@ -4,14 +4,15 @@ using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace CP2077___EasyInstall
 {
     public partial class Form1 : MetroFramework.Forms.MetroForm
     {
-        private string generalPath = string.Empty; // Main x64 path.
-        private const string RemoteUrlVersion = "https://pastebin.com/raw/uTz51FZw";
+        private string generalPath = string.Empty;
+        private static readonly Version CurrentProgramVersion = Assembly.GetExecutingAssembly().GetName().Version;
 
         private static readonly string CurrentDir = Directory.GetCurrentDirectory();
         private static readonly string GamePathFilePath = Path.Combine(CurrentDir, "game_path");
@@ -23,25 +24,7 @@ namespace CP2077___EasyInstall
         {
             InitializeComponent();
 
-            int local_ver = LocalVer();
-            int remote_ver = RemoteVer();
-
-            if(local_ver < remote_ver)
-            {
-                DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nA new version is available, would you like download it?", "New Version!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
-                {
-                    Process.Start("https://github.com/LittleZen/Cyberpunk2077-Patch-Easy-Installer/releases");
-                    Environment.Exit(1);
-                    //lblUpdate.Foreground = System.Drawing.Color.Red;
-                }
-                else
-                {
-                    lblUpdate.Text = "Update available, click me for download it!";
-                    //lblUpdate.Foreground = System.Drawing.Color.Green;
-                }
-            }
-
+            CheckForUpdate();
             try
             {
                 // Check if the patch is already installed. If game_path file != NULL == already installed.
@@ -63,68 +46,45 @@ namespace CP2077___EasyInstall
             }
         }
 
-        private static int LocalVer()
+        private void CheckForUpdate()
         {
-            int localver = 0,
-            counter = 0;
-
-            string line,
-                   string_version;
-
-            var versionPath = Path.Combine(CurrentDir, "version");
-            try
+            Version latestVersion;
+            try { latestVersion = UpdateUtil.GetLatestVersion(); }
+            catch (Exception ex)
             {
-                StreamReader file = new StreamReader(versionPath); //get local version by <version> file
-                while ((line = file.ReadLine()) != null && counter < 1)
+                Trace.WriteLine($"Exception while checking for latest version: {ex}");
+                return;
+            }
+            if (latestVersion > CurrentProgramVersion)
+            {
+                DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nA new version is available, would you like to download it?", "New Version!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
                 {
-                    counter++;
-                    string_version = line;
-                    localver = int.Parse(string_version);
-                    TraceDebugWrite($"Local version = {localver}");
+                    Process.Start("https://github.com/LittleZen/Cyberpunk2077-Patch-Easy-Installer/releases/latest");
+                    Environment.Exit(1);
+                    //lblUpdate.Foreground = System.Drawing.Color.Red;
                 }
-                file.Close();
+                else
+                {
+                    lblUpdate.Text = "Update available, click here!";
+                    //lblUpdate.Foreground = System.Drawing.Color.Green;
+                }
             }
-            catch (Exception)
-            {
-                MessageBox.Show("Error while getting local version\nContact support please!", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Stop); // error message
-            }
-            return localver;
         }
 
-        private static int RemoteVer ()
-        {
-            int remotever = 0; // result of this function
-            string raw_version; // raw version before the parse
-
-            try
-            {
-                HttpWebRequest request = WebRequest.CreateHttp(RemoteUrlVersion);
-                string responseBodyFromRemoteServer; //server response
-                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-                {
-                    responseBodyFromRemoteServer = reader.ReadToEnd();
-                }
-                raw_version = responseBodyFromRemoteServer;
-                remotever = int.Parse(raw_version);
-                TraceDebugWrite($"Remote version = {remotever}");
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("http error, remote version not found!\nCheck the main repository for updates!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); // error message
-            }
-            return remotever;
-        }
-
+        /// <summary>
+        /// Load the settings from config.json to autocheck options.
+        /// </summary>
+        /// <param name="generalPath">Location to main game installation.</param>
         private void LoadSettings(string generalPath)
         {
             var data = JsonConvert.DeserializeObject<Data>(File.ReadAllText(Path.Combine(generalPath, "plugins", "cyber_engine_tweaks", "config.json")));
 
             cbAVX.Checked = data.AVX;
-            numCpuMem.Value = (decimal)data.CPUMemoryPoolFraction;
+            numCpuMem.Value = data.CPUMemoryPoolFraction;
             cbAntialiasing.Checked = data.DisableAntialiasing;
             cbAsyncCompute.Checked = data.DisableAsyncCompute;
-            numGpuMem.Value = (decimal)data.GPUMemoryPoolFraction;
+            numGpuMem.Value = data.GPUMemoryPoolFraction;
             cbMemoryPool.Checked = data.MemoryPool;
             cbRemovePedestrians.Checked = data.RemovePedestrians;
             cbSkipStartMenu.Checked = data.SkipStartMenu;
@@ -208,8 +168,8 @@ namespace CP2077___EasyInstall
                 }
                 else if (result == DialogResult.Cancel)
                 {
-                    MetroFramework.MetroMessageBox.Show(this, null, "Install Canceled.", MessageBoxButtons.OK);
-                    btnMain.Text = "Select Path To Cyberpunk 2077 Main Directory";
+                    MetroFramework.MetroMessageBox.Show(this, null, "Install Cancelled.", MessageBoxButtons.OK);
+                    btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
                 }
                 else
                 {
@@ -231,14 +191,12 @@ namespace CP2077___EasyInstall
             {
                 DownloadLatestVersion();
                 // Move files from patch to Cyberpunk 2077 path.
-                btnMain.Text = "Installing";
+                btnMain.Text = "Installing...";
                 string targetDirectory = gamePath;
                 Copy("Patch", targetDirectory);
 
                 using (StreamWriter outputFile = new StreamWriter(GamePathFilePath))
-                {
                     outputFile.Write(gamePath);
-                }
 
                 TraceDebugWrite($"game_path path = {GamePathFilePath}");
 
@@ -299,8 +257,8 @@ namespace CP2077___EasyInstall
                 VirtualInput = cbSpectre.Checked,
                 MemoryPool = cbMemoryPool.Checked,
                 UnlockMenu = cbDebug.Checked,
-                CPUMemoryPoolFraction = (double)numCpuMem.Value,
-                GPUMemoryPoolFraction = (double)numGpuMem.Value,
+                CPUMemoryPoolFraction = numCpuMem.Value,
+                GPUMemoryPoolFraction = numGpuMem.Value,
                 RemovePedestrians = cbRemovePedestrians.Checked,
                 SkipStartMenu = cbSkipStartMenu.Checked,
                 DisableAsyncCompute = cbAsyncCompute.Checked,
@@ -346,10 +304,9 @@ namespace CP2077___EasyInstall
                 string downloadPath = Path.Combine(CurrentDir, "Patch");
                 string zipDownloadFile = Path.Combine(CurrentDir, "Release.zip");
 
-                FileStream zipFile = File.Create(zipDownloadFile);
-                zipFile.Close();
+                using (FileStream zipFile = File.Create(zipDownloadFile))
 
-                btnMain.Text = "Downloading";
+                    btnMain.Text = "Downloading...";
 
                 using (var httpclient = new WebClient())
                 {
@@ -359,7 +316,7 @@ namespace CP2077___EasyInstall
                 if (Directory.Exists(downloadPath))
                     Directory.Delete(downloadPath, true);
 
-                btnMain.Text = "Extracting";
+                btnMain.Text = "Extracting...";
                 ZipFile.ExtractToDirectory(zipDownloadFile, downloadPath);
             }
             catch (IOException ex)
@@ -384,11 +341,11 @@ namespace CP2077___EasyInstall
             try
             {
                 PatchGame(File.ReadAllText(GamePathFilePath));
-                btnMain.Text = "Successfully Installed";
+                btnMain.Text = "Successfully Installed!";
             }
             catch (Exception)
             {
-                MetroFramework.MetroMessageBox.Show(this, "Please select Cyberpunk 2077 main folder before checking for updates!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MetroFramework.MetroMessageBox.Show(this, "Please select the Cyberpunk 2077 main folder before checking for updates!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -419,6 +376,7 @@ namespace CP2077___EasyInstall
         {
             try
             {
+                btnMain.Text = "Uninstalling...";
                 // Delete plugins directory recursively
                 Directory.Delete(Path.Combine(generalPath, "plugins"), true);
 
@@ -466,7 +424,7 @@ namespace CP2077___EasyInstall
                 }
                 else if (result == DialogResult.No)
                 {
-                    MetroFramework.MetroMessageBox.Show(this, null, "Install Canceled.", MessageBoxButtons.OK);
+                    MetroFramework.MetroMessageBox.Show(this, null, "Install Cancelled.", MessageBoxButtons.OK);
                     btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
                 }
                 else
@@ -507,7 +465,7 @@ namespace CP2077___EasyInstall
                 }
                 else if (result == DialogResult.No)
                 {
-                    MetroFramework.MetroMessageBox.Show(this, null, "Install Canceled.", MessageBoxButtons.OK);
+                    MetroFramework.MetroMessageBox.Show(this, null, "Install Cancelled.", MessageBoxButtons.OK);
                     btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
                 }
                 else
@@ -525,9 +483,9 @@ namespace CP2077___EasyInstall
 
         private void lblUpdate_Click(object sender, EventArgs e)
         {
-            if (lblUpdate.Text == "Update available, click me for download it!")
+            if (lblUpdate.Text == "Update available, click here!")
             {
-                Process.Start("https://github.com/LittleZen/Cyberpunk2077-Patch-Easy-Installer/releases");
+                Process.Start("https://github.com/LittleZen/Cyberpunk2077-Patch-Easy-Installer/releases/latest");
                 Environment.Exit(1);
             }
             else
@@ -539,9 +497,9 @@ namespace CP2077___EasyInstall
         // TODO: Move to separate Logger class?
         private static void TraceDebugWrite(string message, string category = null)
         {
-            #if DEBUG
-                Trace.WriteLine(message, category);
-            #endif
+#if DEBUG
+            Trace.WriteLine(message, category);
+#endif
         }
     }
 }
