@@ -4,7 +4,7 @@ This software allows you to easily install all the patches from [PerformanceOver
 For any problems, or for more information, check the main repository (by yamashi). 😊
 
 -----------
-![Demo](https://i.imgur.com/a6zuBNn.png)
+![Demo](https://i.imgur.com/C3zuW6Z.png)
 
 
 [DOWNLOAD](https://bit.ly/384rLQZ) | [MAIN REPOSITORY](https://bit.ly/384rMEx) | [ISSUES](https://bit.ly/34cbtUX)
@@ -111,6 +111,12 @@ Type | Description
 - [x] "Dump Game Option" features by yamashi added
 - [x] New ToolTips 
 - [x] Code Cleaned up
+
+-----------
+
+### Version 2.7 [19/12/2020]
+
+- [x] Now the tool will automatically check for EasyPatcher update, and notify it!
 
 -----------
 

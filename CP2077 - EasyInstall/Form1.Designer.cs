@@ -32,6 +32,7 @@
             this.btnMain = new MetroFramework.Controls.MetroButton();
             this.btnAbout = new MetroFramework.Controls.MetroLink();
             this.gbxSettings = new System.Windows.Forms.GroupBox();
+            this.cbDumpOption = new MetroFramework.Controls.MetroCheckBox();
             this.cbConsole = new MetroFramework.Controls.MetroCheckBox();
             this.cbAntialiasing = new MetroFramework.Controls.MetroCheckBox();
             this.cbSkipStartMenu = new MetroFramework.Controls.MetroCheckBox();
@@ -73,8 +74,8 @@
             this.tt_steam = new MetroFramework.Components.MetroToolTip();
             this.tt_gog = new MetroFramework.Components.MetroToolTip();
             this.ttEnableConsole = new MetroFramework.Components.MetroToolTip();
-            this.cbDumpOption = new MetroFramework.Controls.MetroCheckBox();
             this.ttDumpOption = new MetroFramework.Components.MetroToolTip();
+            this.lblUpdate = new MetroFramework.Controls.MetroLabel();
             this.gbxSettings.SuspendLayout();
             this.gbxMemPool.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numGpuMem)).BeginInit();
@@ -83,7 +84,7 @@
             // 
             // btnMain
             // 
-            this.btnMain.Location = new System.Drawing.Point(22, 64);
+            this.btnMain.Location = new System.Drawing.Point(24, 105);
             this.btnMain.Name = "btnMain";
             this.btnMain.Size = new System.Drawing.Size(390, 30);
             this.btnMain.TabIndex = 0;
@@ -96,7 +97,7 @@
             // 
             // btnAbout
             // 
-            this.btnAbout.Location = new System.Drawing.Point(180, 557);
+            this.btnAbout.Location = new System.Drawing.Point(342, 575);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(72, 15);
             this.btnAbout.TabIndex = 25;
@@ -125,6 +126,18 @@
             this.gbxSettings.TabIndex = 3;
             this.gbxSettings.TabStop = false;
             this.gbxSettings.Text = "Settings:";
+            // 
+            // cbDumpOption
+            // 
+            this.cbDumpOption.AutoSize = true;
+            this.cbDumpOption.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
+            this.cbDumpOption.Location = new System.Drawing.Point(225, 171);
+            this.cbDumpOption.Name = "cbDumpOption";
+            this.cbDumpOption.Size = new System.Drawing.Size(150, 19);
+            this.cbDumpOption.TabIndex = 16;
+            this.cbDumpOption.Text = "Dump Game Option";
+            this.ttDumpOption.SetToolTip(this.cbDumpOption, "Will dump all options and their default values in the log file");
+            this.cbDumpOption.UseSelectable = true;
             // 
             // cbConsole
             // 
@@ -291,7 +304,7 @@
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(175, 23);
             this.btnUpdate.TabIndex = 23;
-            this.btnUpdate.Text = "Check For &Updates";
+            this.btnUpdate.Text = "Check For Patch &Updates";
             this.tt_checkUpdate.SetToolTip(this.btnUpdate, "Download and install the last patch version available");
             this.btnUpdate.UseSelectable = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -501,7 +514,7 @@
             // 
             // btnFindGoG
             // 
-            this.btnFindGoG.Location = new System.Drawing.Point(232, 105);
+            this.btnFindGoG.Location = new System.Drawing.Point(24, 69);
             this.btnFindGoG.Name = "btnFindGoG";
             this.btnFindGoG.Size = new System.Drawing.Size(180, 30);
             this.btnFindGoG.TabIndex = 2;
@@ -513,7 +526,7 @@
             // 
             // btnFindSteam
             // 
-            this.btnFindSteam.Location = new System.Drawing.Point(22, 105);
+            this.btnFindSteam.Location = new System.Drawing.Point(234, 69);
             this.btnFindSteam.Name = "btnFindSteam";
             this.btnFindSteam.Size = new System.Drawing.Size(180, 30);
             this.btnFindSteam.TabIndex = 1;
@@ -541,29 +554,30 @@
             this.ttEnableConsole.StyleManager = null;
             this.ttEnableConsole.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
-            // cbDumpOption
-            // 
-            this.cbDumpOption.AutoSize = true;
-            this.cbDumpOption.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-            this.cbDumpOption.Location = new System.Drawing.Point(225, 171);
-            this.cbDumpOption.Name = "cbDumpOption";
-            this.cbDumpOption.Size = new System.Drawing.Size(150, 19);
-            this.cbDumpOption.TabIndex = 16;
-            this.cbDumpOption.Text = "Dump Game Option";
-            this.ttDumpOption.SetToolTip(this.cbDumpOption, "Will dump all options and their default values in the log file");
-            this.cbDumpOption.UseSelectable = true;
-            // 
             // ttDumpOption
             // 
             this.ttDumpOption.Style = MetroFramework.MetroColorStyle.Blue;
             this.ttDumpOption.StyleManager = null;
             this.ttDumpOption.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
+            // lblUpdate
+            // 
+            this.lblUpdate.AutoSize = true;
+            this.lblUpdate.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.lblUpdate.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblUpdate.Location = new System.Drawing.Point(22, 575);
+            this.lblUpdate.Name = "lblUpdate";
+            this.lblUpdate.Size = new System.Drawing.Size(266, 15);
+            this.lblUpdate.TabIndex = 26;
+            this.lblUpdate.Text = "You are currently running the lastest version available";
+            this.lblUpdate.Click += new System.EventHandler(this.lblUpdate_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(435, 589);
+            this.ClientSize = new System.Drawing.Size(435, 596);
+            this.Controls.Add(this.lblUpdate);
             this.Controls.Add(this.btnFindGoG);
             this.Controls.Add(this.btnFindSteam);
             this.Controls.Add(this.btnUninstall);
@@ -580,7 +594,7 @@
             this.Name = "Form1";
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Yellow;
-            this.Text = "CP 2077 - EasyPatcher | v2.6";
+            this.Text = "CP 2077 - EasyPatcher | v2.7";
             this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gbxSettings.ResumeLayout(false);
@@ -590,6 +604,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numGpuMem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCpuMem)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -641,5 +656,6 @@
         private MetroFramework.Components.MetroToolTip ttEnableConsole;
         private MetroFramework.Controls.MetroCheckBox cbDumpOption;
         private MetroFramework.Components.MetroToolTip ttDumpOption;
+        private MetroFramework.Controls.MetroLabel lblUpdate;
     }
 }
