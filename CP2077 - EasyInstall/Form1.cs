@@ -22,28 +22,7 @@ namespace CP2077___EasyInstall
         {
             InitializeComponent();
 
-            Version latestVersion;
-            try { latestVersion = UpdateUtil.GetLatestVersion(); }
-            catch (Exception ex)
-            {
-                Trace.WriteLine($"Exception while checking for latest version: {ex}");
-                return;
-            }
-            if (latestVersion > CurrentProgramVersion)
-            {
-                DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nA new version is available, would you like to download it?", "New Version!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
-                {
-                    Process.Start("https://github.com/LittleZen/Cyberpunk2077-Patch-Easy-Installer/releases/latest");
-                    Environment.Exit(1);
-                    //lblUpdate.Foreground = System.Drawing.Color.Red;
-                }
-                else
-                {
-                    lblUpdate.Text = "Update available, click here!";
-                    //lblUpdate.Foreground = System.Drawing.Color.Green;
-                }
-            }
+            CheckForUpdate();
 
             try
             {
@@ -70,6 +49,32 @@ namespace CP2077___EasyInstall
 #if DEBUG
                 Trace.WriteLine("Patch not already installed!");
 #endif
+            }
+        }
+
+        private void CheckForUpdate()
+        {
+            Version latestVersion;
+            try { latestVersion = UpdateUtil.GetLatestVersion(); }
+            catch (Exception ex)
+            {
+                Trace.WriteLine($"Exception while checking for latest version: {ex}");
+                return;
+            }
+            if (latestVersion > CurrentProgramVersion)
+            {
+                DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nA new version is available, would you like to download it?", "New Version!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    Process.Start("https://github.com/LittleZen/Cyberpunk2077-Patch-Easy-Installer/releases/latest");
+                    Environment.Exit(1);
+                    //lblUpdate.Foreground = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    lblUpdate.Text = "Update available, click here!";
+                    //lblUpdate.Foreground = System.Drawing.Color.Green;
+                }
             }
         }
 
