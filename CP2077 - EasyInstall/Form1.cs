@@ -345,7 +345,7 @@ namespace CP2077___EasyInstall
             }
             catch (Exception)
             {
-                MetroFramework.MetroMessageBox.Show(this, "Pleaes select the Cyberpunk 2077 main folder before checking for updates!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MetroFramework.MetroMessageBox.Show(this, "Please select the Cyberpunk 2077 main folder before checking for updates!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
