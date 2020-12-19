@@ -1,19 +1,21 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
 using System.Reflection;
 using System.Windows.Forms;
-using Newtonsoft.Json;
 
 namespace CP2077___EasyInstall
 {
     public partial class Form1 : MetroFramework.Forms.MetroForm
     {
+        private string generalPath = string.Empty;
         private static readonly Version CurrentProgramVersion = Assembly.GetExecutingAssembly().GetName().Version;
 
-        string generalPath = string.Empty; // Main x64 path.
+        private static readonly string CurrentDir = Directory.GetCurrentDirectory();
+        private static readonly string GamePathFilePath = Path.Combine(CurrentDir, "game_path");
 
         /// <summary>
         /// Entry point for the application
@@ -23,16 +25,12 @@ namespace CP2077___EasyInstall
             InitializeComponent();
 
             CheckForUpdate();
-
             try
             {
                 // Check if the patch is already installed. If game_path file != NULL == already installed.
-                var localPath = $@"{Directory.GetCurrentDirectory()}\game_path";
+                string myPath = File.ReadAllText(GamePathFilePath);
+                TraceDebugWrite(myPath);
 
-                string myPath = File.ReadAllText(localPath);
-#if DEBUG
-                Trace.WriteLine(myPath);
-#endif
                 generalPath = myPath;
                 btnMain.Text = "Patch already installed!";
                 btnMain.Enabled = false;
@@ -40,15 +38,11 @@ namespace CP2077___EasyInstall
                 btnFindGoG.Enabled = false;
 
                 LoadSettings(generalPath);
-#if DEBUG
-                Trace.WriteLine("Patch already installed!");
-#endif
+                TraceDebugWrite("Patch already installed!");
             }
             catch (Exception)
             {
-#if DEBUG
-                Trace.WriteLine("Patch not already installed!");
-#endif
+                TraceDebugWrite("Patch not already installed!");
             }
         }
 
@@ -84,7 +78,7 @@ namespace CP2077___EasyInstall
         /// <param name="generalPath">Location to main game installation.</param>
         private void LoadSettings(string generalPath)
         {
-            var data = JsonConvert.DeserializeObject<Data>(File.ReadAllText($@"{generalPath}\plugins\cyber_engine_tweaks\config.json"));
+            var data = JsonConvert.DeserializeObject<Data>(File.ReadAllText(Path.Combine(generalPath, "plugins", "cyber_engine_tweaks", "config.json")));
 
             cbAVX.Checked = data.AVX;
             numCpuMem.Value = data.CPUMemoryPoolFraction;
@@ -139,9 +133,7 @@ namespace CP2077___EasyInstall
             // Copy each file into the new directory.
             foreach (FileInfo fi in source.GetFiles())
             {
-#if DEBUG
-                Trace.WriteLine($@"Copying {target.FullName}\{fi.Name}");
-#endif
+                TraceDebugWrite($@"Copying {target.FullName}\{fi.Name}");
                 fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
             }
 
@@ -167,8 +159,8 @@ namespace CP2077___EasyInstall
 
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-                    string gamePath = $@"{fbd.SelectedPath}\bin\x64";
-                    if (generalPath == string.Empty)
+                    string gamePath = Path.Combine(fbd.SelectedPath, "bin", "x64");
+                    if (string.IsNullOrWhiteSpace(generalPath))
                     {
                         generalPath = gamePath;
                     }
@@ -176,8 +168,8 @@ namespace CP2077___EasyInstall
                 }
                 else if (result == DialogResult.Cancel)
                 {
-                    MetroFramework.MetroMessageBox.Show(this, null, "Install Canceled.", MessageBoxButtons.OK);
-                    btnMain.Text = "Select Path To Cyberpunk 2077 Main Directory";
+                    MetroFramework.MetroMessageBox.Show(this, null, "Install Cancelled.", MessageBoxButtons.OK);
+                    btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
                 }
                 else
                 {
@@ -193,34 +185,30 @@ namespace CP2077___EasyInstall
         /// <param name="gamePath">Location of the game files.</param>
         private void PatchGame(string gamePath)
         {
-#if DEBUG
-            Trace.WriteLine($"Path Selected: {gamePath}", "Message");
-#endif
+            TraceDebugWrite($"Path Selected: {gamePath}", "Message");
+
             try
             {
                 DownloadLatestVersion();
                 // Move files from patch to Cyberpunk 2077 path.
-                btnMain.Text = "Installing";
+                btnMain.Text = "Installing...";
                 string targetDirectory = gamePath;
                 Copy("Patch", targetDirectory);
 
-                string docPath = Directory.GetCurrentDirectory();
-                using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "game_path")))
+                using (StreamWriter outputFile = new StreamWriter(GamePathFilePath))
                     outputFile.Write(gamePath);
 
+                TraceDebugWrite($"game_path path = {GamePathFilePath}");
+
                 // Write Path file. It is used for checking if the patch has already been installed (on next restart)
-                var localPath = $"{Directory.GetCurrentDirectory()}\\game_path";
-#if DEBUG
-                Trace.WriteLine($"game_path path = {localPath}");
-#endif
-                File.WriteAllText(localPath, gamePath);
+                File.WriteAllText(GamePathFilePath, gamePath);
                 LoadSettings(gamePath);
-#if DEBUG
-                Trace.WriteLine("Path correctly created!\n");
-#endif
+
+                TraceDebugWrite("Path correctly created!\n");
+
                 // Remove the Release.zip and Release folder after extraction.
-                string removeReleaseZip = $@"{Directory.GetCurrentDirectory()}\Release.zip";
-                string downloadPath = $@"{Directory.GetCurrentDirectory()}\Patch";
+                string removeReleaseZip = Path.Combine(CurrentDir, "Release.zip");
+                string downloadPath = Path.Combine(CurrentDir, "Patch");
 
                 File.Delete(removeReleaseZip);
                 Directory.Delete(downloadPath, true);
@@ -259,7 +247,7 @@ namespace CP2077___EasyInstall
         /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
-            string settingsPath = $@"{generalPath}\plugins\cyber_engine_tweaks\config.json";
+            string settingsPath = Path.Combine(generalPath, "plugins", "cyber_engine_tweaks", "config.json");
 
             var data = new Data()
             {
@@ -297,7 +285,7 @@ namespace CP2077___EasyInstall
         {
             try
             {
-                string settingsPath = $@"{generalPath}\plugins\cyber_engine_tweaks\config.json";
+                string settingsPath = Path.Combine(generalPath, "plugins", "cyber_engine_tweaks", "config.json");
                 Process.Start(settingsPath);
             }
             catch (Exception)
@@ -313,12 +301,12 @@ namespace CP2077___EasyInstall
         {
             try
             {
-                string downloadPath = $@"{Directory.GetCurrentDirectory()}\Patch";
-                string zipDownloadFile = $@"{Directory.GetCurrentDirectory()}\Release.zip";
+                string downloadPath = Path.Combine(CurrentDir, "Patch");
+                string zipDownloadFile = Path.Combine(CurrentDir, "Release.zip");
 
                 using (FileStream zipFile = File.Create(zipDownloadFile))
 
-                btnMain.Text = "Downloading";
+                btnMain.Text = "Downloading...";
 
                 using (var httpclient = new WebClient())
                 {
@@ -328,7 +316,7 @@ namespace CP2077___EasyInstall
                 if (Directory.Exists(downloadPath))
                     Directory.Delete(downloadPath, true);
 
-                btnMain.Text = "Extracting";
+                btnMain.Text = "Extracting...";
                 ZipFile.ExtractToDirectory(zipDownloadFile, downloadPath);
             }
             catch (IOException ex)
@@ -352,13 +340,12 @@ namespace CP2077___EasyInstall
         {
             try
             {
-                string path = File.ReadAllText($@"{Directory.GetCurrentDirectory()}\game_path");
-                PatchGame(path);
-                btnMain.Text = "Successfully Installed";
+                PatchGame(File.ReadAllText(GamePathFilePath));
+                btnMain.Text = "Successfully Installed!";
             }
             catch (Exception)
             {
-                MetroFramework.MetroMessageBox.Show(this, "Please select the Cyberpunk 2077 main folder before checking for updates!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MetroFramework.MetroMessageBox.Show(this, "Pleaes select the Cyberpunk 2077 main folder before checking for updates!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -369,10 +356,10 @@ namespace CP2077___EasyInstall
         /// <param name="e"></param>
         private void btnLogs_Click(object sender, EventArgs e)
         {
-            string settingsPath = $@"{generalPath}\plugins\cyber_engine_tweaks\cyber_engine_tweaks.log";
+            string logPath = Path.Combine(generalPath, "plugins", "cyber_engine_tweaks", "cyber_engine_tweaks.log");
             try
             {
-                Process.Start(settingsPath);
+                Process.Start(logPath);
             }
             catch (Exception)
             {
@@ -389,23 +376,17 @@ namespace CP2077___EasyInstall
         {
             try
             {
-                // version.dll file path
-                string versionDLL = $@"{generalPath}\version.dll";
-                // plugins folder path 
-                string mypath = $@"{generalPath}\plugins";
-                // game_path file path
-                string game_path = $@"{Directory.GetCurrentDirectory()}\game_path";
-
+                btnMain.Text = "Uninstalling...";
                 // Delete plugins directory recursively
-                Directory.Delete(mypath, true);
+                Directory.Delete(Path.Combine(generalPath, "plugins"), true);
 
                 // Delete version.dll file
-                File.Delete(versionDLL);
+                File.Delete(Path.Combine(generalPath, "version.dll"));
 
                 // Delete game_path file
-                File.Delete(game_path);
+                File.Delete(GamePathFilePath);
 
-                // Unlock main_button for reinstall the patch 
+                // Unlock main_button for reinstall the patch
                 btnMain.Text = "Select Path To Cyberpunk 2077 Main Directory";
                 btnMain.Enabled = true;
                 btnFindSteam.Enabled = true;
@@ -427,7 +408,7 @@ namespace CP2077___EasyInstall
                 if (path == null)
                 {
                     MetroFramework.MetroMessageBox.Show(this, "Error: Couldn't Find Cyberpunk for Steam!", "File not found Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //Trace.WriteLine("Error: Couldn't Find CyberPunk for steam!");
+                    //TraceDebugWrite("Error: Couldn't Find CyberPunk for Steam!");
                     btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
                     return;
                 }
@@ -435,15 +416,15 @@ namespace CP2077___EasyInstall
                 DialogResult result = MetroFramework.MetroMessageBox.Show(this, path, "Is this Correct?", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    if (generalPath == string.Empty)
+                    if (string.IsNullOrWhiteSpace(generalPath))
                     {
-                        generalPath = $@"{path}\bin\x64";
+                        generalPath = Path.Combine(path, "bin", "x64");
                     }
-                    PatchGame($@"{path}\bin\x64");
+                    PatchGame(Path.Combine(path, "bin", "x64"));
                 }
                 else if (result == DialogResult.No)
                 {
-                    MetroFramework.MetroMessageBox.Show(this, null, "Install Canceled.", MessageBoxButtons.OK);
+                    MetroFramework.MetroMessageBox.Show(this, null, "Install Cancelled.", MessageBoxButtons.OK);
                     btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
                 }
                 else
@@ -455,7 +436,7 @@ namespace CP2077___EasyInstall
             catch (Exception ex)
             {
                 MetroFramework.MetroMessageBox.Show(this, $"Error: {ex}", "Unknown Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //Trace.WriteLine("Error" + ex);
+                //TraceDebugWrite("Error" + ex);
             }
         }
 
@@ -467,8 +448,8 @@ namespace CP2077___EasyInstall
                 string path = GoGGamePath.FindGameByAppID("1423049311");
                 if (path == null)
                 {
-                    MetroFramework.MetroMessageBox.Show(this, "Error: Couldn't Find Cyberpunk for GoG!", "File not found Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //Trace.WriteLine("Error: Couldn't Find CyberPunk for GoG!");
+                    MetroFramework.MetroMessageBox.Show(this, "Error: Couldn't Find Cyberpunk for GOG!", "Error: File not found!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //TraceDebugWrite("Error: Couldn't Find CyberPunk for GoG!");
                     btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
                     return;
                 }
@@ -476,15 +457,15 @@ namespace CP2077___EasyInstall
                 DialogResult result = MetroFramework.MetroMessageBox.Show(this, path, "Is this Correct?", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    if (generalPath == string.Empty)
+                    if (string.IsNullOrWhiteSpace(generalPath))
                     {
-                        generalPath = $@"{path}\bin\x64";
+                        generalPath = Path.Combine(path, "bin", "x64");
                     }
-                    PatchGame($@"{path}\bin\x64");
+                    PatchGame(Path.Combine(path, "bin", "x64"));
                 }
                 else if (result == DialogResult.No)
                 {
-                    MetroFramework.MetroMessageBox.Show(this, null, "Install Canceled.", MessageBoxButtons.OK);
+                    MetroFramework.MetroMessageBox.Show(this, null, "Install Cancelled.", MessageBoxButtons.OK);
                     btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
                 }
                 else
@@ -496,7 +477,7 @@ namespace CP2077___EasyInstall
             catch (Exception ex)
             {
                 MetroFramework.MetroMessageBox.Show(this, $"Error: {ex}", "Unknown Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //Trace.WriteLine("Error" + ex);
+                //TraceDebugWrite("Error" + ex);
             }
         }
 
@@ -509,8 +490,16 @@ namespace CP2077___EasyInstall
             }
             else
             {
-                MetroFramework.MetroMessageBox.Show(this, "\nYou are running the lastest version!", "Update", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                MetroFramework.MetroMessageBox.Show(this, "\nYou are running the latest version!", "Update", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
+        }
+
+        // TODO: Move to separate Logger class?
+        private static void TraceDebugWrite(string message, string category = null)
+        {
+            #if DEBUG
+                Trace.WriteLine(message, category);
+            #endif
         }
     }
 }
