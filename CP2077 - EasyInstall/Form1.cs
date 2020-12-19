@@ -306,7 +306,7 @@ namespace CP2077___EasyInstall
 
                 using (FileStream zipFile = File.Create(zipDownloadFile))
 
-                btnMain.Text = "Downloading...";
+                    btnMain.Text = "Downloading...";
 
                 using (var httpclient = new WebClient())
                 {
@@ -497,9 +497,9 @@ namespace CP2077___EasyInstall
         // TODO: Move to separate Logger class?
         private static void TraceDebugWrite(string message, string category = null)
         {
-            #if DEBUG
-                Trace.WriteLine(message, category);
-            #endif
+#if DEBUG
+            Trace.WriteLine(message, category);
+#endif
         }
     }
 }
