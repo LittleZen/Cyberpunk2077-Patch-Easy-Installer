@@ -450,7 +450,7 @@ namespace CP2077___EasyInstall
                 if (path == null)
                 {
                     MetroFramework.MetroMessageBox.Show(this, "Error: Couldn't Find Cyberpunk for Steam!", "File not found Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //TraceDebugWrite("Error: Couldn't Find CyberPunk for steam!");
+                    //TraceDebugWrite("Error: Couldn't Find CyberPunk for Steam!");
                     btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
                     return;
                 }

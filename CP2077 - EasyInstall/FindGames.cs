@@ -53,7 +53,7 @@ namespace CP2077___EasyInstall
              * its name can be returned instead.
              * ex - Try 730 (cs:go) and have 976730 (MCC) installed.
              * If we find MCC first we return that instead of csgo.
-             * All appID in steam file start with _ and ends with .acf.
+             * All appID in Steam file start with _ and ends with .acf.
              */
             appID = $"_{appID}.acf";
             foreach (var path in SteamLibraryPaths())
