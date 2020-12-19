@@ -295,7 +295,7 @@
             this.cbAVX.TabIndex = 5;
             this.cbAVX.Tag = "";
             this.cbAVX.Text = "AVX";
-            this.tt_avx.SetToolTip(this.cbAVX, " Fixes a crash when playing the game with a CPU that does not support AVX");
+            this.tt_avx.SetToolTip(this.cbAVX, "Fixes a crash when playing the game with a CPU that does not support AVX");
             this.cbAVX.UseSelectable = true;
             // 
             // btnUpdate
@@ -569,7 +569,7 @@
             this.lblUpdate.Name = "lblUpdate";
             this.lblUpdate.Size = new System.Drawing.Size(266, 15);
             this.lblUpdate.TabIndex = 26;
-            this.lblUpdate.Text = "You are currently running the lastest version available";
+            this.lblUpdate.Text = "You are currently running the latest version available";
             this.lblUpdate.Click += new System.EventHandler(this.lblUpdate_Click);
             // 
             // Form1
