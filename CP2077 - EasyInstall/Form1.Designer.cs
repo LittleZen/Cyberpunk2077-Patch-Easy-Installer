@@ -32,6 +32,7 @@
             this.btnMain = new MetroFramework.Controls.MetroButton();
             this.btnAbout = new MetroFramework.Controls.MetroLink();
             this.gbxSettings = new System.Windows.Forms.GroupBox();
+            this.cbDumpOption = new MetroFramework.Controls.MetroCheckBox();
             this.cbConsole = new MetroFramework.Controls.MetroCheckBox();
             this.cbAntialiasing = new MetroFramework.Controls.MetroCheckBox();
             this.cbSkipStartMenu = new MetroFramework.Controls.MetroCheckBox();
@@ -73,7 +74,6 @@
             this.tt_steam = new MetroFramework.Components.MetroToolTip();
             this.tt_gog = new MetroFramework.Components.MetroToolTip();
             this.ttEnableConsole = new MetroFramework.Components.MetroToolTip();
-            this.cbDumpOption = new MetroFramework.Controls.MetroCheckBox();
             this.ttDumpOption = new MetroFramework.Components.MetroToolTip();
             this.gbxSettings.SuspendLayout();
             this.gbxMemPool.SuspendLayout();
@@ -83,7 +83,7 @@
             // 
             // btnMain
             // 
-            this.btnMain.Location = new System.Drawing.Point(22, 64);
+            this.btnMain.Location = new System.Drawing.Point(24, 105);
             this.btnMain.Name = "btnMain";
             this.btnMain.Size = new System.Drawing.Size(390, 30);
             this.btnMain.TabIndex = 0;
@@ -125,6 +125,18 @@
             this.gbxSettings.TabIndex = 3;
             this.gbxSettings.TabStop = false;
             this.gbxSettings.Text = "Settings:";
+            // 
+            // cbDumpOption
+            // 
+            this.cbDumpOption.AutoSize = true;
+            this.cbDumpOption.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
+            this.cbDumpOption.Location = new System.Drawing.Point(225, 171);
+            this.cbDumpOption.Name = "cbDumpOption";
+            this.cbDumpOption.Size = new System.Drawing.Size(150, 19);
+            this.cbDumpOption.TabIndex = 16;
+            this.cbDumpOption.Text = "Dump Game Option";
+            this.ttDumpOption.SetToolTip(this.cbDumpOption, "Will dump all options and their default values in the log file");
+            this.cbDumpOption.UseSelectable = true;
             // 
             // cbConsole
             // 
@@ -501,7 +513,7 @@
             // 
             // btnFindGoG
             // 
-            this.btnFindGoG.Location = new System.Drawing.Point(232, 105);
+            this.btnFindGoG.Location = new System.Drawing.Point(24, 69);
             this.btnFindGoG.Name = "btnFindGoG";
             this.btnFindGoG.Size = new System.Drawing.Size(180, 30);
             this.btnFindGoG.TabIndex = 2;
@@ -513,7 +525,7 @@
             // 
             // btnFindSteam
             // 
-            this.btnFindSteam.Location = new System.Drawing.Point(22, 105);
+            this.btnFindSteam.Location = new System.Drawing.Point(234, 69);
             this.btnFindSteam.Name = "btnFindSteam";
             this.btnFindSteam.Size = new System.Drawing.Size(180, 30);
             this.btnFindSteam.TabIndex = 1;
@@ -540,18 +552,6 @@
             this.ttEnableConsole.Style = MetroFramework.MetroColorStyle.Blue;
             this.ttEnableConsole.StyleManager = null;
             this.ttEnableConsole.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
-            // cbDumpOption
-            // 
-            this.cbDumpOption.AutoSize = true;
-            this.cbDumpOption.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-            this.cbDumpOption.Location = new System.Drawing.Point(225, 171);
-            this.cbDumpOption.Name = "cbDumpOption";
-            this.cbDumpOption.Size = new System.Drawing.Size(150, 19);
-            this.cbDumpOption.TabIndex = 16;
-            this.cbDumpOption.Text = "Dump Game Option";
-            this.ttDumpOption.SetToolTip(this.cbDumpOption, "Will dump all options and their default values in the log file");
-            this.cbDumpOption.UseSelectable = true;
             // 
             // ttDumpOption
             // 
@@ -580,7 +580,7 @@
             this.Name = "Form1";
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Yellow;
-            this.Text = "CP 2077 - EasyPatcher | v2.6";
+            this.Text = "CP 2077 - EasyPatcher | v2.7";
             this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gbxSettings.ResumeLayout(false);
