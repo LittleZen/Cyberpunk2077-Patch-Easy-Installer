@@ -11,6 +11,7 @@ namespace CP2077___EasyInstall
     public partial class Form1 : MetroFramework.Forms.MetroForm
     {
         string generalPath = string.Empty; // Main x64 path.
+        string remoteUrlVersion = "https://pastebin.com/raw/uTz51FZw";
 
         /// <summary>
         /// Entry point for the application
@@ -18,6 +19,25 @@ namespace CP2077___EasyInstall
         public Form1()
         {
             InitializeComponent();
+
+            int local_ver = LocalVer();
+            int remote_ver = RemoteVer();
+
+            if(local_ver < remote_ver)
+            {
+                DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nA new version is available, would you like download it?", "New Version!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    Process.Start("https://github.com/LittleZen/Cyberpunk2077-Patch-Easy-Installer/releases/tag/v2.6");
+                    Environment.Exit(1);
+                    //lblUpdate.Foreground = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    lblUpdate.Text = "Update available, click me for download it !";
+                    //lblUpdate.Foreground = System.Drawing.Color.Green;
+                }
+            }
 
             try
             {
@@ -45,6 +65,62 @@ namespace CP2077___EasyInstall
                 Trace.WriteLine("Patch not already installed!");
 #endif
             }
+        }
+
+        private int LocalVer ()
+        {
+            int localver = 0, 
+            counter = 0;  
+
+            string line, 
+                   string_version;
+
+            var VersionPath = $@"{Directory.GetCurrentDirectory()}\version";
+            try
+            {
+                System.IO.StreamReader file = new System.IO.StreamReader(VersionPath); //get local version by <version> file
+                while ((line = file.ReadLine()) != null && counter < 1)
+                {
+                    counter++;
+                    string_version = line;
+                    localver = Int32.Parse(string_version);
+#if DEBUG
+                    Trace.WriteLine("Local version =" + localver);
+#endif
+                }
+                file.Close();
+            }
+            catch (Exception) 
+            {
+                MessageBox.Show("Error while getting local version\nContact support please!", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Stop); // error message
+            }
+            return (localver); //ritorna la versione locale
+        }
+        
+        private int RemoteVer ()
+        {
+            int remotever = 0; // result of this function 
+            string raw_version; // raw version before the parse
+
+            try
+            {
+                HttpWebRequest request = HttpWebRequest.CreateHttp(remoteUrlVersion);
+                string responseBodyFromRemoteServer; //server response
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                    responseBodyFromRemoteServer = reader.ReadToEnd();
+                raw_version = responseBodyFromRemoteServer.ToString();
+                remotever = Int32.Parse(raw_version);
+#if DEBUG
+                Trace.WriteLine("Remote version =" + remotever);
+#endif
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("http error, remote version not found!\nCheck the main repository for updates!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); // error message
+            }
+            return (remotever);
         }
 
         private void LoadSettings(string generalPath)
@@ -468,5 +544,17 @@ namespace CP2077___EasyInstall
             }
         }
 
+        private void lblUpdate_Click(object sender, EventArgs e)
+        {
+            if (lblUpdate.Text == "Update available, click me for download it !")
+            {
+                Process.Start("https://github.com/LittleZen/Cyberpunk2077-Patch-Easy-Installer/releases/tag/v2.6");
+                Environment.Exit(1);
+            }
+            else
+            {
+                MetroFramework.MetroMessageBox.Show(this, "\nYou are running the lastest version!", "Update", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+        }
     }
 }

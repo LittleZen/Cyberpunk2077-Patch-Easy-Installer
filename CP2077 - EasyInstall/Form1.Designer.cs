@@ -75,6 +75,7 @@
             this.tt_gog = new MetroFramework.Components.MetroToolTip();
             this.ttEnableConsole = new MetroFramework.Components.MetroToolTip();
             this.ttDumpOption = new MetroFramework.Components.MetroToolTip();
+            this.lblUpdate = new MetroFramework.Controls.MetroLabel();
             this.gbxSettings.SuspendLayout();
             this.gbxMemPool.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numGpuMem)).BeginInit();
@@ -96,7 +97,7 @@
             // 
             // btnAbout
             // 
-            this.btnAbout.Location = new System.Drawing.Point(180, 557);
+            this.btnAbout.Location = new System.Drawing.Point(342, 575);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(72, 15);
             this.btnAbout.TabIndex = 25;
@@ -303,7 +304,7 @@
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(175, 23);
             this.btnUpdate.TabIndex = 23;
-            this.btnUpdate.Text = "Check For &Updates";
+            this.btnUpdate.Text = "Check For Patch &Updates";
             this.tt_checkUpdate.SetToolTip(this.btnUpdate, "Download and install the last patch version available");
             this.btnUpdate.UseSelectable = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -559,11 +560,24 @@
             this.ttDumpOption.StyleManager = null;
             this.ttDumpOption.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
+            // lblUpdate
+            // 
+            this.lblUpdate.AutoSize = true;
+            this.lblUpdate.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.lblUpdate.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblUpdate.Location = new System.Drawing.Point(22, 575);
+            this.lblUpdate.Name = "lblUpdate";
+            this.lblUpdate.Size = new System.Drawing.Size(266, 15);
+            this.lblUpdate.TabIndex = 26;
+            this.lblUpdate.Text = "You are currently running the lastest version available";
+            this.lblUpdate.Click += new System.EventHandler(this.lblUpdate_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(435, 577);
+            this.ClientSize = new System.Drawing.Size(435, 596);
+            this.Controls.Add(this.lblUpdate);
             this.Controls.Add(this.btnFindGoG);
             this.Controls.Add(this.btnFindSteam);
             this.Controls.Add(this.btnUninstall);
@@ -590,6 +604,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numGpuMem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCpuMem)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -641,5 +656,6 @@
         private MetroFramework.Components.MetroToolTip ttEnableConsole;
         private MetroFramework.Controls.MetroCheckBox cbDumpOption;
         private MetroFramework.Components.MetroToolTip ttDumpOption;
+        private MetroFramework.Controls.MetroLabel lblUpdate;
     }
 }
