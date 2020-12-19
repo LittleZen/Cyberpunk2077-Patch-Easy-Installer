@@ -563,7 +563,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(435, 589);
+            this.ClientSize = new System.Drawing.Size(435, 577);
             this.Controls.Add(this.btnFindGoG);
             this.Controls.Add(this.btnFindSteam);
             this.Controls.Add(this.btnUninstall);
