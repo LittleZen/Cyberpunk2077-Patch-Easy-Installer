@@ -28,7 +28,7 @@ namespace CP2077___EasyInstall
                 DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nA new version is available, would you like download it?", "New Version!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
-                    Process.Start("https://github.com/LittleZen/Cyberpunk2077-Patch-Easy-Installer/releases/tag/v2.6");
+                    Process.Start("https://github.com/LittleZen/Cyberpunk2077-Patch-Easy-Installer/releases");
                     Environment.Exit(1);
                     //lblUpdate.Foreground = System.Drawing.Color.Red;
                 }
@@ -548,7 +548,7 @@ namespace CP2077___EasyInstall
         {
             if (lblUpdate.Text == "Update available, click me for download it !")
             {
-                Process.Start("https://github.com/LittleZen/Cyberpunk2077-Patch-Easy-Installer/releases/tag/v2.6");
+                Process.Start("https://github.com/LittleZen/Cyberpunk2077-Patch-Easy-Installer/releases");
                 Environment.Exit(1);
             }
             else
