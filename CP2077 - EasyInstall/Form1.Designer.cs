@@ -1,5 +1,4 @@
-﻿
-namespace CP2077___EasyInstall
+﻿namespace CP2077___EasyInstall
 {
     partial class Form1
     {
@@ -74,6 +73,8 @@ namespace CP2077___EasyInstall
             this.tt_steam = new MetroFramework.Components.MetroToolTip();
             this.tt_gog = new MetroFramework.Components.MetroToolTip();
             this.ttEnableConsole = new MetroFramework.Components.MetroToolTip();
+            this.cbDumpOption = new MetroFramework.Controls.MetroCheckBox();
+            this.ttDumpOption = new MetroFramework.Components.MetroToolTip();
             this.gbxSettings.SuspendLayout();
             this.gbxMemPool.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numGpuMem)).BeginInit();
@@ -105,6 +106,7 @@ namespace CP2077___EasyInstall
             // 
             // gbxSettings
             // 
+            this.gbxSettings.Controls.Add(this.cbDumpOption);
             this.gbxSettings.Controls.Add(this.cbConsole);
             this.gbxSettings.Controls.Add(this.cbAntialiasing);
             this.gbxSettings.Controls.Add(this.cbSkipStartMenu);
@@ -135,7 +137,8 @@ namespace CP2077___EasyInstall
             this.cbConsole.Size = new System.Drawing.Size(118, 19);
             this.cbConsole.TabIndex = 15;
             this.cbConsole.Text = "Enable Console";
-            this.ttEnableConsole.SetToolTip(this.cbConsole, "Adds an overlay to draw whatever UI you want on top of the game.\nPress the 'End' key to toggle the console");
+            this.ttEnableConsole.SetToolTip(this.cbConsole, "Adds an overlay to draw whatever UI you want on top of the game.\nPress the \'End\' " +
+        "key to toggle the console");
             this.cbConsole.UseSelectable = true;
             // 
             // cbAntialiasing
@@ -538,6 +541,24 @@ namespace CP2077___EasyInstall
             this.ttEnableConsole.StyleManager = null;
             this.ttEnableConsole.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
+            // cbDumpOption
+            // 
+            this.cbDumpOption.AutoSize = true;
+            this.cbDumpOption.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
+            this.cbDumpOption.Location = new System.Drawing.Point(225, 171);
+            this.cbDumpOption.Name = "cbDumpOption";
+            this.cbDumpOption.Size = new System.Drawing.Size(150, 19);
+            this.cbDumpOption.TabIndex = 16;
+            this.cbDumpOption.Text = "Dump Game Option";
+            this.ttDumpOption.SetToolTip(this.cbDumpOption, "Will dump all options and their default values in the log file");
+            this.cbDumpOption.UseSelectable = true;
+            // 
+            // ttDumpOption
+            // 
+            this.ttDumpOption.Style = MetroFramework.MetroColorStyle.Blue;
+            this.ttDumpOption.StyleManager = null;
+            this.ttDumpOption.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -555,10 +576,11 @@ namespace CP2077___EasyInstall
             this.Controls.Add(this.btnMain);
             this.Controls.Add(this.btnSettings);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Yellow;
-            this.Text = "CP 2077 - EasyPatcher | v2.4";
+            this.Text = "CP 2077 - EasyPatcher | v2.6";
             this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gbxSettings.ResumeLayout(false);
@@ -617,6 +639,7 @@ namespace CP2077___EasyInstall
         private MetroFramework.Components.MetroToolTip tt_steam;
         private MetroFramework.Controls.MetroCheckBox cbConsole;
         private MetroFramework.Components.MetroToolTip ttEnableConsole;
+        private MetroFramework.Controls.MetroCheckBox cbDumpOption;
+        private MetroFramework.Components.MetroToolTip ttDumpOption;
     }
 }
-

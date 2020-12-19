@@ -4,7 +4,7 @@ This software allows you to easily install all the patches from [PerformanceOver
 For any problems, or for more information, check the main repository (by yamashi). 😊
 
 -----------
-![Demo](https://i.imgur.com/vf3xKII.png)
+![Demo](https://i.imgur.com/a6zuBNn.png)
 
 
 [DOWNLOAD](https://bit.ly/384rLQZ) | [MAIN REPOSITORY](https://bit.ly/384rMEx) | [ISSUES](https://bit.ly/34cbtUX)
@@ -95,6 +95,25 @@ Type | Description
 - [x] minor changes and bug fix
 
 -----------
+
+### Version 2.5 [18/12/2020]
+
+- [x] Added support for the console command (yamashi)
+- [x] Changed button text, now they are more clear
+- [x] Changed Messagebox, now they are more clear
+- [x] MaximizeBox option disabled
+- [x] Code clean up + minor improvements
+
+-----------
+
+### Version 2.6 [18/12/2020]
+
+- [x] "Dump Game Option" features by yamashi added
+- [x] New ToolTips 
+- [x] Code Cleaned up
+
+-----------
+
 
 ## LICENSE AND USE
 

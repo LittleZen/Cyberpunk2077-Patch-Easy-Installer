@@ -1,31 +1,32 @@
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System.IO;
-using System.Text.RegularExpressions;
 using System.Linq;
-using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace CP2077___EasyInstall
 {
-    class SteamGamePath
+    internal class SteamGamePath
     {
         /// <summary>
         /// Get the install path for the Steam installation of Cyberpunk 2077.
         /// </summary>
-        /// <returns>Windows Registry for Steam installtion location.</returns>
-        static string GetSteamPath()
+        /// <returns>Windows Registry for Steam installation location.</returns>
+        private static string GetSteamPath()
         {
             return Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Valve\\Steam", "InstallPath", null)?.ToString();
         }
 
-        static List<string> SteamLibraryPaths()
+        private static List<string> SteamLibraryPaths()
         {
             string libraryfoldersPath = GetSteamPath();
             if (libraryfoldersPath == null) // Steam not installed or Registry key is missing
                 return null;
-            List<string> toReturn = new List<string>(); // We can have as little as 1 or up to an unknown amount of paths. 
-            toReturn.Add(libraryfoldersPath); // By default steam install path is a steam library location
+            List<string> toReturn = new List<string> // We can have as little as 1 or up to an unknown amount of paths.
+            {
+                libraryfoldersPath // By default steam install path is a steam library location
+            };
             libraryfoldersPath += "\\steamapps\\libraryfolders.vdf"; // This file holds al paths
-            string unsortedPaths = "";
+            string unsortedPaths = string.Empty;
             using (StreamReader sr = File.OpenText(libraryfoldersPath))
             {
                 sr.ReadLine();
@@ -45,9 +46,9 @@ namespace CP2077___EasyInstall
             return toReturn;
         }
 
-        static string FindGameACFByAppID(string appID)
+        private static string FindGameACFByAppID(string appID)
         {
-            /* If we do not add this other games with the same number in 
+            /* If we do not add this other games with the same number in
              * its name can be returned instead.
              * ex - Try 730 (cs:go) and have 976730 (MCC) installed.
              * If we find MCC first we return that instead of csgo.
@@ -87,7 +88,7 @@ namespace CP2077___EasyInstall
             return null;
         }
 
-        static string[] SplitByQuotes(string unsplitArray)
+        private static string[] SplitByQuotes(string unsplitArray)
         {
             var re = new Regex("\"[^\"]*\"");
             return re.Matches(unsplitArray).Cast<Match>().Select(m => m.Value).ToArray(); // Split into an array using quotes to split
@@ -97,7 +98,7 @@ namespace CP2077___EasyInstall
     /// <summary>
     /// Good Old Games installation location.
     /// </summary>
-    class GoGGamePath
+    internal class GoGGamePath
     {
         /// <summary>
         /// Get the install path for the GoG installation of Cyberpunk 2077.
