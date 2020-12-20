@@ -245,37 +245,44 @@ namespace CP2077___EasyInstall
         /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
-            string settingsPath = Path.Combine(generalPath, "plugins", "cyber_engine_tweaks", "config.json");
-
-            var data = new Data()
+            try
             {
-                AVX = cbAVX.Checked,
-                SMT = cbSMT.Checked,
-                Spectre = cbMemoryPool.Checked,
-                VirtualInput = cbSpectre.Checked,
-                MemoryPool = cbMemoryPool.Checked,
-                UnlockMenu = cbDebug.Checked,
-                CPUMemoryPoolFraction = numCpuMem.Value,
-                GPUMemoryPoolFraction = numGpuMem.Value,
-                RemovePedestrians = cbRemovePedestrians.Checked,
-                SkipStartMenu = cbSkipStartMenu.Checked,
-                DisableAsyncCompute = cbAsyncCompute.Checked,
-                DisableAntialiasing = cbAntialiasing.Checked,
-                Console = cbConsole.Checked,
-                DumpOption = cbDumpOption.Checked,
-                DisableBoundaryTeleport = cbBoundaryTeleport.Checked,
-                DisableIntroMovies = cbIntroMovies.Checked,
-                DisableVignette = cbVignette.Checked,
-                ConsoleKey = keyPress
-            };
+                string settingsPath = Path.Combine(generalPath, "plugins", "cyber_engine_tweaks", "config.json");
 
-            using (StreamWriter file = File.CreateText(settingsPath))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                // Serialize object directly into file stream.
-                serializer.Serialize(file, data);
+                var data = new Data()
+                {
+                    AVX = cbAVX.Checked,
+                    SMT = cbSMT.Checked,
+                    Spectre = cbMemoryPool.Checked,
+                    VirtualInput = cbSpectre.Checked,
+                    MemoryPool = cbMemoryPool.Checked,
+                    UnlockMenu = cbDebug.Checked,
+                    CPUMemoryPoolFraction = numCpuMem.Value,
+                    GPUMemoryPoolFraction = numGpuMem.Value,
+                    RemovePedestrians = cbRemovePedestrians.Checked,
+                    SkipStartMenu = cbSkipStartMenu.Checked,
+                    DisableAsyncCompute = cbAsyncCompute.Checked,
+                    DisableAntialiasing = cbAntialiasing.Checked,
+                    Console = cbConsole.Checked,
+                    DumpOption = cbDumpOption.Checked,
+                    DisableBoundaryTeleport = cbBoundaryTeleport.Checked,
+                    DisableIntroMovies = cbIntroMovies.Checked,
+                    DisableVignette = cbVignette.Checked,
+                    ConsoleKey = keyPress
+                };
+
+                using (StreamWriter file = File.CreateText(settingsPath))
+                {
+                    JsonSerializer serializer = new JsonSerializer();
+                    // Serialize object directly into file stream.
+                    serializer.Serialize(file, data);
+                }
+                MetroFramework.MetroMessageBox.Show(this, "\nSaved!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
-            MetroFramework.MetroMessageBox.Show(this, "Saved!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            catch (Exception)
+            {
+                MetroFramework.MetroMessageBox.Show(this, "\nYou must install the patch before save the settings!", "Patch not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
@@ -400,6 +407,7 @@ namespace CP2077___EasyInstall
             catch (Exception)
             {
                 MetroFramework.MetroMessageBox.Show(this, $"Unable to delete mod files.\nPlease remove {generalPath}\\version.dll and {generalPath}\\plugins\\ manually.", "Exception!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnMain.Text = "Manually Select Path to Cyberpunk 2077 Main Directory";
             }
         }
         private void btnFindSteam_Click(object sender, EventArgs e)
@@ -517,6 +525,20 @@ namespace CP2077___EasyInstall
 #if DEBUG
             Trace.WriteLine(message, category);
 #endif
+        }
+
+        private void cbConsole_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbConsole.Checked == false)
+            {
+                txtConsoleKey.Enabled = false;
+                numConsoleKey.Enabled = false;
+            }
+            else
+            {
+                txtConsoleKey.Enabled = true;
+                numConsoleKey.Enabled = true;
+            }
         }
     }
 }

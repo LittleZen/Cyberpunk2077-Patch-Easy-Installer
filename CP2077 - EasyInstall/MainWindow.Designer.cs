@@ -353,6 +353,7 @@ namespace CP2077___EasyInstall
             this.ttEnableConsole.SetToolTip(this.cbConsole, "Adds an overlay to draw whatever UI you want on top of the game.\nPress the \'End\' " +
         "key to toggle the console");
             this.cbConsole.UseSelectable = true;
+            this.cbConsole.CheckedChanged += new System.EventHandler(this.cbConsole_CheckedChanged);
             // 
             // btnUpdate
             // 
@@ -361,7 +362,7 @@ namespace CP2077___EasyInstall
             this.btnUpdate.Size = new System.Drawing.Size(175, 23);
             this.btnUpdate.TabIndex = 23;
             this.btnUpdate.Text = "Check For Patch &Updates";
-            this.tt_checkUpdate.SetToolTip(this.btnUpdate, "Download and install the last patch version available");
+            this.tt_checkUpdate.SetToolTip(this.btnUpdate, "Download and install the latest patch version available");
             this.btnUpdate.UseSelectable = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
@@ -658,7 +659,7 @@ namespace CP2077___EasyInstall
             this.numConsoleKey.Size = new System.Drawing.Size(45, 20);
             this.numConsoleKey.TabIndex = 20;
             this.numConsoleKey.Value = new decimal(new int[] {
-            1,
+            192,
             0,
             0,
             0});
@@ -678,7 +679,8 @@ namespace CP2077___EasyInstall
             this.txtConsoleKey.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtConsoleKey.CustomButton.UseSelectable = true;
             this.txtConsoleKey.CustomButton.Visible = false;
-            this.txtConsoleKey.Lines = new string[0];
+            this.txtConsoleKey.Lines = new string[] {
+        "Oemtilde"};
             this.txtConsoleKey.Location = new System.Drawing.Point(122, 43);
             this.txtConsoleKey.MaxLength = 1;
             this.txtConsoleKey.Name = "txtConsoleKey";
@@ -690,6 +692,7 @@ namespace CP2077___EasyInstall
             this.txtConsoleKey.ShortcutsEnabled = true;
             this.txtConsoleKey.Size = new System.Drawing.Size(127, 23);
             this.txtConsoleKey.TabIndex = 19;
+            this.txtConsoleKey.Text = "Oemtilde";
             this.txtConsoleKey.UseSelectable = true;
             this.txtConsoleKey.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtConsoleKey.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -752,7 +755,7 @@ namespace CP2077___EasyInstall
             this.Name = "Form1";
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Yellow;
-            this.Text = "CP 2077 - EasyPatcher | v2.8";
+            this.Text = "CP 2077 - EasyPatcher | v2.9";
             this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center;
             this.gbxSettings.ResumeLayout(false);
             this.gbxSettings.PerformLayout();
