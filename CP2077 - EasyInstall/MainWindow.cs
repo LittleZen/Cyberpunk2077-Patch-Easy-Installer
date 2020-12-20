@@ -219,11 +219,11 @@ namespace CP2077___EasyInstall
             }
             catch (IOException ex)
             {
-                MetroFramework.MetroMessageBox.Show(this, $"Error during installation\n\n{ex.InnerException}", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroFramework.MetroMessageBox.Show(this, $"Error during installation (IOException)\n\n{ex.InnerException}", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                MetroFramework.MetroMessageBox.Show(this, $"Error during installation\n\n{ex.InnerException}", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroFramework.MetroMessageBox.Show(this, $"Error during installation (General Exception)\n\n{ex.InnerException}", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnMain.Text = "Critical Error!";
             }
         }
