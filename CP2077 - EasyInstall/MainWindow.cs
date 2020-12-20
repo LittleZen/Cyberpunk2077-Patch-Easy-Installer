@@ -101,7 +101,7 @@ namespace CP2077___EasyInstall
             cbBoundaryTeleport.Checked = data.DisableBoundaryTeleport;
             cbIntroMovies.Checked = data.DisableIntroMovies;
             cbVignette.Checked = data.DisableVignette;
-            txtConsoleKey.Text = (new KeysConverter().ConvertToString(data.ConsoleKey));
+            txtConsoleKey.Text = new KeysConverter().ConvertToString(data.ConsoleKey);
         }
 
         /// <summary>
@@ -500,7 +500,14 @@ namespace CP2077___EasyInstall
         {
             keyPress = e.KeyValue;
             txtConsoleKey.Text = e.KeyCode.ToString();
+            numConsoleKey.Value = e.KeyValue;
             TraceDebugWrite($"Keyboard key pressed: {e.KeyCode} - Value: {keyPress}");
+        }
+
+        private void numConsoleKey_ValueChanged(object sender, EventArgs e)
+        {
+            keyPress = Convert.ToInt32(numConsoleKey.Value);
+            txtConsoleKey.Text = (new KeysConverter().ConvertToString(keyPress));
         }
 
         // TODO: Move to separate Logger class?

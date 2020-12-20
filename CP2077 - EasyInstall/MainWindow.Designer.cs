@@ -83,6 +83,7 @@ namespace CP2077___EasyInstall
             this.ttDumpOption = new MetroFramework.Components.MetroToolTip();
             this.lblUpdate = new MetroFramework.Controls.MetroLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.numConsoleKey = new System.Windows.Forms.NumericUpDown();
             this.txtConsoleKey = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.ttIntroMovies = new MetroFramework.Components.MetroToolTip();
@@ -94,6 +95,7 @@ namespace CP2077___EasyInstall
             ((System.ComponentModel.ISupportInitialize)(this.numGpuMem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCpuMem)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numConsoleKey)).BeginInit();
             this.SuspendLayout();
             // 
             // btnMain
@@ -628,6 +630,7 @@ namespace CP2077___EasyInstall
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.numConsoleKey);
             this.groupBox1.Controls.Add(this.txtConsoleKey);
             this.groupBox1.Controls.Add(this.metroLabel1);
             this.groupBox1.Controls.Add(this.cbConsole);
@@ -637,6 +640,29 @@ namespace CP2077___EasyInstall
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Console:";
+            // 
+            // numConsoleKey
+            // 
+            this.numConsoleKey.Location = new System.Drawing.Point(255, 46);
+            this.numConsoleKey.Maximum = new decimal(new int[] {
+            254,
+            0,
+            0,
+            0});
+            this.numConsoleKey.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numConsoleKey.Name = "numConsoleKey";
+            this.numConsoleKey.Size = new System.Drawing.Size(45, 20);
+            this.numConsoleKey.TabIndex = 20;
+            this.numConsoleKey.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numConsoleKey.ValueChanged += new System.EventHandler(this.numConsoleKey_ValueChanged);
             // 
             // txtConsoleKey
             // 
@@ -677,8 +703,7 @@ namespace CP2077___EasyInstall
             this.metroLabel1.Size = new System.Drawing.Size(83, 19);
             this.metroLabel1.TabIndex = 17;
             this.metroLabel1.Text = "Console Key:";
-            this.ttConsoleKey.SetToolTip(this.metroLabel1, "This features is under develop and is not currently available. Open JSON settings" +
-        " for manually set it meanwhile waiting for the fix");
+            this.ttConsoleKey.SetToolTip(this.metroLabel1, resources.GetString("metroLabel1.ToolTip"));
             // 
             // ttIntroMovies
             // 
@@ -737,6 +762,7 @@ namespace CP2077___EasyInstall
             ((System.ComponentModel.ISupportInitialize)(this.numCpuMem)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numConsoleKey)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -799,7 +825,8 @@ namespace CP2077___EasyInstall
         private MetroFramework.Components.MetroToolTip ttIntroMovies;
         private MetroFramework.Components.MetroToolTip ttVignette;
         private MetroFramework.Components.MetroToolTip ttBoundaryteleport;
-        private MetroFramework.Components.MetroToolTip ttConsoleKey;
         private MetroFramework.Controls.MetroTextBox txtConsoleKey;
+        private NumericUpDown numConsoleKey;
+        private MetroFramework.Components.MetroToolTip ttConsoleKey;
     }
 }
