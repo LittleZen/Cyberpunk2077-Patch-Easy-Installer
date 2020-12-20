@@ -99,7 +99,7 @@ namespace CP2077___EasyInstall
     /// <summary>
     /// Good Old Games installation location.
     /// </summary>
-    internal class GoGGamePath
+    internal class GOGGamePath
     {
         /// <summary>
         /// Get the install path for the GOG installation of Cyberpunk 2077.

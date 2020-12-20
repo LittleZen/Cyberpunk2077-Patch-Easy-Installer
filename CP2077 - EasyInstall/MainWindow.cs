@@ -101,7 +101,6 @@ namespace CP2077___EasyInstall
             cbBoundaryTeleport.Checked = data.DisableBoundaryTeleport;
             cbIntroMovies.Checked = data.DisableIntroMovies;
             cbVignette.Checked = data.DisableVignette;
-            txtConsoleKey.Text = new KeysConverter().ConvertToString(data.ConsoleKey);
             numConsoleKey.Value = data.ConsoleKey;
         }
 
@@ -200,7 +199,6 @@ namespace CP2077___EasyInstall
 
                 // Write Path file. It is used for checking if the patch has already been installed (on next restart)
                 File.WriteAllText(GamePathFilePath, gamePath);
-                LoadSettings(gamePath);
 
                 TraceDebugWrite("Path correctly created!\n");
 
@@ -315,7 +313,7 @@ namespace CP2077___EasyInstall
 
                 using (FileStream zipFile = File.Create(zipDownloadFile))
 
-                    btnMain.Text = "Downloading...";
+                btnMain.Text = "Downloading...";
 
                 using (var httpclient = new WebClient())
                 {
@@ -456,13 +454,12 @@ namespace CP2077___EasyInstall
             try
             {
                 btnMain.Text = "Working...";
-                string path = GoGGamePath.FindGameByAppID("1423049311");
+                string path = GOGGamePath.FindGameByAppID("1423049311");
                 if (path == null)
                 {
                     MetroFramework.MetroMessageBox.Show(this, "Error: Couldn't Find Cyberpunk for GOG!", "Error: File not found!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     //TraceDebugWrite("Error: Couldn't Find CyberPunk for GoG!");
                     btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
-                    return;
                 }
 
                 DialogResult result = MetroFramework.MetroMessageBox.Show(this, path, "Is this Correct?", MessageBoxButtons.YesNo);
@@ -519,26 +516,26 @@ namespace CP2077___EasyInstall
             txtConsoleKey.Text = new KeysConverter().ConvertToString(keyPress);
         }
 
+        private void cbConsole_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbConsole.Checked)
+            {
+                txtConsoleKey.Enabled = true;
+                numConsoleKey.Enabled = true;
+            }
+            else
+            {
+                txtConsoleKey.Enabled = false;
+                numConsoleKey.Enabled = false;
+            }
+        }
+
         // TODO: Move to separate Logger class?
         private static void TraceDebugWrite(string message, string category = null)
         {
 #if DEBUG
             Trace.WriteLine(message, category);
 #endif
-        }
-
-        private void cbConsole_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbConsole.Checked == false)
-            {
-                txtConsoleKey.Enabled = false;
-                numConsoleKey.Enabled = false;
-            }
-            else
-            {
-                txtConsoleKey.Enabled = true;
-                numConsoleKey.Enabled = true;
-            }
         }
     }
 }
