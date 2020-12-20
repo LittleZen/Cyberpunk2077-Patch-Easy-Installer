@@ -25,13 +25,13 @@ For any problems, or for more information, check the main repository (by yamashi
 3) Open "CP2077 - EasyInstall.exe" from the folder extracted
 4) If you use Steam or GOG, just click "Find Steam Path" or "Find GOG Path" (patch will be automatically installed)
 5) If you want manually select it (or if you use EpicGames), just click on "Select Path to Cyberpunk 2077 Main Directory"  and select the main folder of "Cyberpunk 2077" (not the x64 folder! The main directory!)
-6) Enjoy, and check yamashi's main page, he's the true hero! 
+6) Enjoy, and check yamashi's main page, he's the true hero!
 
 -----------
 
 ## About
 Type | Description
---- | --- 
+--- | ---
 `Language` | *C# (patch in c++)*
 `Installer Developer` | *LittleZen*
 `Patch Developer` | *[yamashi + others](https://github.com/yamashi/PerformanceOverhaulCyberpunk)*
@@ -60,14 +60,14 @@ Type | Description
 - [x] Some minor visual effects added
 - [x] Now requires Administrator Privilege
 - [x] Icons updated
-- [x] Code Cleared 
+- [x] Code Cleared
 
 -----------
 
 ### Version 2.2 [17/12/2020]
 - [x] Bug fix and stability improve
 - [x] `Uninstall` System Added (now you can easy install/unistall the patches)
-- [x] `Check Update` System added (will automatically install the lastest patch available) 
+- [x] `Check Update` System added (will automatically install the lastest patch available)
 - [x] ToolTips added. Just move the cursor over the settings, for check what they do (example: pass the cursor, over the "AVX" settings
 - [x] Update system now correctly remove the zip files downloaded, after the update
 - [x] Released the option `Remove Pedestrians` (yamashi)
@@ -83,9 +83,9 @@ Type | Description
 **This version include IMPORTANT bug fixes.**
 
 - [x] Resolved a bug where the game didn't start properly after the installation of the patch
-- [x] Changed Memory Pool Input (NumbericUpDown added) 
-- [x] Huge code CleanUp + Error Handling 
-- [x] .gitignore updated 
+- [x] Changed Memory Pool Input (NumbericUpDown added)
+- [x] Huge code CleanUp + Error Handling
+- [x] .gitignore updated
 
 -----------
 
@@ -111,7 +111,7 @@ Type | Description
 ### Version 2.6 [18/12/2020]
 
 - [x] "Dump Game Option" features by yamashi added
-- [x] New ToolTips 
+- [x] New ToolTips
 - [x] Code Cleaned up
 
 -----------
@@ -137,7 +137,7 @@ Type | Description
 
 - [x] Console key checkbox, now correctly disable the console input forms (if disabled)
 - [x] Resolved a bug where save the settings before install the patch may start unexpected crash
-- [x] Console key now correctly work (@JayVee732 )
+- [x] Console key now correctly work (@JayVee732)
 - [x] New ToolTips added
 - [x] Code cleaned up
 - [x] Minor bug fixes

@@ -97,9 +97,9 @@ namespace CP2077___EasyInstall
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numConsoleKey)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // btnMain
-            // 
+            //
             this.btnMain.Location = new System.Drawing.Point(19, 155);
             this.btnMain.Name = "btnMain";
             this.btnMain.Size = new System.Drawing.Size(767, 30);
@@ -110,9 +110,9 @@ namespace CP2077___EasyInstall
         "e EpicGames Client)");
             this.btnMain.UseSelectable = true;
             this.btnMain.Click += new System.EventHandler(this.btnMain_Click);
-            // 
+            //
             // btnAbout
-            // 
+            //
             this.btnAbout.Location = new System.Drawing.Point(714, 605);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(72, 15);
@@ -120,9 +120,9 @@ namespace CP2077___EasyInstall
             this.btnAbout.Text = "About";
             this.btnAbout.UseSelectable = true;
             this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
-            // 
+            //
             // gbxSettings
-            // 
+            //
             this.gbxSettings.Controls.Add(this.cbVignette);
             this.gbxSettings.Controls.Add(this.cbIntroMovies);
             this.gbxSettings.Controls.Add(this.cbBoundaryTeleport);
@@ -144,9 +144,9 @@ namespace CP2077___EasyInstall
             this.gbxSettings.TabIndex = 3;
             this.gbxSettings.TabStop = false;
             this.gbxSettings.Text = "Settings:";
-            // 
+            //
             // cbVignette
-            // 
+            //
             this.cbVignette.AutoSize = true;
             this.cbVignette.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
             this.cbVignette.Location = new System.Drawing.Point(577, 71);
@@ -156,9 +156,9 @@ namespace CP2077___EasyInstall
             this.cbVignette.Text = "Disable Vignette";
             this.ttVignette.SetToolTip(this.cbVignette, "Disable the vignette mode");
             this.cbVignette.UseSelectable = true;
-            // 
+            //
             // cbIntroMovies
-            // 
+            //
             this.cbIntroMovies.AutoSize = true;
             this.cbIntroMovies.Checked = true;
             this.cbIntroMovies.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -170,9 +170,9 @@ namespace CP2077___EasyInstall
             this.cbIntroMovies.Text = "Disable Intro Movies";
             this.ttIntroMovies.SetToolTip(this.cbIntroMovies, "Disable the intro movies, and directly show the menu");
             this.cbIntroMovies.UseSelectable = true;
-            // 
+            //
             // cbBoundaryTeleport
-            // 
+            //
             this.cbBoundaryTeleport.AutoSize = true;
             this.cbBoundaryTeleport.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
             this.cbBoundaryTeleport.Location = new System.Drawing.Point(172, 121);
@@ -182,9 +182,9 @@ namespace CP2077___EasyInstall
             this.cbBoundaryTeleport.Text = "Disable Boundary Teleport";
             this.ttBoundaryteleport.SetToolTip(this.cbBoundaryTeleport, "Delete the teleport caused by going beyond the boundary in the game ");
             this.cbBoundaryTeleport.UseSelectable = true;
-            // 
+            //
             // cbDumpOption
-            // 
+            //
             this.cbDumpOption.AutoSize = true;
             this.cbDumpOption.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
             this.cbDumpOption.Location = new System.Drawing.Point(379, 121);
@@ -194,9 +194,9 @@ namespace CP2077___EasyInstall
             this.cbDumpOption.Text = "Dump Game Option";
             this.ttDumpOption.SetToolTip(this.cbDumpOption, "Will dump all options and their default values in the log file");
             this.cbDumpOption.UseSelectable = true;
-            // 
+            //
             // cbAntialiasing
-            // 
+            //
             this.cbAntialiasing.AutoSize = true;
             this.cbAntialiasing.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
             this.cbAntialiasing.Location = new System.Drawing.Point(379, 46);
@@ -206,9 +206,9 @@ namespace CP2077___EasyInstall
             this.cbAntialiasing.Text = "Disable Antialiasing";
             this.tt_aliasing.SetToolTip(this.cbAntialiasing, "Disables antialiasing, not recommended but you do what you want!");
             this.cbAntialiasing.UseSelectable = true;
-            // 
+            //
             // cbSkipStartMenu
-            // 
+            //
             this.cbSkipStartMenu.AutoSize = true;
             this.cbSkipStartMenu.Checked = true;
             this.cbSkipStartMenu.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -220,9 +220,9 @@ namespace CP2077___EasyInstall
             this.cbSkipStartMenu.Text = "Skip Start Menu";
             this.tt_skip.SetToolTip(this.cbSkipStartMenu, "Skips the menu asking you to press space bar to continue (Breaching...)");
             this.cbSkipStartMenu.UseSelectable = true;
-            // 
+            //
             // cbRemovePedestrians
-            // 
+            //
             this.cbRemovePedestrians.AutoSize = true;
             this.cbRemovePedestrians.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
             this.cbRemovePedestrians.Location = new System.Drawing.Point(379, 96);
@@ -232,9 +232,9 @@ namespace CP2077___EasyInstall
             this.cbRemovePedestrians.Text = "Remove Pedestrians";
             this.tt_pedestrians.SetToolTip(this.cbRemovePedestrians, "Removes most of the pedestrians and traffic");
             this.cbRemovePedestrians.UseSelectable = true;
-            // 
+            //
             // cbAsyncCompute
-            // 
+            //
             this.cbAsyncCompute.AutoSize = true;
             this.cbAsyncCompute.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
             this.cbAsyncCompute.Location = new System.Drawing.Point(577, 46);
@@ -245,18 +245,18 @@ namespace CP2077___EasyInstall
             this.tt_async.SetToolTip(this.cbAsyncCompute, "Disables async compute, this can give a boost on older GPUs ( nvidia 10xx series " +
         "for example)");
             this.cbAsyncCompute.UseSelectable = true;
-            // 
+            //
             // lblSettingsText
-            // 
+            //
             this.lblSettingsText.AutoSize = true;
             this.lblSettingsText.Location = new System.Drawing.Point(284, 16);
             this.lblSettingsText.Name = "lblSettingsText";
             this.lblSettingsText.Size = new System.Drawing.Size(175, 19);
             this.lblSettingsText.TabIndex = 12;
             this.lblSettingsText.Text = "Check the box for activate it:";
-            // 
+            //
             // cbVInput
-            // 
+            //
             this.cbVInput.AutoSize = true;
             this.cbVInput.Checked = true;
             this.cbVInput.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -268,9 +268,9 @@ namespace CP2077___EasyInstall
             this.cbVInput.Text = "Virtual Input";
             this.tt_vinput.SetToolTip(this.cbVInput, "Enables the use of more gamepads (such as the Steam gamepad)");
             this.cbVInput.UseSelectable = true;
-            // 
+            //
             // cbDebug
-            // 
+            //
             this.cbDebug.AutoSize = true;
             this.cbDebug.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
             this.cbDebug.Location = new System.Drawing.Point(379, 71);
@@ -280,9 +280,9 @@ namespace CP2077___EasyInstall
             this.cbDebug.Text = "Debugger";
             this.tt_debugger.SetToolTip(this.cbDebug, "Enables the debug menus in game so you can cheat, investigate...");
             this.cbDebug.UseSelectable = true;
-            // 
+            //
             // cbMemoryPool
-            // 
+            //
             this.cbMemoryPool.AutoSize = true;
             this.cbMemoryPool.Checked = true;
             this.cbMemoryPool.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -294,9 +294,9 @@ namespace CP2077___EasyInstall
             this.cbMemoryPool.Text = "Memory Pool";
             this.tt_memory.SetToolTip(this.cbMemoryPool, "Improves memory usage, can improve performance on some configurations.");
             this.cbMemoryPool.UseSelectable = true;
-            // 
+            //
             // cbSpectre
-            // 
+            //
             this.cbSpectre.AutoSize = true;
             this.cbSpectre.Checked = true;
             this.cbSpectre.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -308,9 +308,9 @@ namespace CP2077___EasyInstall
             this.cbSpectre.Text = "Spectre";
             this.tt_spectre.SetToolTip(this.cbSpectre, "Removes spectre mitigation to improve performance on all configurations.");
             this.cbSpectre.UseSelectable = true;
-            // 
+            //
             // cbSMT
-            // 
+            //
             this.cbSMT.AutoSize = true;
             this.cbSMT.Checked = true;
             this.cbSMT.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -322,9 +322,9 @@ namespace CP2077___EasyInstall
             this.cbSMT.Text = "SMT";
             this.tt_smt.SetToolTip(this.cbSMT, "Improves performance on AMD CPUs by enabling all cores.");
             this.cbSMT.UseSelectable = true;
-            // 
+            //
             // cbAVX
-            // 
+            //
             this.cbAVX.AccessibleDescription = "";
             this.cbAVX.AutoSize = true;
             this.cbAVX.Checked = true;
@@ -338,9 +338,9 @@ namespace CP2077___EasyInstall
             this.cbAVX.Text = "AVX";
             this.tt_avx.SetToolTip(this.cbAVX, "Fixes a crash when playing the game with a CPU that does not support AVX");
             this.cbAVX.UseSelectable = true;
-            // 
+            //
             // cbConsole
-            // 
+            //
             this.cbConsole.AutoSize = true;
             this.cbConsole.Checked = true;
             this.cbConsole.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -354,9 +354,9 @@ namespace CP2077___EasyInstall
         "key to toggle the console");
             this.cbConsole.UseSelectable = true;
             this.cbConsole.CheckedChanged += new System.EventHandler(this.cbConsole_CheckedChanged);
-            // 
+            //
             // btnUpdate
-            // 
+            //
             this.btnUpdate.Location = new System.Drawing.Point(24, 569);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(175, 23);
@@ -365,9 +365,9 @@ namespace CP2077___EasyInstall
             this.tt_checkUpdate.SetToolTip(this.btnUpdate, "Download and install the latest patch version available");
             this.btnUpdate.UseSelectable = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
+            //
             // btnSettings
-            // 
+            //
             this.btnSettings.Location = new System.Drawing.Point(22, 532);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(764, 31);
@@ -376,9 +376,9 @@ namespace CP2077___EasyInstall
             this.tt_json.SetToolTip(this.btnSettings, "Open JSON settings, for manual editing");
             this.btnSettings.UseSelectable = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
-            // 
+            //
             // btnSave
-            // 
+            //
             this.btnSave.Location = new System.Drawing.Point(22, 458);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(764, 31);
@@ -387,93 +387,93 @@ namespace CP2077___EasyInstall
             this.tt_save.SetToolTip(this.btnSave, "Save your currently settings");
             this.btnSave.UseSelectable = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
+            //
             // tt_save
-            // 
+            //
             this.tt_save.Style = MetroFramework.MetroColorStyle.Blue;
             this.tt_save.StyleManager = null;
             this.tt_save.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
+            //
             // tt_checkUpdate
-            // 
+            //
             this.tt_checkUpdate.Style = MetroFramework.MetroColorStyle.Blue;
             this.tt_checkUpdate.StyleManager = null;
             this.tt_checkUpdate.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
+            //
             // tt_json
-            // 
+            //
             this.tt_json.Style = MetroFramework.MetroColorStyle.Blue;
             this.tt_json.StyleManager = null;
             this.tt_json.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
+            //
             // tt_selectPath
-            // 
+            //
             this.tt_selectPath.Style = MetroFramework.MetroColorStyle.Blue;
             this.tt_selectPath.StyleManager = null;
             this.tt_selectPath.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
+            //
             // tt_avx
-            // 
+            //
             this.tt_avx.Style = MetroFramework.MetroColorStyle.Blue;
             this.tt_avx.StyleManager = null;
             this.tt_avx.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
+            //
             // tt_smt
-            // 
+            //
             this.tt_smt.Style = MetroFramework.MetroColorStyle.Blue;
             this.tt_smt.StyleManager = null;
             this.tt_smt.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
+            //
             // tt_spectre
-            // 
+            //
             this.tt_spectre.Style = MetroFramework.MetroColorStyle.Blue;
             this.tt_spectre.StyleManager = null;
             this.tt_spectre.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
+            //
             // tt_async
-            // 
+            //
             this.tt_async.Style = MetroFramework.MetroColorStyle.Blue;
             this.tt_async.StyleManager = null;
             this.tt_async.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
+            //
             // tt_skip
-            // 
+            //
             this.tt_skip.Style = MetroFramework.MetroColorStyle.Blue;
             this.tt_skip.StyleManager = null;
             this.tt_skip.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
+            //
             // tt_memory
-            // 
+            //
             this.tt_memory.Style = MetroFramework.MetroColorStyle.Blue;
             this.tt_memory.StyleManager = null;
             this.tt_memory.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
+            //
             // tt_debugger
-            // 
+            //
             this.tt_debugger.Style = MetroFramework.MetroColorStyle.Blue;
             this.tt_debugger.StyleManager = null;
             this.tt_debugger.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
+            //
             // tt_vinput
-            // 
+            //
             this.tt_vinput.Style = MetroFramework.MetroColorStyle.Blue;
             this.tt_vinput.StyleManager = null;
             this.tt_vinput.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
+            //
             // tt_pedestrians
-            // 
+            //
             this.tt_pedestrians.Style = MetroFramework.MetroColorStyle.Blue;
             this.tt_pedestrians.StyleManager = null;
             this.tt_pedestrians.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
+            //
             // tt_aliasing
-            // 
+            //
             this.tt_aliasing.Style = MetroFramework.MetroColorStyle.Blue;
             this.tt_aliasing.StyleManager = null;
             this.tt_aliasing.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
+            //
             // btnLogs
-            // 
+            //
             this.btnLogs.Location = new System.Drawing.Point(22, 495);
             this.btnLogs.Name = "btnLogs";
             this.btnLogs.Size = new System.Drawing.Size(764, 31);
@@ -481,9 +481,9 @@ namespace CP2077___EasyInstall
             this.btnLogs.Text = "&Open Patch Logs";
             this.btnLogs.UseSelectable = true;
             this.btnLogs.Click += new System.EventHandler(this.btnLogs_Click);
-            // 
+            //
             // gbxMemPool
-            // 
+            //
             this.gbxMemPool.Controls.Add(this.numGpuMem);
             this.gbxMemPool.Controls.Add(this.numCpuMem);
             this.gbxMemPool.Controls.Add(this.lblGpuMem);
@@ -494,9 +494,9 @@ namespace CP2077___EasyInstall
             this.gbxMemPool.TabIndex = 15;
             this.gbxMemPool.TabStop = false;
             this.gbxMemPool.Text = "Memory Pool:";
-            // 
+            //
             // numGpuMem
-            // 
+            //
             this.numGpuMem.DecimalPlaces = 2;
             this.numGpuMem.Increment = new decimal(new int[] {
             5,
@@ -517,9 +517,9 @@ namespace CP2077___EasyInstall
             0,
             0,
             65536});
-            // 
+            //
             // numCpuMem
-            // 
+            //
             this.numCpuMem.DecimalPlaces = 2;
             this.numCpuMem.Increment = new decimal(new int[] {
             5,
@@ -540,27 +540,27 @@ namespace CP2077___EasyInstall
             0,
             0,
             65536});
-            // 
+            //
             // lblGpuMem
-            // 
+            //
             this.lblGpuMem.AutoSize = true;
             this.lblGpuMem.Location = new System.Drawing.Point(6, 57);
             this.lblGpuMem.Name = "lblGpuMem";
             this.lblGpuMem.Size = new System.Drawing.Size(123, 19);
             this.lblGpuMem.TabIndex = 18;
             this.lblGpuMem.Text = "GPU Memory Pool:";
-            // 
+            //
             // lblCpuMem
-            // 
+            //
             this.lblCpuMem.AutoSize = true;
             this.lblCpuMem.Location = new System.Drawing.Point(6, 20);
             this.lblCpuMem.Name = "lblCpuMem";
             this.lblCpuMem.Size = new System.Drawing.Size(123, 19);
             this.lblCpuMem.TabIndex = 16;
             this.lblCpuMem.Text = "CPU Memory Pool:";
-            // 
+            //
             // btnUninstall
-            // 
+            //
             this.btnUninstall.Location = new System.Drawing.Point(611, 569);
             this.btnUninstall.Name = "btnUninstall";
             this.btnUninstall.Size = new System.Drawing.Size(175, 23);
@@ -568,9 +568,9 @@ namespace CP2077___EasyInstall
             this.btnUninstall.Text = "&Uninstall";
             this.btnUninstall.UseSelectable = true;
             this.btnUninstall.Click += new System.EventHandler(this.btnUninstall_Click);
-            // 
+            //
             // btnFindGoG
-            // 
+            //
             this.btnFindGoG.Location = new System.Drawing.Point(19, 83);
             this.btnFindGoG.Name = "btnFindGoG";
             this.btnFindGoG.Size = new System.Drawing.Size(767, 30);
@@ -580,9 +580,9 @@ namespace CP2077___EasyInstall
             this.tt_gog.SetToolTip(this.btnFindGoG, "Automatically Detect GOG Path");
             this.btnFindGoG.UseSelectable = true;
             this.btnFindGoG.Click += new System.EventHandler(this.btnFindGoG_Click);
-            // 
+            //
             // btnFindSteam
-            // 
+            //
             this.btnFindSteam.Location = new System.Drawing.Point(19, 119);
             this.btnFindSteam.Name = "btnFindSteam";
             this.btnFindSteam.Size = new System.Drawing.Size(767, 30);
@@ -592,33 +592,33 @@ namespace CP2077___EasyInstall
             this.tt_steam.SetToolTip(this.btnFindSteam, "Automatically Detect Steam Path");
             this.btnFindSteam.UseSelectable = true;
             this.btnFindSteam.Click += new System.EventHandler(this.btnFindSteam_Click);
-            // 
+            //
             // tt_steam
-            // 
+            //
             this.tt_steam.Style = MetroFramework.MetroColorStyle.Blue;
             this.tt_steam.StyleManager = null;
             this.tt_steam.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
+            //
             // tt_gog
-            // 
+            //
             this.tt_gog.Style = MetroFramework.MetroColorStyle.Blue;
             this.tt_gog.StyleManager = null;
             this.tt_gog.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
+            //
             // ttEnableConsole
-            // 
+            //
             this.ttEnableConsole.Style = MetroFramework.MetroColorStyle.Blue;
             this.ttEnableConsole.StyleManager = null;
             this.ttEnableConsole.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
+            //
             // ttDumpOption
-            // 
+            //
             this.ttDumpOption.Style = MetroFramework.MetroColorStyle.Blue;
             this.ttDumpOption.StyleManager = null;
             this.ttDumpOption.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
+            //
             // lblUpdate
-            // 
+            //
             this.lblUpdate.AutoSize = true;
             this.lblUpdate.FontSize = MetroFramework.MetroLabelSize.Small;
             this.lblUpdate.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -628,9 +628,9 @@ namespace CP2077___EasyInstall
             this.lblUpdate.TabIndex = 26;
             this.lblUpdate.Text = "You are currently running the latest version available";
             this.lblUpdate.Click += new System.EventHandler(this.lblUpdate_Click);
-            // 
+            //
             // groupBox1
-            // 
+            //
             this.groupBox1.Controls.Add(this.numConsoleKey);
             this.groupBox1.Controls.Add(this.txtConsoleKey);
             this.groupBox1.Controls.Add(this.metroLabel1);
@@ -641,9 +641,9 @@ namespace CP2077___EasyInstall
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Console:";
-            // 
+            //
             // numConsoleKey
-            // 
+            //
             this.numConsoleKey.Location = new System.Drawing.Point(255, 46);
             this.numConsoleKey.Maximum = new decimal(new int[] {
             254,
@@ -664,12 +664,12 @@ namespace CP2077___EasyInstall
             0,
             0});
             this.numConsoleKey.ValueChanged += new System.EventHandler(this.numConsoleKey_ValueChanged);
-            // 
+            //
             // txtConsoleKey
-            // 
-            // 
-            // 
-            // 
+            //
+            //
+            //
+            //
             this.txtConsoleKey.CustomButton.Image = null;
             this.txtConsoleKey.CustomButton.Location = new System.Drawing.Point(105, 1);
             this.txtConsoleKey.CustomButton.Name = "";
@@ -697,9 +697,9 @@ namespace CP2077___EasyInstall
             this.txtConsoleKey.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtConsoleKey.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.txtConsoleKey.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtConsoleKey_KeyUp);
-            // 
+            //
             // metroLabel1
-            // 
+            //
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.Location = new System.Drawing.Point(33, 43);
             this.metroLabel1.Name = "metroLabel1";
@@ -707,33 +707,33 @@ namespace CP2077___EasyInstall
             this.metroLabel1.TabIndex = 17;
             this.metroLabel1.Text = "Console Key:";
             this.ttConsoleKey.SetToolTip(this.metroLabel1, resources.GetString("metroLabel1.ToolTip"));
-            // 
+            //
             // ttIntroMovies
-            // 
+            //
             this.ttIntroMovies.Style = MetroFramework.MetroColorStyle.Blue;
             this.ttIntroMovies.StyleManager = null;
             this.ttIntroMovies.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
+            //
             // ttBoundaryteleport
-            // 
+            //
             this.ttBoundaryteleport.Style = MetroFramework.MetroColorStyle.Blue;
             this.ttBoundaryteleport.StyleManager = null;
             this.ttBoundaryteleport.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
+            //
             // ttVignette
-            // 
+            //
             this.ttVignette.Style = MetroFramework.MetroColorStyle.Blue;
             this.ttVignette.StyleManager = null;
             this.ttVignette.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
+            //
             // ttConsoleKey
-            // 
+            //
             this.ttConsoleKey.Style = MetroFramework.MetroColorStyle.Blue;
             this.ttConsoleKey.StyleManager = null;
             this.ttConsoleKey.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
+            //
             // Form1
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(809, 625);
