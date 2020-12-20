@@ -39,6 +39,8 @@ Type | Description
 `Installer Lastest Version` | *Check ChangeLog or LastRelease*
 `Patch Version` | *You can check for updates directly on the tool*
 
+-----------
+
 ## Changelog
 
 ### Version 1.0 [15/12/2020]

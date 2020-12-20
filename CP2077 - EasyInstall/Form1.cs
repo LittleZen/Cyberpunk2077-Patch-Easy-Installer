@@ -49,7 +49,11 @@ namespace CP2077___EasyInstall
         private void CheckForUpdate()
         {
             Version latestVersion;
-            try { latestVersion = UpdateUtil.GetLatestVersion(); }
+
+            try
+            {
+                latestVersion = UpdateUtil.GetLatestVersion();
+            }
             catch (Exception ex)
             {
                 Trace.WriteLine($"Exception while checking for latest version: {ex}");
@@ -62,12 +66,10 @@ namespace CP2077___EasyInstall
                 {
                     Process.Start("https://github.com/LittleZen/Cyberpunk2077-Patch-Easy-Installer/releases/latest");
                     Environment.Exit(1);
-                    //lblUpdate.Foreground = System.Drawing.Color.Red;
                 }
                 else
                 {
                     lblUpdate.Text = "Update available, click here!";
-                    //lblUpdate.Foreground = System.Drawing.Color.Green;
                 }
             }
         }
@@ -102,10 +104,6 @@ namespace CP2077___EasyInstall
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
 
         /// <summary>
         /// Initialize the copy function.
@@ -321,12 +319,12 @@ namespace CP2077___EasyInstall
             }
             catch (IOException ex)
             {
-                MetroFramework.MetroMessageBox.Show(this, $"Error during installation\nError code: 1\n{ex.InnerException}", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroFramework.MetroMessageBox.Show(this, $"Error during installation\n{ex.InnerException}", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnMain.Text = "Critical Error!";
             }
             catch (WebException ex)
             {
-                MetroFramework.MetroMessageBox.Show(this, $"Error during installation\nError code: 1\n{ex.InnerException}", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroFramework.MetroMessageBox.Show(this, $"Error during installation\n{ex.InnerException}", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnMain.Text = "Critical Error!";
             }
         }
