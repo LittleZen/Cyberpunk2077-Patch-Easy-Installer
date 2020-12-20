@@ -183,6 +183,12 @@
   <metadata name="ttConsoleKey.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1192, 56</value>
   </metadata>
+  <data name="metroLabel1.ToolTip" xml:space="preserve">
+    <value>Use the text input and press a key on your keyboard to select the key that will be used to open the console ingame.
+Use the number input to the right to manually override the value to a specific value
+If the text in the text does not update to a value, that means it is not a valid keyboard key. Please select a different key.
+</value>
+  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>79</value>
   </metadata>

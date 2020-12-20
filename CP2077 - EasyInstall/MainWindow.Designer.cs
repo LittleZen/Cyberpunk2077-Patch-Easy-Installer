@@ -1,3 +1,6 @@
+using System;
+using System.Windows.Forms;
+
 namespace CP2077___EasyInstall
 {
     partial class Form1
@@ -81,6 +84,7 @@ namespace CP2077___EasyInstall
             this.lblUpdate = new MetroFramework.Controls.MetroLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.numConsoleKey = new System.Windows.Forms.NumericUpDown();
+            this.txtConsoleKey = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.ttIntroMovies = new MetroFramework.Components.MetroToolTip();
             this.ttBoundaryteleport = new MetroFramework.Components.MetroToolTip();
@@ -627,6 +631,7 @@ namespace CP2077___EasyInstall
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.numConsoleKey);
+            this.groupBox1.Controls.Add(this.txtConsoleKey);
             this.groupBox1.Controls.Add(this.metroLabel1);
             this.groupBox1.Controls.Add(this.cbConsole);
             this.groupBox1.Location = new System.Drawing.Point(387, 361);
@@ -638,24 +643,57 @@ namespace CP2077___EasyInstall
             // 
             // numConsoleKey
             // 
-            this.numConsoleKey.Enabled = false;
-            this.numConsoleKey.Location = new System.Drawing.Point(117, 43);
+            this.numConsoleKey.Location = new System.Drawing.Point(255, 46);
             this.numConsoleKey.Maximum = new decimal(new int[] {
-            1000,
+            254,
+            0,
+            0,
+            0});
+            this.numConsoleKey.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
             this.numConsoleKey.Name = "numConsoleKey";
-            this.numConsoleKey.ReadOnly = true;
-            this.numConsoleKey.Size = new System.Drawing.Size(38, 20);
-            this.numConsoleKey.TabIndex = 18;
-            this.ttConsoleKey.SetToolTip(this.numConsoleKey, "This features is under develop and is not currently available. Open JSON settings" +
-        " for manually set it meanwhile waiting for the fix");
+            this.numConsoleKey.Size = new System.Drawing.Size(45, 20);
+            this.numConsoleKey.TabIndex = 20;
             this.numConsoleKey.Value = new decimal(new int[] {
-            192,
+            1,
             0,
             0,
             0});
+            this.numConsoleKey.ValueChanged += new System.EventHandler(this.numConsoleKey_ValueChanged);
+            // 
+            // txtConsoleKey
+            // 
+            // 
+            // 
+            // 
+            this.txtConsoleKey.CustomButton.Image = null;
+            this.txtConsoleKey.CustomButton.Location = new System.Drawing.Point(105, 1);
+            this.txtConsoleKey.CustomButton.Name = "";
+            this.txtConsoleKey.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txtConsoleKey.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtConsoleKey.CustomButton.TabIndex = 1;
+            this.txtConsoleKey.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtConsoleKey.CustomButton.UseSelectable = true;
+            this.txtConsoleKey.CustomButton.Visible = false;
+            this.txtConsoleKey.Lines = new string[0];
+            this.txtConsoleKey.Location = new System.Drawing.Point(122, 43);
+            this.txtConsoleKey.MaxLength = 1;
+            this.txtConsoleKey.Name = "txtConsoleKey";
+            this.txtConsoleKey.PasswordChar = '\0';
+            this.txtConsoleKey.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtConsoleKey.SelectedText = "";
+            this.txtConsoleKey.SelectionLength = 0;
+            this.txtConsoleKey.SelectionStart = 0;
+            this.txtConsoleKey.ShortcutsEnabled = true;
+            this.txtConsoleKey.Size = new System.Drawing.Size(127, 23);
+            this.txtConsoleKey.TabIndex = 19;
+            this.txtConsoleKey.UseSelectable = true;
+            this.txtConsoleKey.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtConsoleKey.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txtConsoleKey.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtConsoleKey_KeyUp);
             // 
             // metroLabel1
             // 
@@ -665,8 +703,7 @@ namespace CP2077___EasyInstall
             this.metroLabel1.Size = new System.Drawing.Size(83, 19);
             this.metroLabel1.TabIndex = 17;
             this.metroLabel1.Text = "Console Key:";
-            this.ttConsoleKey.SetToolTip(this.metroLabel1, "This features is under develop and is not currently available. Open JSON settings" +
-        " for manually set it meanwhile waiting for the fix");
+            this.ttConsoleKey.SetToolTip(this.metroLabel1, resources.GetString("metroLabel1.ToolTip"));
             // 
             // ttIntroMovies
             // 
@@ -785,10 +822,11 @@ namespace CP2077___EasyInstall
         private MetroFramework.Controls.MetroCheckBox cbVignette;
         private MetroFramework.Controls.MetroCheckBox cbIntroMovies;
         private MetroFramework.Controls.MetroCheckBox cbBoundaryTeleport;
-        private System.Windows.Forms.NumericUpDown numConsoleKey;
         private MetroFramework.Components.MetroToolTip ttIntroMovies;
         private MetroFramework.Components.MetroToolTip ttVignette;
         private MetroFramework.Components.MetroToolTip ttBoundaryteleport;
+        private MetroFramework.Controls.MetroTextBox txtConsoleKey;
+        private NumericUpDown numConsoleKey;
         private MetroFramework.Components.MetroToolTip ttConsoleKey;
     }
 }

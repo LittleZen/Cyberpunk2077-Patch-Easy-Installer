@@ -56,6 +56,6 @@ namespace CP2077___EasyInstall
         public bool DisableVignette { get; set; }
 
         [JsonProperty("console_key")]
-        public int ConsoleKey = 192;
+        public int ConsoleKey { get; set; }
     }
 }
