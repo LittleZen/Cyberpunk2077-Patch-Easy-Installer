@@ -4,7 +4,7 @@ This software allows you to easily install all the patches from [PerformanceOver
 For any problems, or for more information, check the main repository (by yamashi). 😊
 
 -----------
-![Demo](https://i.imgur.com/Cxhp08E.png)
+![Demo](https://i.imgur.com/NKOqdgX.png)
 
 
 [DOWNLOAD](https://bit.ly/384rLQZ) | [MAIN REPOSITORY](https://bit.ly/384rMEx) | [ISSUES](https://bit.ly/34cbtUX)
@@ -141,6 +141,15 @@ Type | Description
 - [x] New ToolTips added
 - [x] Code cleaned up
 - [x] Minor bug fixes
+
+-----------
+
+### Version 3.0 [20/12/2020]
+**This version include IMPORTANT bug fixes.**
+
+- [x] Resolved a bug where the Console Key was not being set on the initial installation of the mods
+- [x] Fixed an issue that doesn't allow mod installation
+- [x] Error messagebox improved for correctly find future bugs
 
 -----------
 
