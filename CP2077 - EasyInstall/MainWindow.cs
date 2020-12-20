@@ -543,7 +543,6 @@ namespace CP2077___EasyInstall
                 exceptionString += $"{Environment.NewLine}InnerException: {exception.InnerException}";
             }
 
-
             return exceptionString;
         }
     }
