@@ -144,6 +144,15 @@ Type | Description
 
 -----------
 
+### Version 3.0 [20/12/2020]
+**This version include IMPORTANT bug fixes.**
+
+- [x] Resolved a bug where the Console Key was not being set on the initial installation of the mods
+- [x] Fixed an issue that doesn't allow mod installation
+- [x] Error messagebox improved for correctly find future bugs
+
+-----------
+
 
 ## LICENSE AND USE
 
