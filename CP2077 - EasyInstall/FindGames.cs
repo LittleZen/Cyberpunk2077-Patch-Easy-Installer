@@ -12,10 +12,7 @@ namespace CP2077___EasyInstall
         /// Get the install path for the Steam installation of Cyberpunk 2077.
         /// </summary>
         /// <returns>Windows Registry for Steam installation location.</returns>
-        private static string GetSteamPath()
-        {
-            return Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Valve\Steam", "InstallPath", null)?.ToString();
-        }
+        private static string GetSteamPath() => Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Valve\Steam", "InstallPath", null)?.ToString();
 
         private static List<string> SteamLibraryPaths()
         {
@@ -105,9 +102,6 @@ namespace CP2077___EasyInstall
         /// Get the install path for the GOG installation of Cyberpunk 2077.
         /// </summary>
         /// <returns>Windows Registry for GOG installation location.</returns>
-        public static string FindGameByAppID(string appID)
-        {
-            return Registry.GetValue($@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\GOG.com\Games\{appID}\", "Path", null)?.ToString();
-        }
+        public static string FindGameByAppID(string appID) => Registry.GetValue($@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\GOG.com\Games\{appID}\", "Path", null)?.ToString();
     }
 }
