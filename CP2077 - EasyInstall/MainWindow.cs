@@ -13,6 +13,7 @@ namespace CP2077___EasyInstall
     {
         private string generalPath = string.Empty;
         private static readonly Version CurrentProgramVersion = Assembly.GetExecutingAssembly().GetName().Version;
+        private static int keyPress = 192;
 
         private static readonly string CurrentDir = Directory.GetCurrentDirectory();
         private static readonly string GamePathFilePath = Path.Combine(CurrentDir, "game_path");
@@ -100,13 +101,8 @@ namespace CP2077___EasyInstall
             cbBoundaryTeleport.Checked = data.DisableBoundaryTeleport;
             cbIntroMovies.Checked = data.DisableIntroMovies;
             cbVignette.Checked = data.DisableVignette;
+            txtConsoleKey.Text = (new KeysConverter().ConvertToString(data.ConsoleKey));
         }
-
-        /// <summary>
-        /// Initial Load
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
 
         /// <summary>
         /// Initialize the copy function.
@@ -269,7 +265,7 @@ namespace CP2077___EasyInstall
                 DisableBoundaryTeleport = cbBoundaryTeleport.Checked,
                 DisableIntroMovies = cbIntroMovies.Checked,
                 DisableVignette = cbVignette.Checked,
-                ConsoleKey = 192  
+                ConsoleKey = keyPress
             };
 
             using (StreamWriter file = File.CreateText(settingsPath))
@@ -500,6 +496,13 @@ namespace CP2077___EasyInstall
             }
         }
 
+        private void txtConsoleKey_KeyUp(object sender, KeyEventArgs e)
+        {
+            keyPress = e.KeyValue;
+            txtConsoleKey.Text = e.KeyCode.ToString();
+            TraceDebugWrite($"Keyboard key pressed: {e.KeyCode} - Value: {keyPress}");
+        }
+
         // TODO: Move to separate Logger class?
         private static void TraceDebugWrite(string message, string category = null)
         {
@@ -507,6 +510,5 @@ namespace CP2077___EasyInstall
             Trace.WriteLine(message, category);
 #endif
         }
-
     }
 }
