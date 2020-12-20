@@ -4,7 +4,7 @@ This software allows you to easily install all the patches from [PerformanceOver
 For any problems, or for more information, check the main repository (by yamashi). 😊
 
 -----------
-![Demo](https://i.imgur.com/XovsUFE.png)
+![Demo](https://i.imgur.com/Cxhp08E.png)
 
 
 [DOWNLOAD](https://bit.ly/384rLQZ) | [MAIN REPOSITORY](https://bit.ly/384rMEx) | [ISSUES](https://bit.ly/34cbtUX)
@@ -94,7 +94,7 @@ Type | Description
 - [x] Autofind Steam path added
 - [x] Autofind GOG path added
 - [x] New ToolTips added
-- [x] minor changes and bug fix
+- [x] Minor changes and bug fix
 
 -----------
 
@@ -130,6 +130,17 @@ Type | Description
 - [x] Error message improved, should be more easy understand the cause of the errors
 - [x] Update system-logic changed
 - [x] Code clear + minor update
+
+-----------
+
+### Version 2.9 [20/12/2020]
+
+- [x] Console key checkbox, now correctly disable the console input forms (if disabled)
+- [x] Resolved a bug where save the settings before install the patch may start unexpected crash
+- [x] Console key now correctly work (@JayVee732 )
+- [x] New ToolTips added
+- [x] Code cleaned up
+- [x] Minor bug fixes
 
 -----------
 
