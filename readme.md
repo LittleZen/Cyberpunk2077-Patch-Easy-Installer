@@ -4,7 +4,7 @@ This software allows you to easily install all the patches from [PerformanceOver
 For any problems, or for more information, check the main repository (by yamashi). 😊
 
 -----------
-![Demo](https://i.imgur.com/C3zuW6Z.png)
+![Demo](https://i.imgur.com/XovsUFE.png)
 
 
 [DOWNLOAD](https://bit.ly/384rLQZ) | [MAIN REPOSITORY](https://bit.ly/384rMEx) | [ISSUES](https://bit.ly/34cbtUX)
@@ -119,6 +119,17 @@ Type | Description
 ### Version 2.7 [19/12/2020]
 
 - [x] Now the tool will automatically check for EasyPatcher update, and notify it!
+
+-----------
+
+### Version 2.8 [20/12/2020]
+**Currently working for release a customizable version of ConsoleKey, it will release soon with release 2.9**
+
+- [x] HUD changed due to new options available
+- [x] Correctly released all new features by [yamashi's patch](https://github.com/yamashi/PerformanceOverhaulCyberpunk/releases/tag/v1.3.0)
+- [x] Error message improved, should be more easy understand the cause of the errors
+- [x] Update system-logic changed
+- [x] Code clear + minor update
 
 -----------
 

@@ -97,6 +97,9 @@ namespace CP2077___EasyInstall
             cbVInput.Checked = data.VirtualInput;
             cbConsole.Checked = data.Console;
             cbDumpOption.Checked = data.DumpOption;
+            cbBoundaryTeleport.Checked = data.DisableBoundaryTeleport;
+            cbIntroMovies.Checked = data.DisableIntroMovies;
+            cbVignette.Checked = data.DisableVignette;
         }
 
         /// <summary>
@@ -171,7 +174,7 @@ namespace CP2077___EasyInstall
                 }
                 else
                 {
-                    MetroFramework.MetroMessageBox.Show(this, "Error during installation\nError code: 2", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MetroFramework.MetroMessageBox.Show(this, "The tool wasn't able to open the dialog box!", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     btnMain.Text = "Critical Error!";
                 }
             }
@@ -219,11 +222,11 @@ namespace CP2077___EasyInstall
             }
             catch (IOException ex)
             {
-                MetroFramework.MetroMessageBox.Show(this, $"Error during installation\nError code: 1\n{ex.InnerException}", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroFramework.MetroMessageBox.Show(this, $"Error during installation\n\n{ex.InnerException}", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                MetroFramework.MetroMessageBox.Show(this, $"Error during installation\nError code: 1\n{ex.InnerException}", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroFramework.MetroMessageBox.Show(this, $"Error during installation\n\n{ex.InnerException}", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnMain.Text = "Critical Error!";
             }
         }
@@ -262,7 +265,11 @@ namespace CP2077___EasyInstall
                 DisableAsyncCompute = cbAsyncCompute.Checked,
                 DisableAntialiasing = cbAntialiasing.Checked,
                 Console = cbConsole.Checked,
-                DumpOption = cbDumpOption.Checked
+                DumpOption = cbDumpOption.Checked,
+                DisableBoundaryTeleport = cbBoundaryTeleport.Checked,
+                DisableIntroMovies = cbIntroMovies.Checked,
+                DisableVignette = cbVignette.Checked,
+                ConsoleKey = 192  
             };
 
             using (StreamWriter file = File.CreateText(settingsPath))
@@ -288,7 +295,7 @@ namespace CP2077___EasyInstall
             }
             catch (Exception)
             {
-                MetroFramework.MetroMessageBox.Show(this, "You must select a valid path before open the settings!\nError code: 3", "Exception!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroFramework.MetroMessageBox.Show(this, "You must select a valid path before open the settings!", "Exception!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -362,7 +369,7 @@ namespace CP2077___EasyInstall
             }
             catch (Exception)
             {
-                MetroFramework.MetroMessageBox.Show(this, "File not found, you need to run the game at least one time before a log file can be generated!\nError code: 4", "Exception!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroFramework.MetroMessageBox.Show(this, "File not found, you need to run the game at least one time before a log file can be generated!", "Exception!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -428,7 +435,7 @@ namespace CP2077___EasyInstall
                 }
                 else
                 {
-                    MetroFramework.MetroMessageBox.Show(this, "Error during installation\nError code: 2", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MetroFramework.MetroMessageBox.Show(this, "The tool wasn't able to open the dialog box!", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     btnMain.Text = "Critical Error!";
                 }
             }
@@ -469,7 +476,7 @@ namespace CP2077___EasyInstall
                 }
                 else
                 {
-                    MetroFramework.MetroMessageBox.Show(this, "Error during installation\nError code: 2", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MetroFramework.MetroMessageBox.Show(this, "The tool wasn't able to open the dialog box!", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }
@@ -500,5 +507,6 @@ namespace CP2077___EasyInstall
             Trace.WriteLine(message, category);
 #endif
         }
+
     }
 }

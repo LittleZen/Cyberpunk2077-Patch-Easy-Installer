@@ -19,7 +19,7 @@ namespace CP2077___EasyInstall
         [JsonProperty("memory_pool")]
         public bool MemoryPool { get; set; }
 
-        [JsonProperty("unlock_menu")]
+        [JsonProperty("enable_debug")]
         public bool UnlockMenu { get; set; }
 
         [JsonProperty("cpu_memory_pool_fraction")]
@@ -45,5 +45,17 @@ namespace CP2077___EasyInstall
 
         [JsonProperty("dump_game_options")]
         public bool DumpOption { get; set; }
+
+        [JsonProperty("disable_boundary_teleport")]
+        public bool DisableBoundaryTeleport { get; set; }
+
+        [JsonProperty("disable_intro_movies")]
+        public bool DisableIntroMovies { get; set; }
+
+        [JsonProperty("disable_vignette")]
+        public bool DisableVignette { get; set; }
+
+        [JsonProperty("console_key")]
+        public int ConsoleKey = 192;
     }
 }
