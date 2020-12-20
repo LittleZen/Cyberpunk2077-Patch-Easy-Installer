@@ -102,6 +102,7 @@ namespace CP2077___EasyInstall
             cbIntroMovies.Checked = data.DisableIntroMovies;
             cbVignette.Checked = data.DisableVignette;
             txtConsoleKey.Text = new KeysConverter().ConvertToString(data.ConsoleKey);
+            numConsoleKey.Value = data.ConsoleKey;
         }
 
         /// <summary>
@@ -507,7 +508,7 @@ namespace CP2077___EasyInstall
         private void numConsoleKey_ValueChanged(object sender, EventArgs e)
         {
             keyPress = Convert.ToInt32(numConsoleKey.Value);
-            txtConsoleKey.Text = (new KeysConverter().ConvertToString(keyPress));
+            txtConsoleKey.Text = new KeysConverter().ConvertToString(keyPress);
         }
 
         // TODO: Move to separate Logger class?
