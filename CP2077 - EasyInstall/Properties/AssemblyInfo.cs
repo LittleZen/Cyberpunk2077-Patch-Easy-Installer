@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("CP2077 - EasyInstall")]
-[assembly: AssemblyDescription("Easy Installer for PerformanceOverhaulCyberpunk")]
+[assembly: AssemblyDescription("Easy Installer for Cyber Engine Tweaks")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("CP2077 - EasyInstall")]
