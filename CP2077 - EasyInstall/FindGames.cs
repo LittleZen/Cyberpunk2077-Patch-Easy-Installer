@@ -16,16 +16,16 @@ namespace CP2077___EasyInstall
 
         private static List<string> SteamLibraryPaths()
         {
-            string libraryfoldersPath = GetSteamPath();
+            var libraryfoldersPath = GetSteamPath();
             if (libraryfoldersPath == null) // Steam not installed or Registry key is missing
                 return null;
-            List<string> toReturn = new List<string> // We can have as little as 1 or up to an unknown amount of paths.
+            var toReturn = new List<string> // We can have as little as 1 or up to an unknown amount of paths.
             {
                 libraryfoldersPath // By default steam install path is a steam library location
             };
             libraryfoldersPath = Path.Combine(libraryfoldersPath, "steamapps", "libraryfolders.vdf"); // This file holds all paths
-            string unsortedPaths = string.Empty;
-            using (StreamReader sr = File.OpenText(libraryfoldersPath))
+            var unsortedPaths = string.Empty;
+            using (var sr = File.OpenText(libraryfoldersPath))
             {
                 sr.ReadLine();
                 sr.ReadLine();
@@ -38,8 +38,8 @@ namespace CP2077___EasyInstall
                 }
             }
 
-            string[] strings = SplitByQuotes(unsortedPaths);
-            for (int i = 1; i < strings.Length; i += 2) // We only need the paths, not the library number
+            var strings = SplitByQuotes(unsortedPaths);
+            for (var i = 1; i < strings.Length; i += 2) // We only need the paths, not the library number
             {
                 toReturn.Add(strings[i].Trim('\"')); // Get rid of the quotes
             }
@@ -47,7 +47,7 @@ namespace CP2077___EasyInstall
             return toReturn;
         }
 
-        private static string FindGameACFByAppID(string appID)
+        private static string FindGameACFByAppID(string appId)
         {
             /* If we do not add this other games with the same number in
              * its name can be returned instead.
@@ -55,13 +55,13 @@ namespace CP2077___EasyInstall
              * If we find MCC first we return that instead of csgo.
              * All appID in Steam file start with _ and ends with .acf.
              */
-            appID = $"_{appID}.acf";
+            appId = $"_{appId}.acf";
             foreach (var path in SteamLibraryPaths())
             {
                 // ACF files are in steamapps folder
                 var filesInPath = Directory.GetFiles(Path.Combine(path, "steamapps"));
                 foreach (var file in filesInPath)
-                    if (file.Contains(appID)) // If we find the appID we can stop looking
+                    if (file.Contains(appId)) // If we find the appID we can stop looking
                         return file;
             }
 
@@ -69,18 +69,18 @@ namespace CP2077___EasyInstall
         }
 
         // I split these up so it looks neater.
-        public static string FindGameByAppID(string appID)
+        public static string FindGameByAppID(string appId)
         {
-            string ACFFile = FindGameACFByAppID(appID); // ACF file has the install folder
+            var ACFFile = FindGameACFByAppID(appId); // ACF file has the install folder
             if (ACFFile == null)
                 return null;
-            using (StreamReader sr = File.OpenText(ACFFile))
+            using (var sr = File.OpenText(ACFFile))
             {
                 string currentLine;
                 while ((currentLine = sr.ReadLine()) != null)
                     if (currentLine.Contains("installdir"))
                     {
-                        string[] currentLineArr = SplitByQuotes(currentLine);
+                        var currentLineArr = SplitByQuotes(currentLine);
                         /* Instead of refinding the whole file path again I just remove the .acf file
                          * and add on common and the installdir.
                          */
@@ -107,6 +107,6 @@ namespace CP2077___EasyInstall
         /// Get the install path for the GOG installation of Cyberpunk 2077.
         /// </summary>
         /// <returns>Windows Registry for GOG installation location.</returns>
-        public static string FindGameByAppID(string appID) => Registry.GetValue($@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\GOG.com\Games\{appID}\", "Path", null)?.ToString();
+        public static string FindGameByAppID(string appId) => Registry.GetValue($@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\GOG.com\Games\{appId}\", "Path", null)?.ToString();
     }
 }
