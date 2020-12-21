@@ -4,7 +4,7 @@ This software allows you to easily install all the patches from [PerformanceOver
 For any problems, or for more information, check the main repository (by yamashi). 😊
 
 -----------
-![Demo](https://i.imgur.com/NKOqdgX.png)
+![Demo](https://i.imgur.com/W7UpaxI.png)
 
 
 [DOWNLOAD](https://bit.ly/384rLQZ) | [MAIN REPOSITORY](https://bit.ly/384rMEx) | [ISSUES](https://bit.ly/34cbtUX)
@@ -150,6 +150,21 @@ Type | Description
 - [x] Resolved a bug where the Console Key was not being set on the initial installation of the mods
 - [x] Fixed an issue that doesn't allow mod installation
 - [x] Error messagebox improved for correctly find future bugs
+
+-----------
+
+### Version 3.1 [21/12/2020]
+
+- [x] Messagebox error improved (now correctly show the exception. This may be useful for detect bug)
+- [x] Uninstall system now correctly delete all files (uninstall system now correctly show the tracedebug output)
+- [x] Json indentation fixed
+- [x] Uninstall and reinstall will now correctly load the default settings 
+- [x] Settings options are now available only after the installation of the patch
+- [x] Use Tilde Key: updated the initial value to use the Keys enum
+- [x] Refactored Return Functions: Shorted functions for returning registry values.
+- [x] Yamashi's repository updated (all links are now correctly redirected)
+- [x] Code cleaned up
+- [x] Prevent "empty" Yes/No MsgBox and Exception after clicking Yes in autodetect GOG mode
 
 -----------
 
