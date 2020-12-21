@@ -385,10 +385,6 @@ namespace CP2077___EasyInstall
                 File.Delete(Path.Combine(generalPath, "version.dll"));
                 TraceDebugWrite("version.dll\t\t DELETED");
 
-                // Delete game_path file
-                File.Delete(GamePathFilePath);
-                TraceDebugWrite("game_path\t\t DELETED");
-
                 //Delete global.ini file
                 File.Delete(Path.Combine(generalPath, "global.ini"));
                 TraceDebugWrite("global.ini\t\t DELETED");
@@ -396,6 +392,10 @@ namespace CP2077___EasyInstall
                 //Delete LICENSE file
                 File.Delete(Path.Combine(generalPath, "LICENSE"));
                 TraceDebugWrite("LICENSE\t\t\t DELETED");
+
+                // Delete game_path file
+                File.Delete(GamePathFilePath);
+                TraceDebugWrite("game_path\t\t DELETED");
 
 
                 // Unlock main_button for reinstall the patch
