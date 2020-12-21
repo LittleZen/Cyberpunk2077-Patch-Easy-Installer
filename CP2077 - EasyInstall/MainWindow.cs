@@ -34,6 +34,7 @@ namespace CP2077___EasyInstall
 
                 generalPath = myPath;
                 btnMain.Text = "Patch already installed!";
+                EnableGbx(); // enable settings
                 btnMain.Enabled = false;
                 btnFindSteam.Enabled = false;
                 btnFindGoG.Enabled = false;
@@ -45,6 +46,47 @@ namespace CP2077___EasyInstall
             {
                 TraceDebugWrite("Patch not already installed!");
             }
+
+        }
+
+        // Enable GroupBox + Default values
+        private void EnableGbx()
+        {
+            gbxSettings.Enabled = true;
+            gbxConsole.Enabled = true;
+            gbxMemPool.Enabled = true;
+
+            cbAVX.Checked = true;
+            cbSMT.Checked = true;
+            cbSpectre.Checked = true;
+            cbVInput.Checked = true;
+            cbMemoryPool.Checked = true;
+            cbSkipStartMenu.Checked = true;
+            cbIntroMovies.Checked = true;
+            cbConsole.Checked = true;
+        }
+
+        private void DisableGbx()
+        {
+            gbxSettings.Enabled = false;
+            gbxConsole.Enabled = false;
+            gbxMemPool.Enabled = false;
+
+            cbAVX.Checked = false;
+            cbSMT.Checked = false;
+            cbSpectre.Checked = false;
+            cbVInput.Checked = false;
+            cbMemoryPool.Checked = false;
+            cbSkipStartMenu.Checked = false;
+            cbIntroMovies.Checked = false;
+            cbConsole.Checked = false;
+            cbBoundaryTeleport.Checked = false;
+            cbAntialiasing.Checked = false;
+            cbDebug.Checked = false;
+            cbRemovePedestrians.Checked = false;
+            cbDumpOption.Checked = false;
+            cbAsyncCompute.Checked = false;
+            cbVignette.Checked = false;
         }
 
         private void CheckForUpdate()
@@ -162,6 +204,7 @@ namespace CP2077___EasyInstall
                         generalPath = gamePath;
                     }
                     PatchGame(gamePath);
+                    EnableGbx(); //enable the settings after the installation
                 }
                 else if (result == DialogResult.Cancel)
                 {
@@ -220,6 +263,7 @@ namespace CP2077___EasyInstall
             {
                 MetroFramework.MetroMessageBox.Show(this, $"Error during installation {ExceptionAsString(ex)}", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnMain.Text = "Critical Error!";
+                DisableGbx(); //disable the settings page
             }
         }
 
@@ -330,6 +374,7 @@ namespace CP2077___EasyInstall
             {
                 MetroFramework.MetroMessageBox.Show(this, $"Error during installation {ExceptionAsString(ex)}", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnMain.Text = "Critical Error!";
+                DisableGbx(); //disable the settings page
             }
         }
 
@@ -377,6 +422,7 @@ namespace CP2077___EasyInstall
         /// <param name="e"></param>
         private void btnUninstall_Click(object sender, EventArgs e)
         {
+            DisableGbx(); //turn off all settings before the uninstallation
             try
             {
                 btnMain.Text = "Uninstalling...";
@@ -438,22 +484,26 @@ namespace CP2077___EasyInstall
                         generalPath = Path.Combine(path, "bin", "x64");
                     }
                     PatchGame(Path.Combine(path, "bin", "x64"));
+                    EnableGbx(); //enable the settings after the installation
                 }
                 else if (result == DialogResult.No)
                 {
                     MetroFramework.MetroMessageBox.Show(this, null, "Install Cancelled.", MessageBoxButtons.OK);
                     btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
+                    DisableGbx(); //disable the settings page
                 }
                 else
                 {
                     MetroFramework.MetroMessageBox.Show(this, "The tool wasn't able to open the dialog box!", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     btnMain.Text = "Critical Error!";
+                    DisableGbx(); //disable the settings page
                 }
             }
             catch (Exception ex)
             {
                 MetroFramework.MetroMessageBox.Show(this, $"Error: {ExceptionAsString(ex)}", "Unknown Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 //TraceDebugWrite("Error" + ex);
+                DisableGbx(); //disable the settings page
             }
         }
 
@@ -478,16 +528,19 @@ namespace CP2077___EasyInstall
                         generalPath = Path.Combine(path, "bin", "x64");
                     }
                     PatchGame(Path.Combine(path, "bin", "x64"));
+                    EnableGbx(); //enable the settings after the installation
                    
                 }
                 else if (result == DialogResult.No)
                 {
                     MetroFramework.MetroMessageBox.Show(this, null, "Install Cancelled.", MessageBoxButtons.OK);
                     btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
+                    DisableGbx(); //disable the settings page
                 }
                 else
                 {
                     MetroFramework.MetroMessageBox.Show(this, "The tool wasn't able to open the dialog box!", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    DisableGbx(); //disable the settings page
                 }
 
             }
@@ -495,6 +548,7 @@ namespace CP2077___EasyInstall
             {
                 MetroFramework.MetroMessageBox.Show(this, $"Error: {ExceptionAsString(ex)}", "Unknown Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 //TraceDebugWrite("Error" + ex);
+                DisableGbx(); //disable the settings page
             }
         }
 
