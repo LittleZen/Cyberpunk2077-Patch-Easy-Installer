@@ -1,6 +1,6 @@
 # Cyberpunk 2077 | Easy Patcher
 
-This software allows you to easily install all the patches from [PerformanceOverhaulCyberpunk](https://bit.ly/384rMEx), created by yamashi.
+This software allows you to easily install all the patches from [CyberEngineTweaks](https://bit.ly/384rMEx), created by yamashi.
 For any problems, or for more information, check the main repository (by yamashi). 😊
 
 -----------
@@ -34,7 +34,7 @@ Type | Description
 --- | ---
 `Language` | *C# (patch in c++)*
 `Installer Developer` | *LittleZen*
-`Patch Developer` | *[yamashi + others](https://github.com/yamashi/PerformanceOverhaulCyberpunk)*
+`Patch Developer` | *[yamashi + others](https://github.com/yamashi/CyberEngineTweaks)*
 `Installer Base Version` | *1.0*
 `Installer Lastest Version` | *Check ChangeLog or LastRelease*
 `Patch Version` | *You can check for updates directly on the tool*
