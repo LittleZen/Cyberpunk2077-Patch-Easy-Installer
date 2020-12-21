@@ -268,7 +268,10 @@ namespace CP2077___EasyInstall
 
                 using (StreamWriter file = File.CreateText(settingsPath))
                 {
-                    JsonSerializer serializer = new JsonSerializer();
+                    JsonSerializer serializer = new JsonSerializer
+                    {
+                        Formatting = Formatting.Indented,
+                    };
                     // Serialize object directly into file stream.
                     serializer.Serialize(file, data);
                 }
