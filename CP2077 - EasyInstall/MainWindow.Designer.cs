@@ -82,7 +82,7 @@ namespace CP2077___EasyInstall
             this.ttEnableConsole = new MetroFramework.Components.MetroToolTip();
             this.ttDumpOption = new MetroFramework.Components.MetroToolTip();
             this.lblUpdate = new MetroFramework.Controls.MetroLabel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbxConsole = new System.Windows.Forms.GroupBox();
             this.numConsoleKey = new System.Windows.Forms.NumericUpDown();
             this.txtConsoleKey = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
@@ -94,7 +94,7 @@ namespace CP2077___EasyInstall
             this.gbxMemPool.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numGpuMem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCpuMem)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.gbxConsole.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numConsoleKey)).BeginInit();
             this.SuspendLayout();
             // 
@@ -138,6 +138,7 @@ namespace CP2077___EasyInstall
             this.gbxSettings.Controls.Add(this.cbSpectre);
             this.gbxSettings.Controls.Add(this.cbSMT);
             this.gbxSettings.Controls.Add(this.cbAVX);
+            this.gbxSettings.Enabled = false;
             this.gbxSettings.Location = new System.Drawing.Point(24, 205);
             this.gbxSettings.Name = "gbxSettings";
             this.gbxSettings.Size = new System.Drawing.Size(762, 149);
@@ -160,8 +161,6 @@ namespace CP2077___EasyInstall
             // cbIntroMovies
             // 
             this.cbIntroMovies.AutoSize = true;
-            this.cbIntroMovies.Checked = true;
-            this.cbIntroMovies.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbIntroMovies.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
             this.cbIntroMovies.Location = new System.Drawing.Point(172, 96);
             this.cbIntroMovies.Name = "cbIntroMovies";
@@ -210,8 +209,6 @@ namespace CP2077___EasyInstall
             // cbSkipStartMenu
             // 
             this.cbSkipStartMenu.AutoSize = true;
-            this.cbSkipStartMenu.Checked = true;
-            this.cbSkipStartMenu.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbSkipStartMenu.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
             this.cbSkipStartMenu.Location = new System.Drawing.Point(172, 71);
             this.cbSkipStartMenu.Name = "cbSkipStartMenu";
@@ -258,8 +255,6 @@ namespace CP2077___EasyInstall
             // cbVInput
             // 
             this.cbVInput.AutoSize = true;
-            this.cbVInput.Checked = true;
-            this.cbVInput.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbVInput.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
             this.cbVInput.Location = new System.Drawing.Point(26, 121);
             this.cbVInput.Name = "cbVInput";
@@ -284,8 +279,6 @@ namespace CP2077___EasyInstall
             // cbMemoryPool
             // 
             this.cbMemoryPool.AutoSize = true;
-            this.cbMemoryPool.Checked = true;
-            this.cbMemoryPool.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbMemoryPool.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
             this.cbMemoryPool.Location = new System.Drawing.Point(172, 46);
             this.cbMemoryPool.Name = "cbMemoryPool";
@@ -298,8 +291,6 @@ namespace CP2077___EasyInstall
             // cbSpectre
             // 
             this.cbSpectre.AutoSize = true;
-            this.cbSpectre.Checked = true;
-            this.cbSpectre.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbSpectre.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
             this.cbSpectre.Location = new System.Drawing.Point(26, 96);
             this.cbSpectre.Name = "cbSpectre";
@@ -312,8 +303,6 @@ namespace CP2077___EasyInstall
             // cbSMT
             // 
             this.cbSMT.AutoSize = true;
-            this.cbSMT.Checked = true;
-            this.cbSMT.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbSMT.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
             this.cbSMT.Location = new System.Drawing.Point(26, 71);
             this.cbSMT.Name = "cbSMT";
@@ -327,8 +316,6 @@ namespace CP2077___EasyInstall
             // 
             this.cbAVX.AccessibleDescription = "";
             this.cbAVX.AutoSize = true;
-            this.cbAVX.Checked = true;
-            this.cbAVX.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbAVX.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
             this.cbAVX.Location = new System.Drawing.Point(26, 46);
             this.cbAVX.Name = "cbAVX";
@@ -342,8 +329,6 @@ namespace CP2077___EasyInstall
             // cbConsole
             // 
             this.cbConsole.AutoSize = true;
-            this.cbConsole.Checked = true;
-            this.cbConsole.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbConsole.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
             this.cbConsole.Location = new System.Drawing.Point(16, 19);
             this.cbConsole.Name = "cbConsole";
@@ -488,6 +473,7 @@ namespace CP2077___EasyInstall
             this.gbxMemPool.Controls.Add(this.numCpuMem);
             this.gbxMemPool.Controls.Add(this.lblGpuMem);
             this.gbxMemPool.Controls.Add(this.lblCpuMem);
+            this.gbxMemPool.Enabled = false;
             this.gbxMemPool.Location = new System.Drawing.Point(24, 360);
             this.gbxMemPool.Name = "gbxMemPool";
             this.gbxMemPool.Size = new System.Drawing.Size(356, 92);
@@ -629,18 +615,19 @@ namespace CP2077___EasyInstall
             this.lblUpdate.Text = "You are currently running the latest version available";
             this.lblUpdate.Click += new System.EventHandler(this.lblUpdate_Click);
             // 
-            // groupBox1
+            // gbxConsole
             // 
-            this.groupBox1.Controls.Add(this.numConsoleKey);
-            this.groupBox1.Controls.Add(this.txtConsoleKey);
-            this.groupBox1.Controls.Add(this.metroLabel1);
-            this.groupBox1.Controls.Add(this.cbConsole);
-            this.groupBox1.Location = new System.Drawing.Point(387, 361);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(399, 91);
-            this.groupBox1.TabIndex = 27;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Console:";
+            this.gbxConsole.Controls.Add(this.numConsoleKey);
+            this.gbxConsole.Controls.Add(this.txtConsoleKey);
+            this.gbxConsole.Controls.Add(this.metroLabel1);
+            this.gbxConsole.Controls.Add(this.cbConsole);
+            this.gbxConsole.Enabled = false;
+            this.gbxConsole.Location = new System.Drawing.Point(387, 361);
+            this.gbxConsole.Name = "gbxConsole";
+            this.gbxConsole.Size = new System.Drawing.Size(399, 91);
+            this.gbxConsole.TabIndex = 27;
+            this.gbxConsole.TabStop = false;
+            this.gbxConsole.Text = "Console:";
             // 
             // numConsoleKey
             // 
@@ -737,7 +724,7 @@ namespace CP2077___EasyInstall
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(809, 625);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbxConsole);
             this.Controls.Add(this.lblUpdate);
             this.Controls.Add(this.btnFindGoG);
             this.Controls.Add(this.btnFindSteam);
@@ -755,7 +742,7 @@ namespace CP2077___EasyInstall
             this.Name = "Form1";
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Yellow;
-            this.Text = "CP 2077 - EasyPatcher | v3.0";
+            this.Text = "CP 2077 - EasyPatcher | v3.1";
             this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center;
             this.gbxSettings.ResumeLayout(false);
             this.gbxSettings.PerformLayout();
@@ -763,8 +750,8 @@ namespace CP2077___EasyInstall
             this.gbxMemPool.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numGpuMem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCpuMem)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbxConsole.ResumeLayout(false);
+            this.gbxConsole.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numConsoleKey)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -820,7 +807,7 @@ namespace CP2077___EasyInstall
         private MetroFramework.Controls.MetroCheckBox cbDumpOption;
         private MetroFramework.Components.MetroToolTip ttDumpOption;
         private MetroFramework.Controls.MetroLabel lblUpdate;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbxConsole;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroCheckBox cbVignette;
         private MetroFramework.Controls.MetroCheckBox cbIntroMovies;
