@@ -380,6 +380,7 @@ namespace CP2077___EasyInstall
             try
             {
                 btnMain.Text = "Uninstalling...";
+
                 // Delete plugins directory recursively
                 Directory.Delete(Path.Combine(generalPath, "plugins"), true);
                 TraceDebugWrite("Plugins\t\t\t DELETED");
