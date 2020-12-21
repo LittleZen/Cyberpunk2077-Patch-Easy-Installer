@@ -276,7 +276,7 @@ namespace CP2077___EasyInstall
         /// <param name="e"></param>
         private void btnAbout_Click(object sender, EventArgs e)
         {
-            Process.Start("https://bit.ly/385MEvl");
+            Process.Start("https://github.com/LittleZen/Cyberpunk2077-Patch-Easy-Installer");
         }
 
         /// <summary>
