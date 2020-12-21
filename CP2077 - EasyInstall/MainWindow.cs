@@ -257,7 +257,7 @@ namespace CP2077___EasyInstall
                 btnMain.Enabled = false;
                 btnFindSteam.Enabled = false;
                 btnFindGoG.Enabled = false;
-                
+
             }
             catch (Exception ex)
             {
@@ -361,7 +361,7 @@ namespace CP2077___EasyInstall
 
                 using (var httpclient = new WebClient())
                 {
-                    httpclient.DownloadFile("https://github.com/yamashi/PerformanceOverhaulCyberpunk/releases/latest/download/Release.zip", zipDownloadFile);
+                    httpclient.DownloadFile("https://github.com/yamashi/CyberEngineTweaks/releases/latest/download/Release.zip", zipDownloadFile);
                 }
 
                 if (Directory.Exists(downloadPath))
@@ -529,7 +529,7 @@ namespace CP2077___EasyInstall
                     }
                     PatchGame(Path.Combine(path, "bin", "x64"));
                     EnableGbx(); //enable the settings after the installation
-                   
+
                 }
                 else if (result == DialogResult.No)
                 {
