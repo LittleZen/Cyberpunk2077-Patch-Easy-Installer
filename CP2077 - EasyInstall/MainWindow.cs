@@ -257,7 +257,6 @@ namespace CP2077___EasyInstall
                 btnMain.Enabled = false;
                 btnFindSteam.Enabled = false;
                 btnFindGoG.Enabled = false;
-
             }
             catch (Exception ex)
             {
@@ -529,7 +528,6 @@ namespace CP2077___EasyInstall
                     }
                     PatchGame(Path.Combine(path, "bin", "x64"));
                     EnableGbx(); //enable the settings after the installation
-
                 }
                 else if (result == DialogResult.No)
                 {
