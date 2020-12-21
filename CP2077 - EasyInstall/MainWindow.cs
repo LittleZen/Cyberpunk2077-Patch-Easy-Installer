@@ -378,12 +378,28 @@ namespace CP2077___EasyInstall
                 btnMain.Text = "Uninstalling...";
                 // Delete plugins directory recursively
                 Directory.Delete(Path.Combine(generalPath, "plugins"), true);
+                TraceDebugWrite("Plugins\t\t\t DELETED");
 
                 // Delete version.dll file
                 File.Delete(Path.Combine(generalPath, "version.dll"));
+                TraceDebugWrite("version.dll\t\t DELETED");
 
                 // Delete game_path file
                 File.Delete(GamePathFilePath);
+                TraceDebugWrite("game_path\t\t DELETED");
+
+                //Delete global.ini file
+                File.Delete(Path.Combine(generalPath, "global.ini"));
+                TraceDebugWrite("global.ini\t\t DELETED");
+
+                //Delete global.ini file
+                File.Delete(Path.Combine(generalPath, "global.ini"));
+                TraceDebugWrite("global.ini\t\t DELETED");
+
+                //Delete LICENSE file
+                File.Delete(Path.Combine(generalPath, "LICENSE"));
+                TraceDebugWrite("LICENSE\t\t\t DELETED");
+
 
                 // Unlock main_button for reinstall the patch
                 btnMain.Text = "Select Path To Cyberpunk 2077 Main Directory";
@@ -395,7 +411,7 @@ namespace CP2077___EasyInstall
             }
             catch (Exception ex)
             {
-                MetroFramework.MetroMessageBox.Show(this, $"Unable to delete mod files.\nPlease remove {generalPath}\\version.dll and {generalPath}\\plugins\\ manually. {ExceptionAsString(ex)}", "Exception!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroFramework.MetroMessageBox.Show(this, $"Unable to delete mod files.\nPlease remove {generalPath}\\version.dll and {generalPath}\\plugins\\ manually.\n {ExceptionAsString(ex)}", "Exception!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnMain.Text = "Manually Select Path to Cyberpunk 2077 Main Directory";
             }
         }
