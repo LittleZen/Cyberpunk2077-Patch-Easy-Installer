@@ -102,6 +102,7 @@ namespace CP2077___EasyInstall
                 Trace.WriteLine($"Exception while checking for latest version: {ex}");
                 return;
             }
+
             if (latestVersion > CurrentProgramVersion)
             {
                 DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nA new version is available, would you like to download it?", "New Version!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -196,13 +197,15 @@ namespace CP2077___EasyInstall
             {
                 DialogResult result = fbd.ShowDialog();
 
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                if (result == DialogResult.OK &&
+                    !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
                     string gamePath = Path.Combine(fbd.SelectedPath, "bin", "x64");
                     if (string.IsNullOrWhiteSpace(generalPath))
                     {
                         generalPath = gamePath;
                     }
+
                     PatchGame(gamePath);
                     EnableGbx(); //enable the settings after the installation
                 }
@@ -318,6 +321,7 @@ namespace CP2077___EasyInstall
                     // Serialize object directly into file stream.
                     serializer.Serialize(file, data);
                 }
+
                 MetroFramework.MetroMessageBox.Show(this, "\nSaved!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
             catch (Exception ex)
@@ -461,6 +465,7 @@ namespace CP2077___EasyInstall
                 btnMain.Text = "Manually Select Path to Cyberpunk 2077 Main Directory";
             }
         }
+
         private void btnFindSteam_Click(object sender, EventArgs e)
         {
             try
@@ -482,6 +487,7 @@ namespace CP2077___EasyInstall
                     {
                         generalPath = Path.Combine(path, "bin", "x64");
                     }
+
                     PatchGame(Path.Combine(path, "bin", "x64"));
                     EnableGbx(); //enable the settings after the installation
                 }
@@ -526,6 +532,7 @@ namespace CP2077___EasyInstall
                     {
                         generalPath = Path.Combine(path, "bin", "x64");
                     }
+
                     PatchGame(Path.Combine(path, "bin", "x64"));
                     EnableGbx(); //enable the settings after the installation
                 }

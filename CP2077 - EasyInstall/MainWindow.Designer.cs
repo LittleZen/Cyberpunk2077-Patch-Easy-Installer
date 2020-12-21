@@ -20,6 +20,7 @@ namespace CP2077___EasyInstall
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 

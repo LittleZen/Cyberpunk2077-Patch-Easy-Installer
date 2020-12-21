@@ -34,16 +34,19 @@ namespace CP2077___EasyInstall
                 sr.ReadLine();
                 sr.ReadLine();
                 sr.ReadLine(); // First 4 lines are useless
-                while (sr.Peek() >= 0 && sr.Peek() != 125) // We can stop after we hit }, as we don't need it.
+                while (sr.Peek() >= 0 &&
+                       sr.Peek() != 125) // We can stop after we hit }, as we don't need it.
                 {
                     unsortedPaths += sr.ReadLine();
                 }
             }
+
             string[] strings = SplitByQuotes(unsortedPaths);
             for (int i = 1; i < strings.Length; i += 2) // We only need the paths, not the library number
             {
                 toReturn.Add(strings[i].Trim('\"')); // Get rid of the quotes
             }
+
             return toReturn;
         }
 
@@ -64,6 +67,7 @@ namespace CP2077___EasyInstall
                     if (file.Contains(appID)) // If we find the appID we can stop looking
                         return file;
             }
+
             return null; // Game not installed or something is wrong.
         }
 
@@ -86,6 +90,7 @@ namespace CP2077___EasyInstall
                         return $@"{ACFFile.Substring(0, ACFFile.LastIndexOf(@"\") + 1)}common\{currentLineArr[1].Trim('\"')}";
                     }
             }
+
             return null;
         }
 
