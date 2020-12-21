@@ -13,7 +13,7 @@ namespace CP2077___EasyInstall
     {
         private string generalPath = string.Empty;
         private static readonly Version CurrentProgramVersion = Assembly.GetExecutingAssembly().GetName().Version;
-        private static int keyPress = 192;
+        private static int keyPress = Convert.ToInt32(Keys.Oemtilde);
 
         private static readonly string CurrentDir = Directory.GetCurrentDirectory();
         private static readonly string GamePathFilePath = Path.Combine(CurrentDir, "game_path");
