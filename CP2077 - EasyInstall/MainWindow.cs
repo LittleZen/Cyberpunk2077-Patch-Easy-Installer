@@ -521,8 +521,9 @@ namespace CP2077___EasyInstall
                 if (path == null)
                 {
                     MetroFramework.MetroMessageBox.Show(this, "Error: Couldn't Find Cyberpunk for GOG!", "Error: File not found!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //TraceDebugWrite("Error: Couldn't Find CyberPunk for GoG!");
+                    //TraceDebugWrite("Error: Couldn't Find CyberPunk for GOG!");
                     btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
+                    return;
                 }
 
                 DialogResult result = MetroFramework.MetroMessageBox.Show(this, path, "Is this Correct?", MessageBoxButtons.YesNo);
