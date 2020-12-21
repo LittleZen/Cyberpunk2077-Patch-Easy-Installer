@@ -214,6 +214,7 @@ namespace CP2077___EasyInstall
                 btnMain.Enabled = false;
                 btnFindSteam.Enabled = false;
                 btnFindGoG.Enabled = false;
+                
             }
             catch (Exception ex)
             {
@@ -392,10 +393,6 @@ namespace CP2077___EasyInstall
                 File.Delete(Path.Combine(generalPath, "global.ini"));
                 TraceDebugWrite("global.ini\t\t DELETED");
 
-                //Delete global.ini file
-                File.Delete(Path.Combine(generalPath, "global.ini"));
-                TraceDebugWrite("global.ini\t\t DELETED");
-
                 //Delete LICENSE file
                 File.Delete(Path.Combine(generalPath, "LICENSE"));
                 TraceDebugWrite("LICENSE\t\t\t DELETED");
@@ -477,6 +474,7 @@ namespace CP2077___EasyInstall
                         generalPath = Path.Combine(path, "bin", "x64");
                     }
                     PatchGame(Path.Combine(path, "bin", "x64"));
+                   
                 }
                 else if (result == DialogResult.No)
                 {
