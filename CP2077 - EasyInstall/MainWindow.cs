@@ -12,9 +12,9 @@ namespace CP2077___EasyInstall
     public partial class Form1 : MetroFramework.Forms.MetroForm
     {
         private string _generalPath = string.Empty;
-        private static readonly Version CurrentProgramVersion = Assembly.GetExecutingAssembly().GetName().Version;
         private static int _keyPress = Convert.ToInt32(Keys.Oemtilde);
 
+        private static readonly Version CurrentProgramVersion = Assembly.GetExecutingAssembly().GetName().Version;
         private static readonly string CurrentDir = Directory.GetCurrentDirectory();
         private static readonly string GamePathFilePath = Path.Combine(CurrentDir, "game_path");
 
