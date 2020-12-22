@@ -22,7 +22,7 @@ For any problems, or for more information, check the main repository (by yamashi
 
 1) Download the .exe file
 2) Open it and extract the files where you want.
-3) Open "CP2077 - EasyInstall.exe" from the folder extracted
+3) Open `CP2077 - EasyPatcher.exe` from the folder extracted
 4) If you use Steam or GOG, just click "Find Steam Path" or "Find GOG Path" (patch will be automatically installed)
 5) If you want manually select it (or if you use EpicGames), just click on "Select Path to Cyberpunk 2077 Main Directory"  and select the main folder of "Cyberpunk 2077" (not the x64 folder! The main directory!)
 6) Enjoy, and check yamashi's main page, he's the true hero!
@@ -51,6 +51,7 @@ Type | Description
 -----------
 
 ### Version 2.0 [16/12/2020]
+
 - [x] Released Easy Patcher v2.0
 - [x] Released yamashi patch v0.7.2
 - [x] New HUD (Now you can directly manage the settings through the tool)
@@ -65,6 +66,7 @@ Type | Description
 -----------
 
 ### Version 2.2 [17/12/2020]
+
 - [x] Bug fix and stability improve
 - [x] `Uninstall` System Added (now you can easy install/unistall the patches)
 - [x] `Check Update` System added (will automatically install the lastest patch available)
@@ -76,6 +78,7 @@ Type | Description
 - [x] Released the `Async Compute` features (yamashi)
 - [x] Released the `Skip Start menù` features (yamashi)
 - [x] Code clean (Thanks to all contributor!)
+- [x] Installation method will now install the latest patch available
 
 -----------
 
@@ -126,7 +129,9 @@ Type | Description
 **Currently working for release a customizable version of ConsoleKey, it will release soon with release 2.9**
 
 - [x] HUD changed due to new options available
-- [x] Correctly released all new features by [yamashi's patch](https://github.com/yamashi/PerformanceOverhaulCyberpunk/releases/tag/v1.3.0)
+- [x] Released the `Dump Game Option` option (yamashi)
+- [x] Released the `Debugger` option (yamashi)
+- [x] Released the `Console` option (yamashi)
 - [x] Error message improved, should be more easy understand the cause of the errors
 - [x] Update system-logic changed
 - [x] Code clear + minor update
@@ -138,9 +143,13 @@ Type | Description
 - [x] Console key checkbox, now correctly disable the console input forms (if disabled)
 - [x] Resolved a bug where save the settings before install the patch may start unexpected crash
 - [x] Console key now correctly work (@JayVee732)
+- [x] Released the `Disable Vignette` option (yamashi)
+- [x] Released the `Disable Boundary Teleport` option (yamashi)
+- [x] Released the `Disable Intro Movies` option (yamashi)
 - [x] New ToolTips added
 - [x] Code cleaned up
 - [x] Minor bug fixes
+
 
 -----------
 
