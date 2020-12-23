@@ -164,7 +164,7 @@ Type | Description
 
 ### Version 3.1 [21/12/2020]
 
-- [x] Messagebox error improved (now correctly show the exception. This may be useful for detect bug)
+- [x] Messagebox error improved (now correctly show the exception. This may be useful for detect future bugs)
 - [x] Uninstall system now correctly delete all files (uninstall system now correctly show the tracedebug output)
 - [x] Json indentation fixed
 - [x] Uninstall and reinstall will now correctly load the default settings 
