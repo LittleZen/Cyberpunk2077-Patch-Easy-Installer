@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -355,8 +356,9 @@ namespace CP2077___EasyInstall
         {
             try
             {
+                var release = GetLatestModRelease();
                 var downloadPath = Path.Combine(CurrentDir, "Patch");
-                var zipDownloadFile = Path.Combine(CurrentDir, "Release.zip");
+                var zipDownloadFile = Path.Combine(CurrentDir, $"{release}.zip");
 
                 using (var zipFile = File.Create(zipDownloadFile))
 
@@ -364,7 +366,7 @@ namespace CP2077___EasyInstall
 
                 using (var httpClient = new WebClient())
                 {
-                    httpClient.DownloadFile("https://github.com/yamashi/CyberEngineTweaks/releases/latest/download/Release.zip", zipDownloadFile);
+                    httpClient.DownloadFile($"https://github.com/yamashi/CyberEngineTweaks/releases/latest/download/{release}", zipDownloadFile);
                 }
 
                 if (Directory.Exists(downloadPath))
@@ -379,6 +381,29 @@ namespace CP2077___EasyInstall
                 btnMain.Text = "Critical Error!";
                 DisableGbx(); //disable the settings page
             }
+        }
+
+        /// <summary>
+        /// Use the GitHub API to get the name of the latest release.
+        /// </summary>
+        /// <returns>The filename of the release zip.</returns>
+        private string GetLatestModRelease()
+        {
+            const string apiEndpoint = "https://api.github.com/repos/yamashi/CyberEngineTweaks/releases/latest";
+            var responseJson = UpdateUtil.GetStringFromURL(apiEndpoint);
+            if (string.IsNullOrEmpty(responseJson))
+                return null;
+
+            // This whole section is a little messy, but I don't
+            // feel like writing up a whole class just for one property.
+            var asset = JObject.Parse(responseJson);
+
+            var assestsPath = JArray.Parse(asset["assets"].ToString());
+            TraceDebugWrite(assestsPath.First["name"].ToString());
+
+            var releaseName = assestsPath.First["name"].ToString();
+
+            return releaseName;
         }
 
         /// <summary>
