@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
@@ -235,7 +236,7 @@ namespace CP2077___EasyInstall
             {
                 DownloadLatestVersion(); // create folder called "Patch"(inside patcher directory not CP folder) with all update inside. Function "PatchGame" will install everything from it
                 var release = GetLatestModRelease();
-                TraceDebugWrite("release name: ", release);
+                TraceDebugWrite("Release name: ", release);
 
                 // Move files from patch to Cyberpunk 2077 path.
                 btnMain.Text = "Installing...";
@@ -362,8 +363,6 @@ namespace CP2077___EasyInstall
                 var downloadPath = Path.Combine(CurrentDir, "Patch"); // Where temporary extract the file downloaded
                 var zipDownloadFile = Path.Combine(CurrentDir, $"{release}.zip"); // Yamashi's zip archive
 
-                using (var zipFile = File.Create(zipDownloadFile))
-
                 btnMain.Text = "Downloading...";
 
                 using (var httpClient = new WebClient())
@@ -376,12 +375,11 @@ namespace CP2077___EasyInstall
 
                 // Delete zip archive, after extract it to Patch Folder
                 if(File.Exists(zipDownloadFile))
-                   File.Delete(zipDownloadFile);     
-                
+                   File.Delete(zipDownloadFile);
             }
             catch (Exception ex)
             {
-                MetroFramework.MetroMessageBox.Show(this, $"Error during installation {ExceptionAsString(ex)}", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroFramework.MetroMessageBox.Show(this, $"Error during downloading {ExceptionAsString(ex)}", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnMain.Text = "Critical Error!";
                 DisableGbx(); //disable the settings page
             }
@@ -391,7 +389,7 @@ namespace CP2077___EasyInstall
         /// Use the GitHub API to get the name of the latest release.
         /// </summary>
         /// <returns>The filename of the release zip.</returns>
-        private string GetLatestModRelease()
+        private static string GetLatestModRelease()
         {
             const string apiEndpoint = "https://api.github.com/repos/yamashi/CyberEngineTweaks/releases/latest";
             var responseJson = UpdateUtil.GetStringFromURL(apiEndpoint);
@@ -459,26 +457,31 @@ namespace CP2077___EasyInstall
             {
                 btnMain.Text = "Uninstalling...";
 
-                // Delete plugins directory recursively
-                Directory.Delete(Path.Combine(_generalPath, "plugins"), true);
-                TraceDebugWrite("Plugins\t\t\t DELETED");
+                // Bool is for recursive
+                var directoriesToDelete = new Dictionary<string, bool>
+                {
+                    { Path.Combine(_generalPath, "plugins"), true },
+                };
 
-                // Delete version.dll file
-                File.Delete(Path.Combine(_generalPath, "version.dll"));
-                TraceDebugWrite("version.dll\t\t DELETED");
+                foreach (var dir in directoriesToDelete)
+                {
+                    Directory.Delete(dir.Key, dir.Value);
+                    TraceDebugWrite($"{Path.GetFileName(dir.Key)}\t\t DELETED");
+                }
 
-                //Delete global.ini file
-                File.Delete(Path.Combine(_generalPath, "global.ini"));
-                TraceDebugWrite("global.ini\t\t DELETED");
+                var filesToDelete = new List<string>
+                {
+                    Path.Combine(_generalPath, "version.dll"),
+                    Path.Combine(_generalPath, "global.ini"),
+                    Path.Combine(_generalPath, "LICENSE"),
+                    GamePathFilePath,
+                };
 
-                //Delete LICENSE file
-                File.Delete(Path.Combine(_generalPath, "LICENSE"));
-                TraceDebugWrite("LICENSE\t\t\t DELETED");
-
-                // Delete game_path file
-                File.Delete(GamePathFilePath);
-                TraceDebugWrite("game_path\t\t DELETED");
-
+                foreach (var file in filesToDelete)
+                {
+                    File.Delete(file);
+                    TraceDebugWrite($"{Path.GetFileName(file)}\t\t DELETED");
+                }
 
                 // Unlock main_button for reinstall the patch
                 btnMain.Text = "Select Path To Cyberpunk 2077 Main Directory";
