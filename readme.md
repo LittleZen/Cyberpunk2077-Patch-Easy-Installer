@@ -177,6 +177,14 @@ Type | Description
 
 -----------
 
+### Version 3.2 & 3.3 [06/01/2021]
+
+- [x] Correctly redirect the download of latest yamashi's patch, now EasyPatcher correctly work!
+- [x] Download/Install patch will now correctly delete the zip archive after installation
+- [x] Uninstall/Download System now correctly work (and delete the correct files)
+- [x] Code Cleaned-up + new comments
+
+-----------
 
 ## LICENSE AND USE
 

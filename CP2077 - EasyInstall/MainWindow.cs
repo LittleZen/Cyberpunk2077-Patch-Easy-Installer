@@ -233,7 +233,10 @@ namespace CP2077___EasyInstall
 
             try
             {
-                DownloadLatestVersion();
+                DownloadLatestVersion(); // create folder called "Patch"(inside patcher directory not CP folder) with all update inside. Function "PatchGame" will install everything from it
+                var release = GetLatestModRelease();
+                TraceDebugWrite("release name: ", release);
+
                 // Move files from patch to Cyberpunk 2077 path.
                 btnMain.Text = "Installing...";
                 var targetDirectory = gamePath;
@@ -249,13 +252,12 @@ namespace CP2077___EasyInstall
 
                 TraceDebugWrite("Path correctly created!\n");
 
-                // Remove the Release.zip and Release folder after extraction.
-                var removeReleaseZip = Path.Combine(CurrentDir, "Release.zip");
+                // Delete "Patch" working folder
                 var downloadPath = Path.Combine(CurrentDir, "Patch");
+                if (Directory.Exists(downloadPath))
+                    Directory.Delete(downloadPath, true);
 
-                File.Delete(removeReleaseZip);
-                Directory.Delete(downloadPath, true);
-
+                // Success + set-up interface
                 MetroFramework.MetroMessageBox.Show(this, "Patch successfully installed!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 btnMain.Text = "Successfully Installed!";
                 btnMain.Enabled = false;
@@ -356,9 +358,9 @@ namespace CP2077___EasyInstall
         {
             try
             {
-                var release = GetLatestModRelease();
-                var downloadPath = Path.Combine(CurrentDir, "Patch");
-                var zipDownloadFile = Path.Combine(CurrentDir, $"{release}.zip");
+                var release = GetLatestModRelease(); // Downloaded zip name
+                var downloadPath = Path.Combine(CurrentDir, "Patch"); // Where temporary extract the file downloaded
+                var zipDownloadFile = Path.Combine(CurrentDir, $"{release}.zip"); // Yamashi's zip archive
 
                 using (var zipFile = File.Create(zipDownloadFile))
 
@@ -369,11 +371,13 @@ namespace CP2077___EasyInstall
                     httpClient.DownloadFile($"https://github.com/yamashi/CyberEngineTweaks/releases/latest/download/{release}", zipDownloadFile);
                 }
 
-                if (Directory.Exists(downloadPath))
-                    Directory.Delete(downloadPath, true);
-
                 btnMain.Text = "Extracting...";
                 ZipFile.ExtractToDirectory(zipDownloadFile, downloadPath);
+
+                // Delete zip archive, after extract it to Patch Folder
+                if(File.Exists(zipDownloadFile))
+                   File.Delete(zipDownloadFile);     
+                
             }
             catch (Exception ex)
             {
