@@ -370,6 +370,9 @@ namespace CP2077___EasyInstall
                     httpClient.DownloadFile($"https://github.com/yamashi/CyberEngineTweaks/releases/latest/download/{release}", zipDownloadFile);
                 }
 
+                // Clean downloadPath folder to prevent Exception while trying to extract already exists files
+                CleanFolder(downloadPath);
+
                 btnMain.Text = "Extracting...";
                 ZipFile.ExtractToDirectory(zipDownloadFile, downloadPath);
 
@@ -382,6 +385,21 @@ namespace CP2077___EasyInstall
                 MetroFramework.MetroMessageBox.Show(this, $"Error during downloading {ExceptionAsString(ex)}", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnMain.Text = "Critical Error!";
                 DisableGbx(); //disable the settings page
+            }
+        }
+
+        private static void CleanFolder(string folderPath)
+        {
+            var dirInfo = new DirectoryInfo(folderPath);
+
+            foreach (var file in dirInfo.EnumerateFiles())
+            {
+                file.Delete();
+            }
+
+            foreach (var dir in dirInfo.EnumerateDirectories())
+            {
+                dir.Delete(true);
             }
         }
 
