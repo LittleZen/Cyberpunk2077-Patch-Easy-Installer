@@ -390,6 +390,11 @@ namespace CP2077___EasyInstall
 
         private static void CleanFolder(string folderPath)
         {
+            if (!Directory.Exists(folderPath))
+            {
+                return;
+            }
+
             var dirInfo = new DirectoryInfo(folderPath);
 
             foreach (var file in dirInfo.EnumerateFiles())
