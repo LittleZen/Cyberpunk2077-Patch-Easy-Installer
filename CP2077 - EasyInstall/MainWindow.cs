@@ -377,8 +377,7 @@ namespace CP2077___EasyInstall
                 ZipFile.ExtractToDirectory(zipDownloadFile, downloadPath);
 
                 // Delete zip archive, after extract it to Patch Folder
-                if(File.Exists(zipDownloadFile))
-                   File.Delete(zipDownloadFile);
+                File.Delete(zipDownloadFile);
             }
             catch (Exception ex)
             {
