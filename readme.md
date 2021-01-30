@@ -14,6 +14,8 @@ For any problems, or for more information, check the main repository (by yamashi
 ## Index
 - [Guide](#guide)
 - [About](#about)
+- [Contributors](#contributors)
+- [Previous Versions](#previous-versions)
 - [Changelog](#changelog)
 
 
@@ -35,9 +37,25 @@ Type | Description
 `Language` | *C# (patch in c++)*
 `Installer Developer` | *LittleZen*
 `Patch Developer` | *[yamashi + others](https://github.com/yamashi/CyberEngineTweaks)*
-`Installer Base Version` | *1.0*
-`Installer Lastest Version` | *Check ChangeLog or LastRelease*
-`Patch Version` | *You can check for updates directly on the tool*
+`Patcher Base Version` | *1.0*
+
+-----------
+
+# Contributors
+
+- [x] [JayVee732](https://github.com/JayVee732)
+- [x] [Saibamen](https://github.com/Saibamen)
+- [x] [kevinf100](https://github.com/kevinf100)
+- [x] [Yamashi](https://github.com/yamashi)
+
+-----------
+
+# Previous Versions
+
+![1](https://i.imgur.com/B4Y5r0y.png)
+![2](https://i.imgur.com/kKlrat3.png)
+![3](https://i.imgur.com/GLD0Dq4.png)
+![4](https://i.imgur.com/DZFzF5Y.png)
 
 -----------
 
@@ -79,21 +97,10 @@ Type | Description
 - [x] Released the `Skip Start menù` features (yamashi)
 - [x] Code clean (Thanks to all contributor!)
 - [x] Installation method will now install the latest patch available
-
------------
-
-### Version 2.3 [17/12/2020]
-**This version include IMPORTANT bug fixes.**
-
 - [x] Resolved a bug where the game didn't start properly after the installation of the patch
 - [x] Changed Memory Pool Input (NumbericUpDown added)
 - [x] Huge code CleanUp + Error Handling
 - [x] .gitignore updated
-
------------
-
-### Version 2.4 [17/12/2020]
-
 - [x] Autofind Steam path added
 - [x] Autofind GOG path added
 - [x] New ToolTips added
@@ -108,11 +115,6 @@ Type | Description
 - [x] Changed Messagebox, now they are more clear
 - [x] MaximizeBox option disabled
 - [x] Code clean up + minor improvements
-
------------
-
-### Version 2.6 [18/12/2020]
-
 - [x] "Dump Game Option" features by yamashi added
 - [x] New ToolTips
 - [x] Code Cleaned up
@@ -126,36 +128,23 @@ Type | Description
 -----------
 
 ### Version 2.8 [20/12/2020]
-**Currently working for release a customizable version of ConsoleKey, it will release soon with release 2.9**
 
 - [x] HUD changed due to new options available
 - [x] Released the `Dump Game Option` option (yamashi)
 - [x] Released the `Debugger` option (yamashi)
 - [x] Released the `Console` option (yamashi)
-- [x] Error message improved, should be more easy understand the cause of the errors
-- [x] Update system-logic changed
-- [x] Code clear + minor update
-
------------
-
-### Version 2.9 [20/12/2020]
-
-- [x] Console key checkbox, now correctly disable the console input forms (if disabled)
-- [x] Resolved a bug where save the settings before install the patch may start unexpected crash
-- [x] Console key now correctly work (@JayVee732)
 - [x] Released the `Disable Vignette` option (yamashi)
 - [x] Released the `Disable Boundary Teleport` option (yamashi)
 - [x] Released the `Disable Intro Movies` option (yamashi)
+- [x] Error message improved, should be more easy understand the cause of the errors
+- [x] Update system-logic changed
+- [x] Code clear + minor update
+- [x] Console key checkbox, now correctly disable the console input forms (if disabled)
+- [x] Resolved a bug where save the settings before install the patch may start unexpected crash
+- [x] Console key now correctly work (@JayVee732)
 - [x] New ToolTips added
 - [x] Code cleaned up
 - [x] Minor bug fixes
-
-
------------
-
-### Version 3.0 [20/12/2020]
-**This version include IMPORTANT bug fixes.**
-
 - [x] Resolved a bug where the Console Key was not being set on the initial installation of the mods
 - [x] Fixed an issue that doesn't allow mod installation
 - [x] Error messagebox improved for correctly find future bugs

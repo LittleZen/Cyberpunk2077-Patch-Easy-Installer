@@ -344,6 +344,7 @@ namespace CP2077___EasyInstall
             try
             {
                 var settingsPath = Path.Combine(_generalPath, "plugins", "cyber_engine_tweaks", "config.json");
+                TraceDebugWrite("settingsPath: " + settingsPath);
                 Process.Start(settingsPath);
             }
             catch (Exception ex)
@@ -652,7 +653,6 @@ namespace CP2077___EasyInstall
             {
                 exceptionString += $"{Environment.NewLine}InnerException: {exception.InnerException}";
             }
-
             return exceptionString;
         }
     }
