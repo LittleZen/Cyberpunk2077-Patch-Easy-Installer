@@ -50,15 +50,6 @@ Type | Description
 
 -----------
 
-# Previous Versions
-
-![1](https://i.imgur.com/B4Y5r0y.png)
-![2](https://i.imgur.com/kKlrat3.png)
-![3](https://i.imgur.com/GLD0Dq4.png)
-![4](https://i.imgur.com/DZFzF5Y.png)
-
------------
-
 ## Changelog
 
 ### Version 1.0 [15/12/2020]
