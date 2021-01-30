@@ -76,25 +76,22 @@ Type | Description
 
 ### Version 2.2 [17/12/2020]
 
-- [x] Bug fix and stability improve
+- [x] Resolved a bug where the game didn't start properly after the installation of the patch
 - [x] `Uninstall` System Added (now you can easy install/unistall the patches)
 - [x] `Check Update` System added (will automatically install the lastest patch available)
-- [x] ToolTips added. Just move the cursor over the settings, for check what they do (example: pass the cursor, over the "AVX" settings
+- [x] ToolTips added. Just move the cursor over the settings, for check what they do
 - [x] Update system now correctly remove the zip files downloaded, after the update
 - [x] Released the option `Remove Pedestrians` (yamashi)
 - [x] Released the option `Disable Antialiasing` (yamashi)
 - [x] Added the `Memory Pool` section for correctly manage the memory pool (CPU/GPU) (yamashi)
 - [x] Released the `Async Compute` features (yamashi)
 - [x] Released the `Skip Start menù` features (yamashi)
-- [x] Code clean (Thanks to all contributor!)
 - [x] Installation method will now install the latest patch available
-- [x] Resolved a bug where the game didn't start properly after the installation of the patch
 - [x] Changed Memory Pool Input (NumbericUpDown added)
 - [x] Huge code CleanUp + Error Handling
 - [x] .gitignore updated
 - [x] Autofind Steam path added
 - [x] Autofind GOG path added
-- [x] New ToolTips added
 - [x] Minor changes and bug fix
 
 -----------
@@ -108,7 +105,6 @@ Type | Description
 - [x] Code clean up + minor improvements
 - [x] "Dump Game Option" features by yamashi added
 - [x] New ToolTips
-- [x] Code Cleaned up
 
 -----------
 
@@ -120,6 +116,10 @@ Type | Description
 
 ### Version 2.8 [20/12/2020]
 
+- [x] Fixed an issue that doesn't allow mod installation
+- [x] Resolved a bug where save the settings before install the patch may start unexpected crash
+- [x] Resolved a bug where the Console Key was not being set on the initial installation of the mods
+- [x] New ToolTips added
 - [x] HUD changed due to new options available
 - [x] Released the `Dump Game Option` option (yamashi)
 - [x] Released the `Debugger` option (yamashi)
@@ -127,18 +127,11 @@ Type | Description
 - [x] Released the `Disable Vignette` option (yamashi)
 - [x] Released the `Disable Boundary Teleport` option (yamashi)
 - [x] Released the `Disable Intro Movies` option (yamashi)
-- [x] Error message improved, should be more easy understand the cause of the errors
 - [x] Update system-logic changed
-- [x] Code clear + minor update
 - [x] Console key checkbox, now correctly disable the console input forms (if disabled)
-- [x] Resolved a bug where save the settings before install the patch may start unexpected crash
 - [x] Console key now correctly work (@JayVee732)
-- [x] New ToolTips added
-- [x] Code cleaned up
-- [x] Minor bug fixes
-- [x] Resolved a bug where the Console Key was not being set on the initial installation of the mods
-- [x] Fixed an issue that doesn't allow mod installation
 - [x] Error messagebox improved for correctly find future bugs
+- [x] Code cleaned + minor bug fixes
 
 -----------
 
@@ -152,12 +145,12 @@ Type | Description
 - [x] Use Tilde Key: updated the initial value to use the Keys enum
 - [x] Refactored Return Functions: Shorted functions for returning registry values.
 - [x] Yamashi's repository updated (all links are now correctly redirected)
-- [x] Code cleaned up
 - [x] Prevent "empty" Yes/No MsgBox and Exception after clicking Yes in autodetect GOG mode
+- [x] Code cleaned up
 
 -----------
 
-### Version 3.2 & 3.3 [06/01/2021]
+### Version 3.2 [06/01/2021]
 
 - [x] Correctly redirect the download of latest yamashi's patch, now EasyPatcher correctly work!
 - [x] Download/Install patch will now correctly delete the zip archive after installation
