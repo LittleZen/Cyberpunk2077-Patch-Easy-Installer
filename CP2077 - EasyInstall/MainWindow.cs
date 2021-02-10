@@ -240,8 +240,8 @@ namespace CP2077___EasyInstall
 
                 // Move files from patch to Cyberpunk 2077 path.
                 btnMain.Text = "Installing...";
-                var targetDirectory = gamePath;
-                Copy("Patch", targetDirectory);
+                TraceDebugWrite($"gamePath: {gamePath}");
+                Copy("Patch", gamePath);
 
                 using (var outputFile = new StreamWriter(GamePathFilePath))
                     outputFile.Write(gamePath);
@@ -589,12 +589,13 @@ namespace CP2077___EasyInstall
                         _generalPath = Path.Combine(path, "bin", "x64");
                     }
 
-                    PatchGame(Path.Combine(path, "bin", "x64"));
+                    //PatchGame(Path.Combine(path, "bin", "x64"));
+                    PatchGame(Path.Combine(path));
                     EnableGbx(); //enable the settings after the installation
                 }
                 else if (result == DialogResult.No)
                 {
-                    MetroFramework.MetroMessageBox.Show(this, null, "Install Cancelled.", MessageBoxButtons.OK);
+                    MetroFramework.MetroMessageBox.Show(this, null, "Installation Cancelled!", MessageBoxButtons.OK);
                     btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
                     DisableGbx(); //disable the settings page
                 }
