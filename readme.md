@@ -159,6 +159,15 @@ Type | Description
 
 -----------
 
+# Version 3.5 [10/02/2021]
+
+- [x] Fixed a bug which cause the installation fail
+- [x] Improved and fixed the uninstall method
+- [x] Clean downloadPath folder to prevent Exception while trying to extract already exists files
+- [x] Code optimization, and minors bug fixies
+
+-----------
+
 ## LICENSE AND USE
 
 - [x] Install the patch, download the source or the installer will result as "license and use" accepted
