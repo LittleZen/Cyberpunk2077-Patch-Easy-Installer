@@ -159,7 +159,7 @@ Type | Description
 
 -----------
 
-# Version 3.5 [10/02/2021]
+### Version 3.5 [10/02/2021]
 
 - [x] Fixed a bug which cause the installation fail
 - [x] Improved and fixed the uninstall method
