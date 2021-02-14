@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
@@ -18,7 +18,7 @@ namespace CP2077___EasyInstall
 
         private static readonly Version CurrentProgramVersion = Assembly.GetExecutingAssembly().GetName().Version;
         private static readonly string CurrentDir = Directory.GetCurrentDirectory();
-        private static readonly string GamePathFilePath = Path.Combine(CurrentDir, "game_path");
+        private static readonly string GamePath = ConfigurationManager.AppSettings.Get("GamePath");
 
         /// <summary>
         /// Entry point for the application
@@ -30,10 +30,19 @@ namespace CP2077___EasyInstall
             CheckForUpdate();
             try
             {
+                // This whole initialisation of the program is really stupid.
+                // We shouldn't be starting the application with an exception
+                // to check if the user has already installed the mods.
+                // We need a better solution but I don't care for the time being.
+
+                if (GamePath == null)
+                {
+                    throw new ArgumentException();
+                }
+
                 // Check if the patch is already installed. If game_path file != NULL == already installed.
-                var myPath = File.ReadAllText(GamePathFilePath);
-                TraceDebugWrite(myPath);
-                _generalPath = Path.Combine(myPath, "bin", "x64"); ;
+                TraceDebugWrite(GamePath);
+                _generalPath = Path.Combine(GamePath, "bin", "x64"); ;
                 btnMain.Text = "Patch already installed!";
                 EnableGbx(); // Enable settings.
                 btnMain.Enabled = false;
@@ -43,7 +52,7 @@ namespace CP2077___EasyInstall
                 LoadSettings(_generalPath);
                 TraceDebugWrite("Patch already installed!");
             }
-            catch (Exception)
+            catch (ArgumentException) // ArugmentException for not being able to read app settings.
             {
                 TraceDebugWrite("Patch not already installed!");
             }
@@ -129,27 +138,34 @@ namespace CP2077___EasyInstall
         /// <param name="generalPath">Location to main game installation.</param>
         private void LoadSettings(string generalPath)
         {
-            var data = JsonConvert.DeserializeObject<Data>(File.ReadAllText(Path.Combine(generalPath, "plugins", "cyber_engine_tweaks", "config.json")));
+            try
+            {
+                var data = JsonConvert.DeserializeObject<Data>(File.ReadAllText(Path.Combine(generalPath, "plugins", "cyber_engine_tweaks", "config.json")));
 
-            cbAVX.Checked = data.AVX;
-            numCpuMem.Value = data.CPUMemoryPoolFraction;
-            cbAntialiasing.Checked = data.DisableAntialiasing;
-            cbAsyncCompute.Checked = data.DisableAsyncCompute;
-            numGpuMem.Value = data.GPUMemoryPoolFraction;
-            cbMemoryPool.Checked = data.MemoryPool;
-            cbRemovePedestrians.Checked = data.RemovePedestrians;
-            cbSkipStartMenu.Checked = data.SkipStartMenu;
-            cbSMT.Checked = data.SMT;
-            cbSpectre.Checked = data.Spectre;
-            cbDebug.Checked = data.UnlockMenu;
-            cbVInput.Checked = data.VirtualInput;
-            cbVInput.Checked = data.VirtualInput;
-            cbConsole.Checked = data.Console;
-            cbDumpOption.Checked = data.DumpOption;
-            cbBoundaryTeleport.Checked = data.DisableBoundaryTeleport;
-            cbIntroMovies.Checked = data.DisableIntroMovies;
-            cbVignette.Checked = data.DisableVignette;
-            numConsoleKey.Value = data.ConsoleKey;
+                cbAVX.Checked = data.AVX;
+                numCpuMem.Value = data.CPUMemoryPoolFraction;
+                cbAntialiasing.Checked = data.DisableAntialiasing;
+                cbAsyncCompute.Checked = data.DisableAsyncCompute;
+                numGpuMem.Value = data.GPUMemoryPoolFraction;
+                cbMemoryPool.Checked = data.MemoryPool;
+                cbRemovePedestrians.Checked = data.RemovePedestrians;
+                cbSkipStartMenu.Checked = data.SkipStartMenu;
+                cbSMT.Checked = data.SMT;
+                cbSpectre.Checked = data.Spectre;
+                cbDebug.Checked = data.UnlockMenu;
+                cbVInput.Checked = data.VirtualInput;
+                cbVInput.Checked = data.VirtualInput;
+                cbConsole.Checked = data.Console;
+                cbDumpOption.Checked = data.DumpOption;
+                cbBoundaryTeleport.Checked = data.DisableBoundaryTeleport;
+                cbIntroMovies.Checked = data.DisableIntroMovies;
+                cbVignette.Checked = data.DisableVignette;
+                numConsoleKey.Value = data.ConsoleKey;
+            }
+            catch (FileNotFoundException)
+            {
+                TraceDebugWrite("Settings file not found, create one first.");
+            }
         }
 
         /// <summary>
@@ -245,14 +261,28 @@ namespace CP2077___EasyInstall
                 btnMain.Text = "Installing...";
                 TraceDebugWrite($"gamePath: {gamePath}");
                 Copy("Patch", gamePath);
+                SaveSettings();
 
-                using (var outputFile = new StreamWriter(GamePathFilePath))
-                    outputFile.Write(gamePath);
+                //using (var outputFile = new StreamWriter(GamePath))
+                //    outputFile.Write(gamePath);
 
-                TraceDebugWrite($"game_path path = {GamePathFilePath}");
+                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                var settings = configFile.AppSettings.Settings;
+                if (settings["GamePath"] == null)
+                {
+                    settings.Add("GamePath", gamePath);
+                }
+                else
+                {
+                    settings["GamePath"].Value = gamePath;
+                }
+                configFile.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+
+                TraceDebugWrite($"game_path path = {GamePath}");
 
                 // Write Path file. It is used for checking if the patch has already been installed (on next restart)
-                File.WriteAllText(GamePathFilePath, gamePath);
+                //File.WriteAllText(GamePath, gamePath);
 
                 TraceDebugWrite("Path correctly created!\n");
 
@@ -295,45 +325,49 @@ namespace CP2077___EasyInstall
         {
             try
             {
-                var settingsPath = Path.Combine(_generalPath, "plugins", "cyber_engine_tweaks", "config.json");
-
-                var data = new Data()
-                {
-                    AVX = cbAVX.Checked,
-                    SMT = cbSMT.Checked,
-                    Spectre = cbMemoryPool.Checked,
-                    VirtualInput = cbSpectre.Checked,
-                    MemoryPool = cbMemoryPool.Checked,
-                    UnlockMenu = cbDebug.Checked,
-                    CPUMemoryPoolFraction = numCpuMem.Value,
-                    GPUMemoryPoolFraction = numGpuMem.Value,
-                    RemovePedestrians = cbRemovePedestrians.Checked,
-                    SkipStartMenu = cbSkipStartMenu.Checked,
-                    DisableAsyncCompute = cbAsyncCompute.Checked,
-                    DisableAntialiasing = cbAntialiasing.Checked,
-                    Console = cbConsole.Checked,
-                    DumpOption = cbDumpOption.Checked,
-                    DisableBoundaryTeleport = cbBoundaryTeleport.Checked,
-                    DisableIntroMovies = cbIntroMovies.Checked,
-                    DisableVignette = cbVignette.Checked,
-                    ConsoleKey = _keyPress
-                };
-
-                using (var file = File.CreateText(settingsPath))
-                {
-                    var serializer = new JsonSerializer
-                    {
-                        Formatting = Formatting.Indented,
-                    };
-                    // Serialize object directly into file stream.
-                    serializer.Serialize(file, data);
-                }
-
+                SaveSettings();
                 MetroFramework.MetroMessageBox.Show(this, "\nSaved!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
             catch (Exception ex)
             {
                 MetroFramework.MetroMessageBox.Show(this, $"\nYou must install the patch before save the settings! {ExceptionAsString(ex)}", "Patch not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void SaveSettings()
+        {
+            var settingsPath = Path.Combine(_generalPath, "plugins", "cyber_engine_tweaks", "config.json");
+
+            var data = new Data()
+            {
+                AVX = cbAVX.Checked,
+                SMT = cbSMT.Checked,
+                Spectre = cbMemoryPool.Checked,
+                VirtualInput = cbSpectre.Checked,
+                MemoryPool = cbMemoryPool.Checked,
+                UnlockMenu = cbDebug.Checked,
+                CPUMemoryPoolFraction = numCpuMem.Value,
+                GPUMemoryPoolFraction = numGpuMem.Value,
+                RemovePedestrians = cbRemovePedestrians.Checked,
+                SkipStartMenu = cbSkipStartMenu.Checked,
+                DisableAsyncCompute = cbAsyncCompute.Checked,
+                DisableAntialiasing = cbAntialiasing.Checked,
+                Console = cbConsole.Checked,
+                DumpOption = cbDumpOption.Checked,
+                DisableBoundaryTeleport = cbBoundaryTeleport.Checked,
+                DisableIntroMovies = cbIntroMovies.Checked,
+                DisableVignette = cbVignette.Checked,
+                ConsoleKey = _keyPress
+            };
+
+            using (var file = File.CreateText(settingsPath))
+            {
+                var serializer = new JsonSerializer
+                {
+                    Formatting = Formatting.Indented,
+                };
+                // Serialize object directly into file stream.
+                serializer.Serialize(file, data);
             }
         }
 
@@ -420,7 +454,7 @@ namespace CP2077___EasyInstall
         {
             try
             {
-                PatchGame(File.ReadAllText(GamePathFilePath));
+                PatchGame(File.ReadAllText(GamePath));
                 btnMain.Text = "Successfully Installed!";
             }
             catch (Exception ex)
@@ -476,8 +510,7 @@ namespace CP2077___EasyInstall
                 {
                     Path.Combine(_generalPath, "version.dll"),
                     Path.Combine(_generalPath, "global.ini"),
-                    Path.Combine(_generalPath, "LICENSE"),
-                    GamePathFilePath,
+                    Path.Combine(_generalPath, "LICENSE")
                 };
 
                 foreach (var file in filesToDelete)
@@ -485,6 +518,15 @@ namespace CP2077___EasyInstall
                     File.Delete(file);
                     TraceDebugWrite($"{Path.GetFileName(file)}\t\t DELETED");
                 }
+
+                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                var settings = configFile.AppSettings.Settings;
+                if (!(settings["GamePath"] == null))
+                {
+                    settings.Remove("GamePath");
+                }
+                configFile.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
 
                 // Unlock main_button for reinstall the patch.
                 btnMain.Text = "Select Path To Cyberpunk 2077 Main Directory";
