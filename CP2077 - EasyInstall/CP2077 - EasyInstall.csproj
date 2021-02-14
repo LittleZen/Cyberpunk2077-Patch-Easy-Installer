@@ -85,6 +85,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GitHub.cs" />
     <Compile Include="UpdateUtil.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="FindGames.cs" />

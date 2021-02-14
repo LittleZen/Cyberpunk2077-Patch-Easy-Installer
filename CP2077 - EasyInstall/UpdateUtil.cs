@@ -1,4 +1,6 @@
-﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
@@ -35,26 +37,37 @@ namespace CP2077___EasyInstall
             return httpWebResponse.GetResponseStream();
         }
 
-        private static readonly Regex LatestGitTagRegex = new Regex("\\\"tag_name\"\\s*\\:\\s*\\\"([v])([0-9]+\\.[0-9])\\\""); // Match `"tag_name": "v2.7"`. Group 1 is `v2.7`
-
         /// <summary>
-        /// Gets the latest version of Cyberpunk2077-Patch-Easy-Installer according to the Github API
+        /// Gets the latest version of Cyberpunk2077-Patch-Easy-Installer according to the Github API.
         /// </summary>
-        /// <returns>A version representing the latest available version of Cyberpunk2077-Patch-Easy-Installer, or null if the latest version could not be determined</returns>
-        public static Version GetLatestVersion()
+        /// <returns>A Version representing the latest available version of Cyberpunk2077-Patch-Easy-Installer, or null if the latest version could not be determined.</returns>
+        public static Version GetLatestApplicationVersion()
         {
-            const string apiEndpoint = "https://api.github.com/repos/LittleZen/Cyberpunk2077-Patch-Easy-Installer/releases/latest";
-            var responseJson = GetStringFromURL(apiEndpoint);
+            string responseJson = GetGitHubAPIDetails("LittleZen", "Cyberpunk2077-Patch-Easy-Installer");
             if (string.IsNullOrEmpty(responseJson))
                 return null;
 
-            // Using a regex to get the tag to avoid importing an entire JSON parsing library
-            var tagMatch = LatestGitTagRegex.Match(responseJson);
-            if (!tagMatch.Success)
-                return null;
+            GitHub tagName = JsonConvert.DeserializeObject<GitHub>(responseJson);
 
-            var tagString = tagMatch.Groups[2].Value;
-            return !Version.TryParse(tagString, out var latestVersion) ? null : latestVersion;
+            return !Version.TryParse(tagName.TagName.Remove(0, 1), out var latestVersion) ? null : latestVersion;
         }
+
+
+        /// <summary>
+        /// Gets the latest version of CyberEngineTweaks according to the Github API.
+        /// </summary>
+        /// <returns>The filename of the release zip.</returns>
+        public static string GetLatestModRelease()
+        {
+            string responseJson = GetGitHubAPIDetails("yamashi", "CyberEngineTweaks");
+            if (string.IsNullOrEmpty(responseJson))
+                return null;
+            
+            GitHub releaseName = JsonConvert.DeserializeObject<GitHub>(responseJson);
+
+            return releaseName.Assets[0].Name;
+        }
+
+        private static string GetGitHubAPIDetails(string username, string repo) => GetStringFromURL($"https://api.github.com/repos/{username}/{repo}/releases/latest");
     }
 }

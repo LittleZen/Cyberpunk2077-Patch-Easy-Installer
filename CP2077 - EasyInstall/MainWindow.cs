@@ -33,10 +33,9 @@ namespace CP2077___EasyInstall
                 // Check if the patch is already installed. If game_path file != NULL == already installed.
                 var myPath = File.ReadAllText(GamePathFilePath);
                 TraceDebugWrite(myPath);
-
-                _generalPath = myPath;
+                _generalPath = Path.Combine(myPath, "bin", "x64"); ;
                 btnMain.Text = "Patch already installed!";
-                EnableGbx(); // enable settings
+                EnableGbx(); // Enable settings.
                 btnMain.Enabled = false;
                 btnFindSteam.Enabled = false;
                 btnFindGoG.Enabled = false;
@@ -48,10 +47,11 @@ namespace CP2077___EasyInstall
             {
                 TraceDebugWrite("Patch not already installed!");
             }
-
         }
 
-        // Enable GroupBox + Default values
+        /// <summary>
+        /// Enable GroupBox + Default values.
+        /// </summary>
         private void EnableGbx()
         {
             gbxSettings.Enabled = true;
@@ -68,6 +68,9 @@ namespace CP2077___EasyInstall
             cbConsole.Checked = true;
         }
 
+        /// <summary>
+        /// Disable GroupBox + Default values.
+        /// </summary>
         private void DisableGbx()
         {
             gbxSettings.Enabled = false;
@@ -97,7 +100,7 @@ namespace CP2077___EasyInstall
 
             try
             {
-                latestVersion = UpdateUtil.GetLatestVersion();
+                latestVersion = UpdateUtil.GetLatestApplicationVersion();
             }
             catch (Exception ex)
             {
@@ -235,7 +238,7 @@ namespace CP2077___EasyInstall
             try
             {
                 DownloadLatestVersion(); // create folder called "Patch"(inside patcher directory not CP folder) with all update inside. Function "PatchGame" will install everything from it
-                var release = GetLatestModRelease();
+                var release = UpdateUtil.GetLatestModRelease();
                 TraceDebugWrite("Release name: ", release);
 
                 // Move files from patch to Cyberpunk 2077 path.
@@ -360,7 +363,7 @@ namespace CP2077___EasyInstall
         {
             try
             {
-                var release = GetLatestModRelease(); // Downloaded zip name
+                var release = UpdateUtil.GetLatestModRelease(); // Downloaded zip name
                 var downloadPath = Path.Combine(CurrentDir, "Patch"); // Where temporary extract the file downloaded
                 var zipDownloadFile = Path.Combine(CurrentDir, $"{release}.zip"); // Yamashi's zip archive
 
@@ -409,29 +412,6 @@ namespace CP2077___EasyInstall
         }
 
         /// <summary>
-        /// Use the GitHub API to get the name of the latest release.
-        /// </summary>
-        /// <returns>The filename of the release zip.</returns>
-        private static string GetLatestModRelease()
-        {
-            const string apiEndpoint = "https://api.github.com/repos/yamashi/CyberEngineTweaks/releases/latest";
-            var responseJson = UpdateUtil.GetStringFromURL(apiEndpoint);
-            if (string.IsNullOrEmpty(responseJson))
-                return null;
-
-            // This whole section is a little messy, but I don't
-            // feel like writing up a whole class just for one property.
-            var asset = JObject.Parse(responseJson);
-
-            var assestsPath = JArray.Parse(asset["assets"].ToString());
-            TraceDebugWrite(assestsPath.First["name"].ToString());
-
-            var releaseName = assestsPath.First["name"].ToString();
-
-            return releaseName;
-        }
-
-        /// <summary>
         /// Button Update has been clicked.
         /// </summary>
         /// <param name="sender"></param>
@@ -475,12 +455,12 @@ namespace CP2077___EasyInstall
         /// <param name="e"></param>
         private void btnUninstall_Click(object sender, EventArgs e)
         {
-            DisableGbx(); //turn off all settings before the uninstallation
+            DisableGbx(); // Turn off all settings before the uninstallation.
             try
             {
                 btnMain.Text = "Uninstalling...";
 
-                // Bool is for recursive
+                // Bool is for recursive.
                 var directoriesToDelete = new Dictionary<string, bool>
                 {
                     { Path.Combine(_generalPath, "plugins"), true },
@@ -506,7 +486,7 @@ namespace CP2077___EasyInstall
                     TraceDebugWrite($"{Path.GetFileName(file)}\t\t DELETED");
                 }
 
-                // Unlock main_button for reinstall the patch
+                // Unlock main_button for reinstall the patch.
                 btnMain.Text = "Select Path To Cyberpunk 2077 Main Directory";
                 btnMain.Enabled = true;
                 btnFindSteam.Enabled = true;
@@ -523,60 +503,35 @@ namespace CP2077___EasyInstall
 
         private void btnFindSteam_Click(object sender, EventArgs e)
         {
-            try
-            {
-                btnMain.Text = "Working...";
-                var path = SteamGamePath.FindGameByAppID("1091500");
-                if (path == null)
-                {
-                    MetroFramework.MetroMessageBox.Show(this, "Error: Couldn't Find Cyberpunk for Steam!", "File not found Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //TraceDebugWrite("Error: Couldn't Find Cyberpunk for Steam!");
-                    btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
-                    return;
-                }
-
-                var result = MetroFramework.MetroMessageBox.Show(this, path, "Is this Correct?", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
-                {
-                    if (string.IsNullOrWhiteSpace(_generalPath))
-                    {
-                        _generalPath = Path.Combine(path, "bin", "x64");
-                    }
-
-                    PatchGame(Path.Combine(path, "bin", "x64"));
-                    EnableGbx(); //enable the settings after the installation
-                }
-                else if (result == DialogResult.No)
-                {
-                    MetroFramework.MetroMessageBox.Show(this, null, "Install Cancelled.", MessageBoxButtons.OK);
-                    btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
-                    DisableGbx(); //disable the settings page
-                }
-                else
-                {
-                    MetroFramework.MetroMessageBox.Show(this, "The tool wasn't able to open the dialog box!", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    btnMain.Text = "Critical Error!";
-                    DisableGbx(); //disable the settings page
-                }
-            }
-            catch (Exception ex)
-            {
-                MetroFramework.MetroMessageBox.Show(this, $"Error: {ExceptionAsString(ex)}", "Unknown Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //TraceDebugWrite("Error" + ex);
-                DisableGbx(); //disable the settings page
-            }
+            GamePathInstaller(sender);
         }
 
         private void btnFindGoG_Click(object sender, EventArgs e)
         {
+            GamePathInstaller(sender);
+        }
+
+        private void GamePathInstaller(object sender)
+        {
             try
             {
                 btnMain.Text = "Working...";
-                var path = GOGGamePath.FindGameByAppID("1423049311");
+                Button clickedButton = (Button)sender;
+                string path = null;
+
+                if (clickedButton.Tag.ToString() == "GOG")
+                {
+                    path = GOGGamePath.FindGameByAppID("1423049311");
+                }
+                else if (clickedButton.Tag.ToString() == "Steam")
+                {
+                    path = SteamGamePath.FindGameByAppID("1091500");
+                }
+
                 if (path == null)
                 {
-                    MetroFramework.MetroMessageBox.Show(this, "Error: Couldn't Find Cyberpunk for GOG!", "Error: File not found!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //TraceDebugWrite("Error: Couldn't Find CyberPunk for GOG!");
+                    MetroFramework.MetroMessageBox.Show(this, $"Error: Couldn't Find Cyberpunk for {clickedButton.Tag}!", "Error: File not found!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TraceDebugWrite($"Error: Couldn't Find Cyberpunk for {clickedButton.Tag}!");
                     btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
                     return;
                 }
@@ -589,28 +544,27 @@ namespace CP2077___EasyInstall
                         _generalPath = Path.Combine(path, "bin", "x64");
                     }
 
-                    //PatchGame(Path.Combine(path, "bin", "x64"));
                     PatchGame(Path.Combine(path));
-                    EnableGbx(); //enable the settings after the installation
+                    EnableGbx(); // Enable the settings after the installation.
                 }
                 else if (result == DialogResult.No)
                 {
                     MetroFramework.MetroMessageBox.Show(this, null, "Installation Cancelled!", MessageBoxButtons.OK);
                     btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
-                    DisableGbx(); //disable the settings page
+                    DisableGbx(); // Disable the Settings page.
                 }
                 else
                 {
                     MetroFramework.MetroMessageBox.Show(this, "The tool wasn't able to open the dialog box!", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    DisableGbx(); //disable the settings page
+                    DisableGbx(); // Disable the Settings page.
                 }
 
             }
             catch (Exception ex)
             {
                 MetroFramework.MetroMessageBox.Show(this, $"Error: {ExceptionAsString(ex)}", "Unknown Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //TraceDebugWrite("Error" + ex);
-                DisableGbx(); //disable the settings page
+                TraceDebugWrite("Error" + ex);
+                DisableGbx(); // Disable the Settings page.
             }
         }
 
