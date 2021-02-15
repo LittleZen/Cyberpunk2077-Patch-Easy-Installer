@@ -393,7 +393,6 @@ namespace CP2077___EasyInstall
                 // Serialize object directly into file stream.
                 serializer.Serialize(file, data);
             }
-            DisableGbx();
         }
 
         /// <summary>
