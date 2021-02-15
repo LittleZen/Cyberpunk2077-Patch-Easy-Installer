@@ -42,7 +42,7 @@ namespace CP2077___EasyInstall
 
                 // Check if the patch is already installed. If game_path file != NULL == already installed.
                 TraceDebugWrite(GamePath);
-                _generalPath = Path.Combine(GamePath, "bin", "x64"); ;
+                _generalPath = Path.Combine(GamePath, "bin", "x64");
                 btnMain.Text = "Patch already installed!";
                 EnableGbx(); // Enable settings.
                 btnMain.Enabled = false;
@@ -109,11 +109,12 @@ namespace CP2077___EasyInstall
 
             try
             {
-                latestVersion = UpdateUtil.GetLatestApplicationVersion();
+                GitHub response = UpdateUtil.GetGitHubAPIInfo("LittleZen", "Cyberpunk2077-Patch-Easy-Installer");
+                latestVersion = !Version.TryParse(response.TagName.Remove(0, 1), out var latestGitHubVersion) ? null : latestGitHubVersion;
             }
             catch (Exception ex)
             {
-                Trace.WriteLine($"Exception while checking for latest version: {ex}");
+                TraceDebugWrite($"Exception while checking for latest version: {ex}");
                 return;
             }
 
@@ -253,8 +254,8 @@ namespace CP2077___EasyInstall
 
             try
             {
-                DownloadLatestVersion(); // create folder called "Patch"(inside patcher directory not CP folder) with all update inside. Function "PatchGame" will install everything from it
-                var release = UpdateUtil.GetLatestModRelease();
+                DownloadLatestVersion(); // Create folder called "Patch"(inside patcher directory not CP folder) with all update inside. Function "PatchGame" will install everything from it.
+                var release = UpdateUtil.GetGitHubAPIInfo("yamashi", "CyberEngineTweaks").Assets[0].Name;
                 TraceDebugWrite("Release name: ", release);
 
                 // Move files from patch to Cyberpunk 2077 path.
@@ -262,9 +263,6 @@ namespace CP2077___EasyInstall
                 TraceDebugWrite($"gamePath: {gamePath}");
                 Copy("Patch", gamePath);
                 SaveSettings();
-
-                //using (var outputFile = new StreamWriter(GamePath))
-                //    outputFile.Write(gamePath);
 
                 var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 var settings = configFile.AppSettings.Settings;
@@ -281,17 +279,12 @@ namespace CP2077___EasyInstall
 
                 TraceDebugWrite($"game_path path = {GamePath}");
 
-                // Write Path file. It is used for checking if the patch has already been installed (on next restart)
-                //File.WriteAllText(GamePath, gamePath);
-
-                TraceDebugWrite("Path correctly created!\n");
-
-                // Delete "Patch" working folder
+                // Delete "Patch" working folder.
                 var downloadPath = Path.Combine(CurrentDir, "Patch");
                 if (Directory.Exists(downloadPath))
                     Directory.Delete(downloadPath, true);
 
-                // Success + set-up interface
+                // Success + set-up interface.
                 MetroFramework.MetroMessageBox.Show(this, "Patch successfully installed!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 btnMain.Text = "Successfully Installed!";
                 btnMain.Enabled = false;
@@ -302,7 +295,7 @@ namespace CP2077___EasyInstall
             {
                 MetroFramework.MetroMessageBox.Show(this, $"Error during installation {ExceptionAsString(ex)}", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnMain.Text = "Critical Error!";
-                DisableGbx(); //disable the settings page
+                DisableGbx(); // Disable the settings page.
             }
         }
 
@@ -397,7 +390,7 @@ namespace CP2077___EasyInstall
         {
             try
             {
-                var release = UpdateUtil.GetLatestModRelease(); // Downloaded zip name
+                var release = UpdateUtil.GetGitHubAPIInfo("yamashi", "CyberEngineTweaks").Assets[0].Name; // Downloaded zip name
                 var downloadPath = Path.Combine(CurrentDir, "Patch"); // Where temporary extract the file downloaded
                 var zipDownloadFile = Path.Combine(CurrentDir, $"{release}.zip"); // Yamashi's zip archive
 
@@ -454,7 +447,7 @@ namespace CP2077___EasyInstall
         {
             try
             {
-                PatchGame(File.ReadAllText(GamePath));
+                PatchGame(GamePath);
                 btnMain.Text = "Successfully Installed!";
             }
             catch (Exception ex)

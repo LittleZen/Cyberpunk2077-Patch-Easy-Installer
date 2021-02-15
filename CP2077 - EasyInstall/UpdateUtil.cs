@@ -1,10 +1,8 @@
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
-using System.Text.RegularExpressions;
 
 namespace CP2077___EasyInstall
 {
@@ -38,34 +36,16 @@ namespace CP2077___EasyInstall
         }
 
         /// <summary>
-        /// Gets the latest version of Cyberpunk2077-Patch-Easy-Installer according to the Github API.
-        /// </summary>
-        /// <returns>A Version representing the latest available version of Cyberpunk2077-Patch-Easy-Installer, or null if the latest version could not be determined.</returns>
-        public static Version GetLatestApplicationVersion()
-        {
-            string responseJson = GetGitHubAPIDetails("LittleZen", "Cyberpunk2077-Patch-Easy-Installer");
-            if (string.IsNullOrEmpty(responseJson))
-                return null;
-
-            GitHub tagName = JsonConvert.DeserializeObject<GitHub>(responseJson);
-
-            return !Version.TryParse(tagName.TagName.Remove(0, 1), out var latestVersion) ? null : latestVersion;
-        }
-
-
-        /// <summary>
         /// Gets the latest version of CyberEngineTweaks according to the Github API.
         /// </summary>
         /// <returns>The filename of the release zip.</returns>
-        public static string GetLatestModRelease()
+        public static GitHub GetGitHubAPIInfo(string username, string repo)
         {
-            string responseJson = GetGitHubAPIDetails("yamashi", "CyberEngineTweaks");
+            string responseJson = GetGitHubAPIDetails(username, repo);
             if (string.IsNullOrEmpty(responseJson))
                 return null;
-            
-            GitHub releaseName = JsonConvert.DeserializeObject<GitHub>(responseJson);
 
-            return releaseName.Assets[0].Name;
+            return JsonConvert.DeserializeObject<GitHub>(responseJson);
         }
 
         private static string GetGitHubAPIDetails(string username, string repo) => GetStringFromURL($"https://api.github.com/repos/{username}/{repo}/releases/latest");
