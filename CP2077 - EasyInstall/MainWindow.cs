@@ -30,16 +30,17 @@ namespace CP2077___EasyInstall
             InitializeComponent();
 
             CheckForUpdate();
+            _ = InitApplication();
+        }
+
+        private bool InitApplication()
+        {
             try
             {
-                // This whole initialisation of the program is really stupid.
-                // We shouldn't be starting the application with an exception
-                // to check if the user has already installed the mods.
-                // We need a better solution but I don't care for the time being.
-
                 if (GamePath == null)
                 {
-                    throw new ArgumentException();
+                    TraceDebugWrite("Patch not already installed!");
+                    return true;
                 }
 
                 // Check if the patch is already installed. If game_path file != NULL == already installed.
@@ -54,10 +55,12 @@ namespace CP2077___EasyInstall
 
                 LoadSettings(_generalPath);
                 TraceDebugWrite("Patch already installed!");
+                return true;
             }
-            catch (ArgumentException) // ArugmentException for not being able to read app settings.
+            catch (Exception ex)
             {
-                TraceDebugWrite("Patch not already installed!");
+                TraceDebugWrite($"Exception while checking for latest version: {ex}");
+                return true;
             }
         }
 
