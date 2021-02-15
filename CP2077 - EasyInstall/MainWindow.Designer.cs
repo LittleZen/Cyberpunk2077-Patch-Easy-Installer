@@ -562,6 +562,7 @@ namespace CP2077___EasyInstall
             this.btnFindGoG.Name = "btnFindGoG";
             this.btnFindGoG.Size = new System.Drawing.Size(767, 30);
             this.btnFindGoG.TabIndex = 2;
+            this.btnFindGoG.Tag = "GOG";
             this.btnFindGoG.Text = "Automatic Detect GOG Path";
             this.btnFindGoG.Theme = MetroFramework.MetroThemeStyle.Light;
             this.tt_gog.SetToolTip(this.btnFindGoG, "Automatically Detect GOG Path");
@@ -574,6 +575,7 @@ namespace CP2077___EasyInstall
             this.btnFindSteam.Name = "btnFindSteam";
             this.btnFindSteam.Size = new System.Drawing.Size(767, 30);
             this.btnFindSteam.TabIndex = 1;
+            this.btnFindSteam.Tag = "Steam";
             this.btnFindSteam.Text = "Automatic Detect Steam Path";
             this.btnFindSteam.Theme = MetroFramework.MetroThemeStyle.Light;
             this.tt_steam.SetToolTip(this.btnFindSteam, "Automatically Detect Steam Path");

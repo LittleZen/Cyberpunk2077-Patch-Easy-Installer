@@ -1,8 +1,8 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
-using System.Text.RegularExpressions;
 
 namespace CP2077___EasyInstall
 {
@@ -35,26 +35,19 @@ namespace CP2077___EasyInstall
             return httpWebResponse.GetResponseStream();
         }
 
-        private static readonly Regex LatestGitTagRegex = new Regex("\\\"tag_name\"\\s*\\:\\s*\\\"([v])([0-9]+\\.[0-9])\\\""); // Match `"tag_name": "v2.7"`. Group 1 is `v2.7`
-
         /// <summary>
-        /// Gets the latest version of Cyberpunk2077-Patch-Easy-Installer according to the Github API
+        /// Gets the latest version of CyberEngineTweaks according to the Github API.
         /// </summary>
-        /// <returns>A version representing the latest available version of Cyberpunk2077-Patch-Easy-Installer, or null if the latest version could not be determined</returns>
-        public static Version GetLatestVersion()
+        /// <returns>The filename of the release zip.</returns>
+        public static GitHub GetGitHubAPIInfo(string username, string repo)
         {
-            const string apiEndpoint = "https://api.github.com/repos/LittleZen/Cyberpunk2077-Patch-Easy-Installer/releases/latest";
-            var responseJson = GetStringFromURL(apiEndpoint);
+            string responseJson = GetGitHubAPIDetails(username, repo);
             if (string.IsNullOrEmpty(responseJson))
                 return null;
 
-            // Using a regex to get the tag to avoid importing an entire JSON parsing library
-            var tagMatch = LatestGitTagRegex.Match(responseJson);
-            if (!tagMatch.Success)
-                return null;
-
-            var tagString = tagMatch.Groups[2].Value;
-            return !Version.TryParse(tagString, out var latestVersion) ? null : latestVersion;
+            return JsonConvert.DeserializeObject<GitHub>(responseJson);
         }
+
+        private static string GetGitHubAPIDetails(string username, string repo) => GetStringFromURL($"https://api.github.com/repos/{username}/{repo}/releases/latest");
     }
 }
