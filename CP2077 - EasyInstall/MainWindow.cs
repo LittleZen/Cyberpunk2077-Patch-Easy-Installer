@@ -14,11 +14,13 @@ namespace CP2077___EasyInstall
     public partial class Form1 : MetroFramework.Forms.MetroForm
     {
         private string _generalPath = string.Empty;
+        private Version _modVersion;
         private static int _keyPress = Convert.ToInt32(Keys.Oemtilde);
 
         private static readonly Version CurrentProgramVersion = Assembly.GetExecutingAssembly().GetName().Version;
         private static readonly string CurrentDir = Directory.GetCurrentDirectory();
         private static readonly string GamePath = ConfigurationManager.AppSettings.Get("GamePath");
+        private static readonly string PatchVersion = ConfigurationManager.AppSettings.Get("PatchVersion");
 
         /// <summary>
         /// Entry point for the application
@@ -43,6 +45,7 @@ namespace CP2077___EasyInstall
                 // Check if the patch is already installed. If game_path file != NULL == already installed.
                 TraceDebugWrite(GamePath);
                 _generalPath = Path.Combine(GamePath, "bin", "x64");
+                _modVersion = !Version.TryParse(PatchVersion.Remove(0, 1), out var installedVersion) ? null : installedVersion;
                 btnMain.Text = "Patch already installed!";
                 EnableGbx(); // Enable settings.
                 btnMain.Enabled = false;
@@ -228,7 +231,7 @@ namespace CP2077___EasyInstall
                         _generalPath = gamePath;
                     }
 
-                    PatchGame(gamePath);
+                    _ = PatchGame(gamePath);
                     EnableGbx(); //enable the settings after the installation
                 }
                 else if (result == DialogResult.Cancel)
@@ -248,34 +251,38 @@ namespace CP2077___EasyInstall
         /// Copy the patch files to the game directory.
         /// </summary>
         /// <param name="gamePath">Location of the game files.</param>
-        private void PatchGame(string gamePath)
+        private bool PatchGame(string gamePath)
         {
             TraceDebugWrite($"Path Selected: {gamePath}", "Message");
 
             try
             {
+                var release = UpdateUtil.GetGitHubAPIInfo("yamashi", "CyberEngineTweaks");
+                TraceDebugWrite("Release name: ", release.Assets[0].Name);
+                TraceDebugWrite("Version Number: ", release.TagName);
+
+                WriteToSettingsFile("PatchVersion", release.TagName);
+
+                var latestModVersion = !Version.TryParse(release.TagName.Remove(0, 1), out var latestGitHubVersion) ? null : latestGitHubVersion;
+                Version installedModVerison = !Version.TryParse(PatchVersion.Remove(0, 1), out var installedVersion) ? null : installedVersion;
+
+                // Check if the mod has already been installed or if there is a new version
+                if (_modVersion != null || latestModVersion == _modVersion)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "You're already on the latest version!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                    return true;
+                }
+
                 DownloadLatestVersion(); // Create folder called "Patch"(inside patcher directory not CP folder) with all update inside. Function "PatchGame" will install everything from it.
-                var release = UpdateUtil.GetGitHubAPIInfo("yamashi", "CyberEngineTweaks").Assets[0].Name;
-                TraceDebugWrite("Release name: ", release);
 
                 // Move files from patch to Cyberpunk 2077 path.
                 btnMain.Text = "Installing...";
                 TraceDebugWrite($"gamePath: {gamePath}");
                 Copy("Patch", gamePath);
-                SaveSettings();
+                SaveModSettings();
 
-                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                var settings = configFile.AppSettings.Settings;
-                if (settings["GamePath"] == null)
-                {
-                    settings.Add("GamePath", gamePath);
-                }
-                else
-                {
-                    settings["GamePath"].Value = gamePath;
-                }
-                configFile.Save(ConfigurationSaveMode.Modified);
-                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+                WriteToSettingsFile("GamePath", gamePath);
+                
 
                 TraceDebugWrite($"game_path path = {GamePath}");
 
@@ -290,13 +297,31 @@ namespace CP2077___EasyInstall
                 btnMain.Enabled = false;
                 btnFindSteam.Enabled = false;
                 btnFindGoG.Enabled = false;
+                return true;
             }
             catch (Exception ex)
             {
                 MetroFramework.MetroMessageBox.Show(this, $"Error during installation {ExceptionAsString(ex)}", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnMain.Text = "Critical Error!";
                 DisableGbx(); // Disable the settings page.
+                return true;
             }
+        }
+
+        private void WriteToSettingsFile(string key, string value)
+        {
+            var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var settings = configFile.AppSettings.Settings;
+            if (settings[$"{key}"] == null)
+            {
+                settings.Add($"{key}", value);
+            }
+            else
+            {
+                settings[$"{key}"].Value = value;
+            }
+            configFile.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
         }
 
         /// <summary>
@@ -318,7 +343,7 @@ namespace CP2077___EasyInstall
         {
             try
             {
-                SaveSettings();
+                SaveModSettings();
                 MetroFramework.MetroMessageBox.Show(this, "\nSaved!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
             catch (Exception ex)
@@ -327,7 +352,7 @@ namespace CP2077___EasyInstall
             }
         }
 
-        private void SaveSettings()
+        private void SaveModSettings()
         {
             var settingsPath = Path.Combine(_generalPath, "plugins", "cyber_engine_tweaks", "config.json");
 
@@ -517,6 +542,11 @@ namespace CP2077___EasyInstall
                 if (!(settings["GamePath"] == null))
                 {
                     settings.Remove("GamePath");
+                }
+                if (!(settings["PatchVersion"] == null))
+                {
+                    settings.Remove("PatchVersion");
+                    _modVersion = null;
                 }
                 configFile.Save(ConfigurationSaveMode.Modified);
                 ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
