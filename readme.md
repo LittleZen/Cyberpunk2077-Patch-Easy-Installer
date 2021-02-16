@@ -168,6 +168,19 @@ Type | Description
 
 -----------
 
+### Version 3.6 [16/02/2021]
+
+- [x] Use app.config for storing game path and installed mod version
+- [x] Removed `game_data` file 
+- [x] Now the `update` button only download mods if new version is available
+- [x] Updated settings storing
+- [x] Refactored GitHub API calls
+- [x] Refactored Steam and GOG auto detect logic
+- [x] Quick fix for settings not getting set correctly on initial download
+- [x] New classes, minor bug fixies, minor UI changes
+
+-----------
+
 ## LICENSE AND USE
 
 - [x] Install the patch, download the source or the installer will result as "license and use" accepted

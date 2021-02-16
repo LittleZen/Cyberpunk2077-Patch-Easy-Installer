@@ -745,7 +745,7 @@ namespace CP2077___EasyInstall
             this.Name = "Form1";
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Yellow;
-            this.Text = "CP 2077 - EasyPatcher | v3.5";
+            this.Text = "CP 2077 - EasyPatcher | v3.6";
             this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center;
             this.gbxSettings.ResumeLayout(false);
             this.gbxSettings.PerformLayout();
