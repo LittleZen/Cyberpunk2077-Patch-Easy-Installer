@@ -267,7 +267,7 @@ namespace CP2077___EasyInstall
                 WriteToSettingsFile("PatchVersion", release.TagName);
 
                 var latestModVersion = !Version.TryParse(release.TagName.Remove(0, 1), out var latestGitHubVersion) ? null : latestGitHubVersion;
-                Version installedModVerison = !Version.TryParse(PatchVersion.Remove(0, 1), out var installedVersion) ? null : installedVersion;
+                Version installedModVerison = !Version.TryParse(PatchVersion?.Remove(0, 1), out var installedVersion) ? null : installedVersion;
 
                 // Check if the mod has already been installed or if there is a new version
                 if (_modVersion != null || latestModVersion == _modVersion)
@@ -286,8 +286,7 @@ namespace CP2077___EasyInstall
 
                 WriteToSettingsFile("GamePath", gamePath);
                 
-
-                TraceDebugWrite($"game_path path = {GamePath}");
+                TraceDebugWrite($"game_path path = {gamePath}");
 
                 // Delete "Patch" working folder.
                 var downloadPath = Path.Combine(CurrentDir, "Patch");
@@ -357,6 +356,10 @@ namespace CP2077___EasyInstall
 
         private void SaveModSettings()
         {
+            // Quickly enable and disable the checkboxes to set values for file.
+            // This should probably be better but it's fine.
+
+            EnableGbx();
             var settingsPath = Path.Combine(_generalPath, "plugins", "cyber_engine_tweaks", "config.json");
 
             var data = new Data()
