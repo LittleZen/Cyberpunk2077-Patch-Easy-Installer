@@ -23,7 +23,7 @@ namespace CP2077___EasyInstall
         private static readonly string PatchVersion = ConfigurationManager.AppSettings.Get("PatchVersion");
 
         /// <summary>
-        /// Entry point for the application
+        /// Entry point for the application.
         /// </summary>
         public Form1()
         {
@@ -33,6 +33,10 @@ namespace CP2077___EasyInstall
             _ = InitApplication();
         }
 
+        /// <summary>
+        /// Initialise the application by checking for updates and enabling settings.
+        /// </summary>
+        /// <returns>Dispose.</returns>
         private bool InitApplication()
         {
             try
@@ -43,7 +47,6 @@ namespace CP2077___EasyInstall
                     return true;
                 }
 
-                // Check if the patch is already installed. If game_path file != NULL == already installed.
                 TraceDebugWrite(GamePath);
                 _generalPath = Path.Combine(GamePath, "bin", "x64");
                 _modVersion = !Version.TryParse(PatchVersion.Remove(0, 1), out var installedVersion) ? null : installedVersion;
@@ -109,6 +112,9 @@ namespace CP2077___EasyInstall
             cbVignette.Checked = false;
         }
 
+        /// <summary>
+        /// Check for Easy Installer updates from GitHub.
+        /// </summary>
         private void CheckForUpdate()
         {
             Version latestVersion;
@@ -261,13 +267,12 @@ namespace CP2077___EasyInstall
             try
             {
                 var release = UpdateUtil.GetGitHubAPIInfo("yamashi", "CyberEngineTweaks");
-                TraceDebugWrite("Release name: ", release.Assets[0].Name);
-                TraceDebugWrite("Version Number: ", release.TagName);
+                TraceDebugWrite($"Release name: {release.Assets[0].Name}");
+                TraceDebugWrite($"Version Number: {release.TagName}");
 
                 WriteToSettingsFile("PatchVersion", release.TagName);
 
                 var latestModVersion = !Version.TryParse(release.TagName.Remove(0, 1), out var latestGitHubVersion) ? null : latestGitHubVersion;
-                Version installedModVerison = !Version.TryParse(PatchVersion?.Remove(0, 1), out var installedVersion) ? null : installedVersion;
 
                 // Check if the mod has already been installed or if there is a new version
                 if (_modVersion != null || latestModVersion == _modVersion)
@@ -276,17 +281,17 @@ namespace CP2077___EasyInstall
                     return true;
                 }
 
+                _modVersion = latestModVersion;
+
                 DownloadLatestVersion(); // Create folder called "Patch"(inside patcher directory not CP folder) with all update inside. Function "PatchGame" will install everything from it.
 
                 // Move files from patch to Cyberpunk 2077 path.
                 btnMain.Text = "Installing...";
-                TraceDebugWrite($"gamePath: {gamePath}");
+                TraceDebugWrite($"GamePath: {gamePath}");
                 Copy("Patch", gamePath);
                 SaveModSettings();
 
                 WriteToSettingsFile("GamePath", gamePath);
-                
-                TraceDebugWrite($"game_path path = {gamePath}");
 
                 // Delete "Patch" working folder.
                 var downloadPath = Path.Combine(CurrentDir, "Patch");
@@ -310,6 +315,11 @@ namespace CP2077___EasyInstall
             }
         }
 
+        /// <summary>
+        /// Save settings to app.config file.
+        /// </summary>
+        /// <param name="key">Key for app.config.</param>
+        /// <param name="value">Value for app.config.</param>
         private void WriteToSettingsFile(string key, string value)
         {
             var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
@@ -354,6 +364,9 @@ namespace CP2077___EasyInstall
             }
         }
 
+        /// <summary>
+        /// Store current checkbox options to config.json.
+        /// </summary>
         private void SaveModSettings()
         {
             // Quickly enable and disable the checkboxes to set values for file.
@@ -449,6 +462,10 @@ namespace CP2077___EasyInstall
             }
         }
 
+        /// <summary>
+        /// Remove files from folder path.
+        /// </summary>
+        /// <param name="folderPath">File path with all files to be removed.</param>
         private static void CleanFolder(string folderPath)
         {
             if (!Directory.Exists(folderPath))
@@ -572,16 +589,30 @@ namespace CP2077___EasyInstall
             }
         }
 
+        /// <summary>
+        /// Button Automatic Detect Steam Path has been clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnFindSteam_Click(object sender, EventArgs e)
         {
             GamePathInstaller(sender);
         }
 
+        /// <summary>
+        /// Button Automatic Detect GOG Path has been clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnFindGoG_Click(object sender, EventArgs e)
         {
             GamePathInstaller(sender);
         }
 
+        /// <summary>
+        /// Begin game install based on auto detect button clicked.
+        /// </summary>
+        /// <param name="sender"></param>
         private void GamePathInstaller(object sender)
         {
             try
@@ -639,6 +670,11 @@ namespace CP2077___EasyInstall
             }
         }
 
+        /// <summary>
+        /// Label Check for Update clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lblUpdate_Click(object sender, EventArgs e)
         {
             if (lblUpdate.Text == "Update available, click here!")
@@ -652,6 +688,11 @@ namespace CP2077___EasyInstall
             }
         }
 
+        /// <summary>
+        /// Textbox Console Key key released.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtConsoleKey_KeyUp(object sender, KeyEventArgs e)
         {
             _keyPress = e.KeyValue;
@@ -660,12 +701,22 @@ namespace CP2077___EasyInstall
             TraceDebugWrite($"Keyboard key pressed: {e.KeyCode} - Value: {_keyPress}");
         }
 
+        /// <summary>
+        /// Number Input value changed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void numConsoleKey_ValueChanged(object sender, EventArgs e)
         {
             _keyPress = Convert.ToInt32(numConsoleKey.Value);
             txtConsoleKey.Text = new KeysConverter().ConvertToString(_keyPress);
         }
 
+        /// <summary>
+        /// Checkbox Enable Console value changed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbConsole_CheckedChanged(object sender, EventArgs e)
         {
             if (cbConsole.Checked)
