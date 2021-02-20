@@ -274,8 +274,13 @@ namespace CP2077___EasyInstall
 
                 var latestModVersion = !Version.TryParse(release.TagName.Remove(0, 1), out var latestGitHubVersion) ? null : latestGitHubVersion;
 
+                if (_modVersion == null)
+                {
+                    _modVersion = Version.Parse("1.0");
+                }
+
                 // Check if the mod has already been installed or if there is a new version
-                if (_modVersion != null || latestModVersion == _modVersion)
+                if (latestModVersion == _modVersion)
                 {
                     MetroFramework.MetroMessageBox.Show(this, "You're already on the latest version!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Question);
                     return true;
@@ -562,15 +567,17 @@ namespace CP2077___EasyInstall
 
                 var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 var settings = configFile.AppSettings.Settings;
-                if (!(settings["GamePath"] == null))
+
+                if (settings["GamePath"] != null)
                 {
                     settings.Remove("GamePath");
                 }
-                if (!(settings["PatchVersion"] == null))
+                if (settings["PatchVersion"] != null)
                 {
                     settings.Remove("PatchVersion");
                     _modVersion = null;
                 }
+
                 configFile.Save(ConfigurationSaveMode.Modified);
                 ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
 
@@ -621,13 +628,16 @@ namespace CP2077___EasyInstall
                 Button clickedButton = (Button)sender;
                 string path = null;
 
-                if (clickedButton.Tag.ToString() == "GOG")
+                switch (clickedButton.Tag.ToString())
                 {
-                    path = GOGGamePath.FindGameByAppID("1423049311");
-                }
-                else if (clickedButton.Tag.ToString() == "Steam")
-                {
-                    path = SteamGamePath.FindGameByAppID("1091500");
+                    case "GOG":
+                        path = GOGGamePath.FindGameByAppID("1423049311");
+                        break;
+                    case "Steam":
+                        path = SteamGamePath.FindGameByAppID("1091500");
+                        break;
+                    default:
+                        break;
                 }
 
                 if (path == null)
@@ -639,28 +649,26 @@ namespace CP2077___EasyInstall
                 }
 
                 var result = MetroFramework.MetroMessageBox.Show(this, path, "Is this Correct?", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
+                switch (result)
                 {
-                    if (string.IsNullOrWhiteSpace(_generalPath))
-                    {
-                        _generalPath = Path.Combine(path, "bin", "x64");
-                    }
-
-                    PatchGame(Path.Combine(path));
-                    EnableGbx(); // Enable the settings after the installation.
+                    case DialogResult.Yes:
+                        if (string.IsNullOrWhiteSpace(_generalPath))
+                        {
+                            _generalPath = Path.Combine(path, "bin", "x64");
+                        }
+                        PatchGame(Path.Combine(path));
+                        EnableGbx(); // Enable the settings after the installation.
+                        break;
+                    case DialogResult.No:
+                        MetroFramework.MetroMessageBox.Show(this, null, "Installation Cancelled!", MessageBoxButtons.OK);
+                        btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
+                        DisableGbx(); // Disable the Settings page.
+                        break;
+                    default:
+                        MetroFramework.MetroMessageBox.Show(this, "The tool wasn't able to open the dialog box!", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        DisableGbx(); // Disable the Settings page.
+                        break;
                 }
-                else if (result == DialogResult.No)
-                {
-                    MetroFramework.MetroMessageBox.Show(this, null, "Installation Cancelled!", MessageBoxButtons.OK);
-                    btnMain.Text = "Select Path to Cyberpunk 2077 Main Directory";
-                    DisableGbx(); // Disable the Settings page.
-                }
-                else
-                {
-                    MetroFramework.MetroMessageBox.Show(this, "The tool wasn't able to open the dialog box!", "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    DisableGbx(); // Disable the Settings page.
-                }
-
             }
             catch (Exception ex)
             {
