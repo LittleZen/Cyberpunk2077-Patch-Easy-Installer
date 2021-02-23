@@ -74,8 +74,6 @@ namespace CP2077___EasyInstall
         {
             gbxSettings.Enabled = true;
             gbxConsole.Enabled = true;
-            gbxMemPool.Enabled = true;
-
             cbAVX.Checked = true;
             cbSMT.Checked = true;
             cbSpectre.Checked = true;
@@ -93,8 +91,6 @@ namespace CP2077___EasyInstall
         {
             gbxSettings.Enabled = false;
             gbxConsole.Enabled = false;
-            gbxMemPool.Enabled = false;
-
             cbAVX.Checked = false;
             cbSMT.Checked = false;
             cbSpectre.Checked = false;
@@ -156,11 +152,8 @@ namespace CP2077___EasyInstall
                 var data = JsonConvert.DeserializeObject<Data>(File.ReadAllText(Path.Combine(generalPath, "plugins", "cyber_engine_tweaks", "config.json")));
 
                 cbAVX.Checked = data.AVX;
-                numCpuMem.Value = data.CPUMemoryPoolFraction;
                 cbAntialiasing.Checked = data.DisableAntialiasing;
                 cbAsyncCompute.Checked = data.DisableAsyncCompute;
-                numGpuMem.Value = data.GPUMemoryPoolFraction;
-                cbMemoryPool.Checked = data.MemoryPool;
                 cbRemovePedestrians.Checked = data.RemovePedestrians;
                 cbSkipStartMenu.Checked = data.SkipStartMenu;
                 cbSMT.Checked = data.SMT;
@@ -386,10 +379,7 @@ namespace CP2077___EasyInstall
                 SMT = cbSMT.Checked,
                 Spectre = cbMemoryPool.Checked,
                 VirtualInput = cbSpectre.Checked,
-                MemoryPool = cbMemoryPool.Checked,
                 UnlockMenu = cbDebug.Checked,
-                CPUMemoryPoolFraction = numCpuMem.Value,
-                GPUMemoryPoolFraction = numGpuMem.Value,
                 RemovePedestrians = cbRemovePedestrians.Checked,
                 SkipStartMenu = cbSkipStartMenu.Checked,
                 DisableAsyncCompute = cbAsyncCompute.Checked,
@@ -500,13 +490,21 @@ namespace CP2077___EasyInstall
         {
             try
             {
-                PatchGame(GamePath);
-                btnMain.Text = "Successfully Installed!";
+                if (GamePath != null)
+                {
+                    PatchGame(GamePath);
+                    btnMain.Text = "Successfully Installed!";
+                }
+                else
+                {
+                    TraceDebugWrite("Main path not selected, can not check for updates!");
+                    MetroFramework.MetroMessageBox.Show(this, $"Please select the Cyberpunk 2077 main folder before checking for updates!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             catch (Exception ex)
             {
-                TraceDebugWrite("Main path not selected, can not check for updates!");
-                MetroFramework.MetroMessageBox.Show(this, $"Please select the Cyberpunk 2077 main folder before checking for updates! {ExceptionAsString(ex)}", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TraceDebugWrite($"Generic Exception: {ex}");
+                MetroFramework.MetroMessageBox.Show(this, $"Generic Exception: {ex}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

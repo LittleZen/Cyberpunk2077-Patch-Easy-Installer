@@ -16,17 +16,8 @@ namespace CP2077___EasyInstall
         [JsonProperty("virtual_input")]
         public bool VirtualInput { get; set; }
 
-        [JsonProperty("memory_pool")]
-        public bool MemoryPool { get; set; }
-
         [JsonProperty("enable_debug")]
         public bool UnlockMenu { get; set; }
-
-        [JsonProperty("cpu_memory_pool_fraction")]
-        public decimal CPUMemoryPoolFraction { get; set; }
-
-        [JsonProperty("gpu_memory_pool_fraction")]
-        public decimal GPUMemoryPoolFraction { get; set; }
 
         [JsonProperty("remove_pedestrians")]
         public bool RemovePedestrians { get; set; }

@@ -70,11 +70,6 @@ namespace CP2077___EasyInstall
             this.tt_pedestrians = new MetroFramework.Components.MetroToolTip();
             this.tt_aliasing = new MetroFramework.Components.MetroToolTip();
             this.btnLogs = new MetroFramework.Controls.MetroButton();
-            this.gbxMemPool = new System.Windows.Forms.GroupBox();
-            this.numGpuMem = new System.Windows.Forms.NumericUpDown();
-            this.numCpuMem = new System.Windows.Forms.NumericUpDown();
-            this.lblGpuMem = new MetroFramework.Controls.MetroLabel();
-            this.lblCpuMem = new MetroFramework.Controls.MetroLabel();
             this.btnUninstall = new MetroFramework.Controls.MetroButton();
             this.btnFindGoG = new MetroFramework.Controls.MetroButton();
             this.btnFindSteam = new MetroFramework.Controls.MetroButton();
@@ -92,9 +87,6 @@ namespace CP2077___EasyInstall
             this.ttVignette = new MetroFramework.Components.MetroToolTip();
             this.ttConsoleKey = new MetroFramework.Components.MetroToolTip();
             this.gbxSettings.SuspendLayout();
-            this.gbxMemPool.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numGpuMem)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCpuMem)).BeginInit();
             this.gbxConsole.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numConsoleKey)).BeginInit();
             this.SuspendLayout();
@@ -145,7 +137,7 @@ namespace CP2077___EasyInstall
             this.gbxSettings.Size = new System.Drawing.Size(762, 149);
             this.gbxSettings.TabIndex = 3;
             this.gbxSettings.TabStop = false;
-            this.gbxSettings.Text = "Settings:";
+            this.gbxSettings.Text = "Menù";
             // 
             // cbVignette
             // 
@@ -468,84 +460,6 @@ namespace CP2077___EasyInstall
             this.btnLogs.UseSelectable = true;
             this.btnLogs.Click += new System.EventHandler(this.btnLogs_Click);
             // 
-            // gbxMemPool
-            // 
-            this.gbxMemPool.Controls.Add(this.numGpuMem);
-            this.gbxMemPool.Controls.Add(this.numCpuMem);
-            this.gbxMemPool.Controls.Add(this.lblGpuMem);
-            this.gbxMemPool.Controls.Add(this.lblCpuMem);
-            this.gbxMemPool.Enabled = false;
-            this.gbxMemPool.Location = new System.Drawing.Point(24, 360);
-            this.gbxMemPool.Name = "gbxMemPool";
-            this.gbxMemPool.Size = new System.Drawing.Size(356, 92);
-            this.gbxMemPool.TabIndex = 15;
-            this.gbxMemPool.TabStop = false;
-            this.gbxMemPool.Text = "Memory Pool:";
-            // 
-            // numGpuMem
-            // 
-            this.numGpuMem.DecimalPlaces = 2;
-            this.numGpuMem.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            131072});
-            this.numGpuMem.Location = new System.Drawing.Point(135, 57);
-            this.numGpuMem.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numGpuMem.Name = "numGpuMem";
-            this.numGpuMem.Size = new System.Drawing.Size(45, 20);
-            this.numGpuMem.TabIndex = 19;
-            this.numGpuMem.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            65536});
-            // 
-            // numCpuMem
-            // 
-            this.numCpuMem.DecimalPlaces = 2;
-            this.numCpuMem.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            131072});
-            this.numCpuMem.Location = new System.Drawing.Point(135, 19);
-            this.numCpuMem.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numCpuMem.Name = "numCpuMem";
-            this.numCpuMem.Size = new System.Drawing.Size(45, 20);
-            this.numCpuMem.TabIndex = 17;
-            this.numCpuMem.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            // 
-            // lblGpuMem
-            // 
-            this.lblGpuMem.AutoSize = true;
-            this.lblGpuMem.Location = new System.Drawing.Point(6, 57);
-            this.lblGpuMem.Name = "lblGpuMem";
-            this.lblGpuMem.Size = new System.Drawing.Size(123, 19);
-            this.lblGpuMem.TabIndex = 18;
-            this.lblGpuMem.Text = "GPU Memory Pool:";
-            // 
-            // lblCpuMem
-            // 
-            this.lblCpuMem.AutoSize = true;
-            this.lblCpuMem.Location = new System.Drawing.Point(6, 20);
-            this.lblCpuMem.Name = "lblCpuMem";
-            this.lblCpuMem.Size = new System.Drawing.Size(123, 19);
-            this.lblCpuMem.TabIndex = 16;
-            this.lblCpuMem.Text = "CPU Memory Pool:";
-            // 
             // btnUninstall
             // 
             this.btnUninstall.Location = new System.Drawing.Point(611, 569);
@@ -625,12 +539,12 @@ namespace CP2077___EasyInstall
             this.gbxConsole.Controls.Add(this.metroLabel1);
             this.gbxConsole.Controls.Add(this.cbConsole);
             this.gbxConsole.Enabled = false;
-            this.gbxConsole.Location = new System.Drawing.Point(387, 361);
+            this.gbxConsole.Location = new System.Drawing.Point(24, 361);
             this.gbxConsole.Name = "gbxConsole";
-            this.gbxConsole.Size = new System.Drawing.Size(399, 91);
+            this.gbxConsole.Size = new System.Drawing.Size(762, 91);
             this.gbxConsole.TabIndex = 27;
             this.gbxConsole.TabStop = false;
-            this.gbxConsole.Text = "Console:";
+            this.gbxConsole.Text = "Console";
             // 
             // numConsoleKey
             // 
@@ -732,7 +646,6 @@ namespace CP2077___EasyInstall
             this.Controls.Add(this.btnFindGoG);
             this.Controls.Add(this.btnFindSteam);
             this.Controls.Add(this.btnUninstall);
-            this.Controls.Add(this.gbxMemPool);
             this.Controls.Add(this.btnLogs);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.gbxSettings);
@@ -745,14 +658,10 @@ namespace CP2077___EasyInstall
             this.Name = "Form1";
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Yellow;
-            this.Text = "CP 2077 - EasyPatcher | v3.6";
+            this.Text = "CP 2077 - EasyPatcher | v3.7";
             this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center;
             this.gbxSettings.ResumeLayout(false);
             this.gbxSettings.PerformLayout();
-            this.gbxMemPool.ResumeLayout(false);
-            this.gbxMemPool.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numGpuMem)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCpuMem)).EndInit();
             this.gbxConsole.ResumeLayout(false);
             this.gbxConsole.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numConsoleKey)).EndInit();
@@ -795,12 +704,7 @@ namespace CP2077___EasyInstall
         private MetroFramework.Components.MetroToolTip tt_pedestrians;
         private MetroFramework.Components.MetroToolTip tt_aliasing;
         private MetroFramework.Controls.MetroButton btnLogs;
-        private System.Windows.Forms.GroupBox gbxMemPool;
-        private MetroFramework.Controls.MetroLabel lblCpuMem;
-        private MetroFramework.Controls.MetroLabel lblGpuMem;
         private MetroFramework.Controls.MetroButton btnUninstall;
-        private System.Windows.Forms.NumericUpDown numGpuMem;
-        private System.Windows.Forms.NumericUpDown numCpuMem;
         private MetroFramework.Controls.MetroButton btnFindGoG;
         private MetroFramework.Controls.MetroButton btnFindSteam;
         private MetroFramework.Components.MetroToolTip tt_gog;

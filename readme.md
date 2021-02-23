@@ -181,6 +181,16 @@ Type | Description
 
 -----------
 
+### Version 3.7 [23/02/2021]
+
+- [x] Fixed Logic for Checking for Latest Version of Mods
+- [x] Fixed `Check for updates` system, now correctly handle all exception
+- [x] Check for updates will now previously check if `gamepath` is selected
+- [x] Removed `CPU/GPU Memory Pool` options since is no longer supported
+- [x] Minor UI changes
+
+-----------
+
 ## LICENSE AND USE
 
 - [x] Install the patch, download the source or the installer will result as "license and use" accepted
