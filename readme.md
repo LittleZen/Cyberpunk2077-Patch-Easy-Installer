@@ -1,4 +1,4 @@
-# Cyberpunk 2077 | Easy Patcher (OutDated)
+# Cyberpunk 2077 | Easy Patcher (OUTDATED)
 
 This software allows you to easily install all the patches from [CyberEngineTweaks](https://bit.ly/384rMEx), created by yamashi.
 For any problems, or for more information, check the main repository (by yamashi). 😊
